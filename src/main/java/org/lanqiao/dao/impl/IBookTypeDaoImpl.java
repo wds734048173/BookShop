@@ -16,7 +16,7 @@ public class IBookTypeDaoImpl implements IBookTypeDao {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql ="select * from tb_booktypeinfo ";
         List<BookType> typeList = qr.query(sql,new BeanListHandler<>(BookType.class));
-        return null;
+        return typeList;
     }
 
     @Override
