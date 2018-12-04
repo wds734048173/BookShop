@@ -1,4 +1,4 @@
-<%@ page import="org.lanqiao.domain.Customer" %>
+<%@ page import="org.lanqiao.domain.Order" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
@@ -10,15 +10,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>客服信息列表</title>
+    <title>订单列表</title>
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript">
         function getReplyList(){
             $.ajax({
-                url:"/customer.do?method=getCustomerList",
+                url:"/order.do?method=getOrderList",
                 // data:{"greensClassId":id,"currentPage":currentPage,"searchGreensClassStateId":searchGreensClassStateId,"searchGreensClassName":searchGreensClassName},
                 success:function (data) {
-                    var replys = eval(data);
+                    var orders = eval(data);
 
                     // var resultMap  = eval(data);
                     // var result = 0;
@@ -40,53 +40,49 @@
             })
         }
         $(function () {
-            window.onload(getCustomerList())
+            window.onload(getOrderList())
         })
     </script>
 </head>
 <body>
-<a href="#" role="button" id="addCustomer" name="addCustomer">添加客服信息</a>
+<a href="#" role="button" id="addOrder" name="addOrder">添加订单信息</a>
 <table class="table table-hover table-bordered">
     <thead>
-    <th>客户编号</th>
-    <th>客户姓名</th>
-    <th>客户密码</th>
-    <th>真实姓名</th>
-    <th>0表示男,1表示女</th>
-    <th>客户电话</th>
-    <th>E-mail</th>
-    <th>地址</th>
-    <th>注册时间</th>
+    <th>订单id</th>
+    <th>订单编号</th>
+    <th>原价</th>
+    <th>运费</th>
+    <th>实付金额</th>
+    <th>状态</th>
+    <th>收货人姓名</th>
+    <th>收货人电话</th>
+    <th>收货人地址</th>
+    <th>创建时间</th>
     <th>修改时间</th>
-    <th>提示问题</th>
-    <th>问题答案</th>
-    <th>登录次数</th>
-    <th>最近登录时间</th>
+    <th>客户id</th>
     <th>操作</th>
     </thead>
     <tbody>
     <%
-        List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");
-        for(Customer customer : customerList){
+        List<Order> orderList = (List<Order>)request.getAttribute("orderList");
+        for(Order order : orderList){
     %>
     <tr>
-        <td><%=customer.getCustomerId()%></td>
-        <td><%=customer.getUserName()%></td>
-        <td><%=customer.getPassword()%></td>
-        <td><%=customer.getName()%></td>
-        <td><%=customer.getCustomerSex()%></td>
-        <td><%=customer.getCustomerTel()%></td>
-        <td><%=customer.getCustomerEmail()%></td>
-        <td><%=customer.getCustomerAddr()%></td>
-        <td><%=customer.getCTime()%></td>
-        <td><%=customer.getRTime()%></td>
-        <td><%=customer.getCustomerQues()%></td>
-        <td><%=customer.getCustomerAnswer()%></td>
-        <td><%=customer.getCustomerLogTime()%></td>
-        <td><%=customer.getCustomerLastLogT()%></td>
+        <td><%=order.getId()%></td>
+        <td><%=order.getNo()%></td>
+        <td><%=order.getPrice()%></td>
+        <td><%=order.getFreight()%></td>
+        <td><%=order.getMoney()%></td>
+        <td><%=order.getState()%></td>
+        <td><%=order.getName()%></td>
+        <td><%=order.getPhone()%></td>
+        <td><%=order.getAddress()%></td>
+        <td><%=order.getCtime()%></td>
+        <td><%=order.getRtime()%></td>
+        <td><%=order.getCustomerId()%></td>
         <td>
-            <a class="updateCustomer" href="#" role="button"  name="updateCustomer">修改</a>
-            <a class="deleteCustomer" href="#" role="button"  name="deleteCustomer">删除</a>
+            <a class="updateOrder" href="#" role="button"  name="updateOrder">修改</a>
+            <a class="deleteOrder" href="#" role="button"  name="deleteOrder">删除</a>
         </td>
     </tr>
     <%
@@ -96,3 +92,4 @@
 </table>
 </body>
 </html>
+
