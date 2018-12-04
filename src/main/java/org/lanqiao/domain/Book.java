@@ -1,261 +1,239 @@
 package org.lanqiao.domain;
 
+import java.util.Date;
 
-import java.sql.Date;
-
+/*书籍*/
 public class Book {
-    private int bookId;
-    private int bookTypeId;
-    private String bookName;
-    private String bookPress;
-    private Date bookPubDate;
-    private String bookSize;
-    private String bookVersion;
-    private String bookAuthor;
-    private String bookTanslor;
-    private String bookisbn;
-    private int price;
-    private String bookPages;
-    private String bookOutline;
-    private String bookCatalog;
-    private int Mprice;
-    private String bookPic;
-    private int bookPicStatus;
-    private int bookStoremount ;
-    private Date bookStoretime;
-    private String bookPackstyle;
+    private int BookId;
+    private int BookTypeld;
+    private String BookName;
+    private String BookPress;
+    private Date BookPubDate;
+    private String BookSize;
+    private String BookVersion;
+    private String BookAuthor;
+    private String BookTanslor;
+    private String Bookisbn;
+    private int BookPrice;
+    private int BookPages;
+    private String BookOutline;
+    private String BookCatalog;
+    private int BookMprice;
+    private String BookPic;
+    private int BookPicStatus;
+    private int BookStoremount;
+    private Date BookStoretime;
+    private String BookPackstyle;
 
     public Book() {
     }
 
-    public Book(int bookTypeId, String bookName, String bookPress, Date bookPubDate, String bookSize, String bookVersion, String bookAuthor, String bookTanslor, String bookisbn, int price, String bookPages, String bookOutline, String bookCatalog, int mprice, String bookPic, int bookPicStatus, int bookStoremount, Date bookStoretime, String bookPackstyle) {
-        this.bookTypeId = bookTypeId;
-        this.bookName = bookName;
-        this.bookPress = bookPress;
-        this.bookPubDate = bookPubDate;
-        this.bookSize = bookSize;
-        this.bookVersion = bookVersion;
-        this.bookAuthor = bookAuthor;
-        this.bookTanslor = bookTanslor;
-        this.bookisbn = bookisbn;
-        this.price = price;
-        this.bookPages = bookPages;
-        this.bookOutline = bookOutline;
-        this.bookCatalog = bookCatalog;
-        Mprice = mprice;
-        this.bookPic = bookPic;
-        this.bookPicStatus = bookPicStatus;
-        this.bookStoremount = bookStoremount;
-        this.bookStoretime = bookStoretime;
-        this.bookPackstyle = bookPackstyle;
-    }
-
-    public Book(int bookId, int bookTypeId, String bookName, String bookPress, Date bookPubDate, String bookSize, String bookVersion, String bookAuthor, String bookTanslor, String bookisbn, int price, String bookPages, String bookOutline, String bookCatalog, int mprice, String bookPic, int bookPicStatus, int bookStoremount, Date bookStoretime, String bookPackstyle) {
-        this.bookId = bookId;
-        this.bookTypeId = bookTypeId;
-        this.bookName = bookName;
-        this.bookPress = bookPress;
-        this.bookPubDate = bookPubDate;
-        this.bookSize = bookSize;
-        this.bookVersion = bookVersion;
-        this.bookAuthor = bookAuthor;
-        this.bookTanslor = bookTanslor;
-        this.bookisbn = bookisbn;
-        this.price = price;
-        this.bookPages = bookPages;
-        this.bookOutline = bookOutline;
-        this.bookCatalog = bookCatalog;
-        Mprice = mprice;
-        this.bookPic = bookPic;
-        this.bookPicStatus = bookPicStatus;
-        this.bookStoremount = bookStoremount;
-        this.bookStoretime = bookStoretime;
-        this.bookPackstyle = bookPackstyle;
+    public Book(int bookId, int bookTypeld, String bookName, String bookPress, Date bookPubDate, String bookSize, String bookVersion, String bookAuthor, String bookTanslor, String bookisbn, int bookPrice, int bookPages, String bookOutline, String bookCatalog, int bookMprice, String bookPic, int bookPicStatus, int bookStoremount, Date bookStoretime, String bookPackstyle) {
+        BookId = bookId;
+        BookTypeld = bookTypeld;
+        BookName = bookName;
+        BookPress = bookPress;
+        BookPubDate = bookPubDate;
+        BookSize = bookSize;
+        BookVersion = bookVersion;
+        BookAuthor = bookAuthor;
+        BookTanslor = bookTanslor;
+        Bookisbn = bookisbn;
+        BookPrice = bookPrice;
+        BookPages = bookPages;
+        BookOutline = bookOutline;
+        BookCatalog = bookCatalog;
+        BookMprice = bookMprice;
+        BookPic = bookPic;
+        BookPicStatus = bookPicStatus;
+        BookStoremount = bookStoremount;
+        BookStoretime = bookStoretime;
+        BookPackstyle = bookPackstyle;
     }
 
     public int getBookId() {
-        return bookId;
+        return BookId;
     }
 
     public void setBookId(int bookId) {
-        this.bookId = bookId;
+        BookId = bookId;
     }
 
-    public int getBookTypeId() {
-        return bookTypeId;
+    public int getBookTypeld() {
+        return BookTypeld;
     }
 
-    public void setBookTypeId(int bookTypeId) {
-        this.bookTypeId = bookTypeId;
+    public void setBookTypeld(int bookTypeld) {
+        BookTypeld = bookTypeld;
     }
 
     public String getBookName() {
-        return bookName;
+        return BookName;
     }
 
     public void setBookName(String bookName) {
-        this.bookName = bookName;
+        BookName = bookName;
     }
 
     public String getBookPress() {
-        return bookPress;
+        return BookPress;
     }
 
     public void setBookPress(String bookPress) {
-        this.bookPress = bookPress;
+        BookPress = bookPress;
     }
 
     public Date getBookPubDate() {
-        return bookPubDate;
+        return BookPubDate;
     }
 
     public void setBookPubDate(Date bookPubDate) {
-        this.bookPubDate = bookPubDate;
+        BookPubDate = bookPubDate;
     }
 
     public String getBookSize() {
-        return bookSize;
+        return BookSize;
     }
 
     public void setBookSize(String bookSize) {
-        this.bookSize = bookSize;
+        BookSize = bookSize;
     }
 
     public String getBookVersion() {
-        return bookVersion;
+        return BookVersion;
     }
 
     public void setBookVersion(String bookVersion) {
-        this.bookVersion = bookVersion;
+        BookVersion = bookVersion;
     }
 
     public String getBookAuthor() {
-        return bookAuthor;
+        return BookAuthor;
     }
 
     public void setBookAuthor(String bookAuthor) {
-        this.bookAuthor = bookAuthor;
+        BookAuthor = bookAuthor;
     }
 
     public String getBookTanslor() {
-        return bookTanslor;
+        return BookTanslor;
     }
 
     public void setBookTanslor(String bookTanslor) {
-        this.bookTanslor = bookTanslor;
+        BookTanslor = bookTanslor;
     }
 
     public String getBookisbn() {
-        return bookisbn;
+        return Bookisbn;
     }
 
     public void setBookisbn(String bookisbn) {
-        this.bookisbn = bookisbn;
+        Bookisbn = bookisbn;
     }
 
-    public int getPrice() {
-        return price;
+    public int getBookPrice() {
+        return BookPrice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setBookPrice(int bookPrice) {
+        BookPrice = bookPrice;
     }
 
-    public String getBookPages() {
-        return bookPages;
+    public int getBookPages() {
+        return BookPages;
     }
 
-    public void setBookPages(String bookPages) {
-        this.bookPages = bookPages;
+    public void setBookPages(int bookPages) {
+        BookPages = bookPages;
     }
 
     public String getBookOutline() {
-        return bookOutline;
+        return BookOutline;
     }
 
     public void setBookOutline(String bookOutline) {
-        this.bookOutline = bookOutline;
+        BookOutline = bookOutline;
     }
 
     public String getBookCatalog() {
-        return bookCatalog;
+        return BookCatalog;
     }
 
     public void setBookCatalog(String bookCatalog) {
-        this.bookCatalog = bookCatalog;
+        BookCatalog = bookCatalog;
     }
 
-    public int getMprice() {
-        return Mprice;
+    public int getBookMprice() {
+        return BookMprice;
     }
 
-    public void setMprice(int mprice) {
-        Mprice = mprice;
+    public void setBookMprice(int bookMprice) {
+        BookMprice = bookMprice;
     }
 
     public String getBookPic() {
-        return bookPic;
+        return BookPic;
     }
 
     public void setBookPic(String bookPic) {
-        this.bookPic = bookPic;
+        BookPic = bookPic;
     }
 
     public int getBookPicStatus() {
-        return bookPicStatus;
+        return BookPicStatus;
     }
 
     public void setBookPicStatus(int bookPicStatus) {
-        this.bookPicStatus = bookPicStatus;
+        BookPicStatus = bookPicStatus;
     }
 
     public int getBookStoremount() {
-        return bookStoremount;
+        return BookStoremount;
     }
 
     public void setBookStoremount(int bookStoremount) {
-        this.bookStoremount = bookStoremount;
+        BookStoremount = bookStoremount;
     }
 
     public Date getBookStoretime() {
-        return bookStoretime;
+        return BookStoretime;
     }
 
     public void setBookStoretime(Date bookStoretime) {
-        this.bookStoretime = bookStoretime;
+        BookStoretime = bookStoretime;
     }
 
     public String getBookPackstyle() {
-        return bookPackstyle;
+        return BookPackstyle;
     }
 
     public void setBookPackstyle(String bookPackstyle) {
-        this.bookPackstyle = bookPackstyle;
+        BookPackstyle = bookPackstyle;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "bookId=" + bookId +
-                ", bookTypeId=" + bookTypeId +
-                ", bookName='" + bookName + '\'' +
-                ", bookPress='" + bookPress + '\'' +
-                ", bookPubDate=" + bookPubDate +
-                ", bookSize='" + bookSize + '\'' +
-                ", bookVersion='" + bookVersion + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", bookTanslor='" + bookTanslor + '\'' +
-                ", bookisbn='" + bookisbn + '\'' +
-                ", price=" + price +
-                ", bookPages='" + bookPages + '\'' +
-                ", bookOutline='" + bookOutline + '\'' +
-                ", bookCatalog='" + bookCatalog + '\'' +
-                ", Mprice=" + Mprice +
-                ", bookPic='" + bookPic + '\'' +
-                ", bookPicStatus=" + bookPicStatus +
-                ", bookStoremount=" + bookStoremount +
-                ", bookStoretime=" + bookStoretime +
-                ", bookPackstyle='" + bookPackstyle + '\'' +
+                "BookId=" + BookId +
+                ", BookTypeld=" + BookTypeld +
+                ", BookName='" + BookName + '\'' +
+                ", BookPress='" + BookPress + '\'' +
+                ", BookPubDate=" + BookPubDate +
+                ", BookSize='" + BookSize + '\'' +
+                ", BookVersion='" + BookVersion + '\'' +
+                ", BookAuthor='" + BookAuthor + '\'' +
+                ", BookTanslor='" + BookTanslor + '\'' +
+                ", Bookisbn='" + Bookisbn + '\'' +
+                ", BookPrice=" + BookPrice +
+                ", BookPages=" + BookPages +
+                ", BookOutline='" + BookOutline + '\'' +
+                ", BookCatalog='" + BookCatalog + '\'' +
+                ", BookMprice=" + BookMprice +
+                ", BookPic='" + BookPic + '\'' +
+                ", BookPicStatus=" + BookPicStatus +
+                ", BookStoremount=" + BookStoremount +
+                ", BookStoretime=" + BookStoretime +
+                ", BookPackstyle='" + BookPackstyle + '\'' +
                 '}';
     }
 }

@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /*
-* 用户管理
+* 登录
 * */
-@WebServlet("/user.do")
-public class UserServlet extends HttpServlet {
+@WebServlet("/login.do")
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,5 +23,4 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
-
 }

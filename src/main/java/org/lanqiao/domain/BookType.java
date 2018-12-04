@@ -1,14 +1,11 @@
 package org.lanqiao.domain;
 
+/*书籍分类*/
 public class BookType {
     private int bookTypeId;
     private String bookTypeName;
 
     public BookType() {
-    }
-
-    public BookType(String bookTypeName) {
-        this.bookTypeName = bookTypeName;
     }
 
     public BookType(int bookTypeId, String bookTypeName) {
