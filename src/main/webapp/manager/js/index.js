@@ -11,8 +11,8 @@ function pageClick(k) {
         url = "";
     } else if (text == "") {
         url = "";
-    } else if (text == "评价管理") {
-        url = "";
+    } else if (text == "管理员信息管理") {
+        url = "/manager.do?method=getManagerList";
     } else if (text == "用户管理") {
         url = "userList.jsp";
     } else if (text == "客户管理") {

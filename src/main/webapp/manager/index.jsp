@@ -21,6 +21,7 @@
                 <div onclick="pageClick(this)" class="active"><img src="img/icon-1.png" />分类管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-2.png" />图书管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-3.png" />订单管理</div>
+                <div onclick="pageClick(this)"><img src="img/icon-4.png" />管理员信息管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-4.png" />评价管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />用户管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />评价信息</div>
