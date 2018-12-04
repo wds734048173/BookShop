@@ -23,8 +23,8 @@
                 <div onclick="pageClick(this)"><img src="img/icon-3.png" />订单管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-4.png" />评价管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />用户管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-6.png" />客户管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-7.png" />店铺管理</div>
+                <div onclick="pageClick(this)"><img src="img/icon-5.png" />客户管理</div>
+                <div onclick="pageClick(this)"><img src="img/icon-5.png" />店铺管理</div>
             </div>
         </div>
         <div class="top">
@@ -34,4 +34,9 @@
         <div class="content"></div>
         <div style="text-align:center;"></div>
     </body>
+    <%--<script type="text/javascript">
+        $(function(){
+            $("#content").load("/bookType.do?method=getBookTypelist");
+        })
+    </script>--%>
 </html>

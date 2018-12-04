@@ -1,5 +1,6 @@
 package org.lanqiao.domain;
 
+/*订单*/
 public class Order {
     private int id;
 
