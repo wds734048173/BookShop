@@ -11,33 +11,54 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class IBookTypeDaoImpl implements IBookTypeDao {
+    QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+
     @Override
-    public List<BookType> findAll() throws SQLException {
-        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+    public List<BookType> getBookTypeList() {
         String sql ="select * from tb_booktypeinfo ";
-        List<BookType> typeList = qr.query(sql,new BeanListHandler<>(BookType.class));
+        List<BookType> typeList = null;
+        try {
+            typeList = qr.query(sql,new BeanListHandler<>(BookType.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return typeList;
     }
 
     @Override
-    public String selectByTypeId(int bookTypeId) throws SQLException {
-        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+    public BookType getBookTypeById(int bookTypeId) {
         String sql ="select BookTypeName from tb_booktypeinfo where BookTypeId=?";
-        BookType typeName= qr.query(sql,new BeanHandler<>(BookType.class),bookTypeId);
-        return typeName.getBookTypeName();
+        BookType bookType= null;
+        try {
+            bookType = qr.query(sql,new BeanHandler<>(BookType.class),bookTypeId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookType;
     }
 
     @Override
-    public void addBookType(BookType type) throws SQLException {
-        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+    public void addBookType(BookType bookType) {
         String sql="insert into tb_booktypeinfo values(?,?)";
-        qr.execute(sql,type.getBookTypeId(),type.getBookTypeName());
+        try {
+            qr.execute(sql,bookType.getBookTypeId(),bookType.getBookTypeName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delType(int bookTypeId) throws SQLException {
-        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+    public void deleteBookTypeById(int bookTypeId) {
         String sql="delete from tb_booktypeinfo where BookTypeId=?";
-        qr.execute(sql,bookTypeId);
+        try {
+            qr.execute(sql,bookTypeId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateBookType(BookType bookType) {
+
     }
 }

@@ -63,7 +63,7 @@ public class IBookInfoDaoImpl implements IBookInfoDao {
     public void addBook(Book book) throws SQLException {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="insert into tb_bookinfo values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
-        qr.execute(sql,book.getBookId(),book.getBookTypeId(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        qr.execute(sql,book.getBookId(),book.getBookTypeld(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class IBookInfoDaoImpl implements IBookInfoDao {
                 "BookStoremount= ?," +
                 "BookStoretime= ?," +
                 "BookPackstyle = ?";
-        qr.execute(sql,book.getBookId(),book.getBookTypeId(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        qr.execute(sql,book.getBookId(),book.getBookTypeld(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
 
 }
 
