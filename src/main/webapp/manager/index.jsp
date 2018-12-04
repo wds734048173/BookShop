@@ -19,8 +19,9 @@
             <div class="bigTitle">网上书店后台管理系统</div>
             <div class="lines">
                 <div onclick="pageClick(this)" class="active"><img src="img/icon-1.png" />分类管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-3.png" />订单管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-4.png" />图书信息管理</div>
+                <div onclick="pageClick(this)"><img src="img/icon-3.png" />订单管理</div>
+                <div onclick="pageClick(this)"><img src="img/icon-4.png" />管理员信息管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />客服信息管理</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />评价信息</div>
                 <div onclick="pageClick(this)"><img src="img/icon-5.png" />信息反馈</div>
