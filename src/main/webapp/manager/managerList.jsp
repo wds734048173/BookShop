@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>管理员信息列表</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         function getManagerList(){
             $.ajax({
@@ -45,7 +47,8 @@
     </script>
 </head>
 <body>
-<a href="#" role="button" id="addComment" name="addComment">添加评价信息</a>
+<a class="btn btn-default" href="#" role="button" id="addComment" name="addComment">添加评价信息</a>
+<br><br>
 <table class="table table-hover table-bordered">
     <thead>
     <th>管理员编号</th>
@@ -78,5 +81,6 @@
     %>
     </tbody>
 </table>
+<br><br>
 </body>
 </html>
