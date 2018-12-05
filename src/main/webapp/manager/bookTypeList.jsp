@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>图书分类列表</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         function getBookTypeList(){
             $.ajax({
@@ -45,7 +47,7 @@
     </script>
 </head>
 <body>
-<a href="#" role="button" id="addBookType" name="addBookType">添加图书分类</a>
+<a  class="btn btn-default" href="#" role="button"  id="addBookType" name="addBookType">添加图书分类</a>
 <table class="table table-hover table-bordered">
     <thead>
         <th>图书分类id</th>
@@ -61,8 +63,8 @@
         <td><%=bookType.getBookTypeId()%></td>
         <td><%=bookType.getBookTypeName()%></td>
         <td>
-            <a class="updateBookType" href="#" role="button"  name="updateBookType">修改</a>
-            <a class="deleteBookType" href="#" role="button"  name="deleteBookType">删除</a>
+            <a class="btn btn-default updateBookType" href="#" role="button"  name="updateBookType">修改</a>
+            <a class="btn btn-default deleteBookType" href="#" role="button"  name="deleteBookType">删除</a>
         </td>
     </tr>
         <%
