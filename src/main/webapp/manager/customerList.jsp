@@ -88,8 +88,8 @@
         <td><%=customer.getCustomerLogTime()%></td>
         <td><%=customer.getCustomerLastLogT()%></td>
         <td>
-            <a class="updateCustomer" href="#" role="button"  name="updateCustomer">修改</a>
-            <a class="deleteCustomer" href="#" role="button"  name="deleteCustomer">删除</a>
+            <a class="btn btn-default updateCustomer" href="#" role="button"  name="updateCustomer">修改</a>
+            <a class="btn btn-default deleteCustomer" href="#" role="button"  name="deleteCustomer">删除</a>
         </td>
     </tr>
     <%

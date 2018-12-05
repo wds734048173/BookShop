@@ -76,8 +76,8 @@
         <td><%=reply.getCtime()%></td>
         <td><%=reply.getRtime()%></td>
         <td>
-            <a class="updateReply" href="#" role="button"  name="updateReply">修改</a>
-            <a class="deleteReply" href="#" role="button"  name="deleteReply">删除</a>
+            <a class="btn btn-default updateReply" href="#" role="button"  name="updateReply">修改</a>
+            <a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>
         </td>
     </tr>
     <%

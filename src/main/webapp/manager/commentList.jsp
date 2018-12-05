@@ -74,8 +74,8 @@
         <td><%=comment.getCommentcontent()%></td>
         <td><%=comment.getCommentgrade()%></td>
         <td>
-            <a class="updateComment" href="#" role="button"  name="updateComment">修改</a>
-            <a class="deleteComment" href="#" role="button"  name="deleteComment">删除</a>
+            <a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>
+            <a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>
         </td>
     </tr>
     <%
