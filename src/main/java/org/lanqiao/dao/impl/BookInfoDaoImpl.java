@@ -10,7 +10,7 @@ import org.lanqiao.utils.jdbcUtils;
 import java.sql.SQLException;
 import java.util.List;
 
-public class IBookInfoDaoImpl implements IBookInfoDao {
+public class BookInfoDaoImpl implements IBookInfoDao {
     @Override
     public List<Book> findAll() throws SQLException {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());

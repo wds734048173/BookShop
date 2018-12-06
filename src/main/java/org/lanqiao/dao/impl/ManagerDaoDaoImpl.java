@@ -9,7 +9,7 @@ import org.lanqiao.utils.jdbcUtils;
 import java.sql.SQLException;
 import java.util.List;
 
-public class IManagerDaoDaoImpl implements IManagerDao {
+public class ManagerDaoDaoImpl implements IManagerDao {
     private QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
     @Override
     public List<Manager> selectAll() throws SQLException {

@@ -1,7 +1,7 @@
 package org.lanqiao.service.impl;
 
 import org.lanqiao.dao.IManagerDao;
-import org.lanqiao.dao.impl.IManagerDaoDaoImpl;
+import org.lanqiao.dao.impl.ManagerDaoDaoImpl;
 import org.lanqiao.domain.Manager;
 import org.lanqiao.service.IManagerService;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class ManagerServiceImpl implements IManagerService {
     @Override
     public List<Manager> getManagerLlist() throws SQLException {
-        IManagerDao iManagerDao = new IManagerDaoDaoImpl();
+        IManagerDao iManagerDao = new ManagerDaoDaoImpl();
         return iManagerDao.selectAll();
     }
 }
