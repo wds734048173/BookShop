@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>信息反馈列表</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
         function getReplyList(){
             $.ajax({
@@ -45,7 +47,8 @@
     </script>
 </head>
 <body>
-<a href="#" role="button" id="addReply" name="addReply">添加信息反馈</a>
+<a class="btn btn-default" href="#" role="button" id="addReply" name="addReply">添加信息反馈</a>
+<br><br>
 <table class="table table-hover table-bordered">
     <thead>
     <th>信息反馈id</th>
@@ -73,8 +76,8 @@
         <td><%=reply.getCtime()%></td>
         <td><%=reply.getRtime()%></td>
         <td>
-            <a class="updateReply" href="#" role="button"  name="updateReply">修改</a>
-            <a class="deleteReply" href="#" role="button"  name="deleteReply">删除</a>
+            <a class="btn btn-default updateReply" href="#" role="button"  name="updateReply">修改</a>
+            <a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>
         </td>
     </tr>
     <%
@@ -82,5 +85,6 @@
     %>
     </tbody>
 </table>
+<br><br>
 </body>
 </html>
