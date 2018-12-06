@@ -78,7 +78,6 @@
 
         //查询的手动提交方式
         function search(currentPage) {
-            alert(currentPage);
             var name = $("#searchBookTypeName").val();
             if(currentPage == null){
                 var currentPage = $("#currentPage").val();
