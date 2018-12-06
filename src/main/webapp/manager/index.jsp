@@ -34,9 +34,9 @@
         <div class="content"></div>
         <div style="text-align:center;"></div>
     </body>
-    <%--<script type="text/javascript">
+    <script type="text/javascript">
         $(function(){
-            $("#content").load("/bookType.do?method=getBookTypelist");
+            $(".content").load("/bookType.do?method=getBookTypelist");
         })
-    </script>--%>
+    </script>
 </html>

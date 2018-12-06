@@ -27,10 +27,10 @@
             })
             //保存
             $("#save").click(function () {
-                $('#addBookTypeModel').modal({
-                    keyboard: true,
-                    show:false
-                })
+                // $('#addBookTypeModel').modal({
+                //     keyboard: true,
+                //     show:false
+                // })
                 //方法一：可以成功，但是跳转页面有问题
                 // $("#addForm").submit();
                 // 方法二
@@ -41,6 +41,7 @@
                 var currentPage = $("#currentPage").val();
                 var url = "/bookType.do?method=addBookType&currentPage="+currentPage+"&searchBookTypeName="+searchBookTypeName+"&bookTypeId="+bookTypeId+"&bookTypeName="+bookTypeName;
                 $(".content").load(url);
+                $(".modal-backdrop").remove();
             })
             //修改
             $(".updateBookType").click(function () {
