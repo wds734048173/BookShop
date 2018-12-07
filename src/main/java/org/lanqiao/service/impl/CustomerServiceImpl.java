@@ -14,4 +14,19 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<Customer> getCustomerList() {
         return customerDao.getCustomerList();
     }
+
+    @Override
+    public Customer getCustomer(String customer,String pwd) {
+        return customerDao.getCustomer(customer,pwd);
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+        customerDao.addCustomer(customer);
+    }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        customerDao.updateCustomer(customer);
+    }
 }
