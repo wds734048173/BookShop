@@ -3,8 +3,10 @@ package org.lanqiao.control;
 import org.lanqiao.domain.Book;
 import org.lanqiao.domain.BookType;
 import org.lanqiao.domain.Condition;
+import org.lanqiao.service.IBookInfoService;
 import org.lanqiao.service.IBookService;
 import org.lanqiao.service.IBookTypeService;
+import org.lanqiao.service.impl.BookInfoServiceImpl;
 import org.lanqiao.service.impl.BookServiceImpl;
 import org.lanqiao.service.impl.BookTypeServiceImpl;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     IBookService bookService = new BookServiceImpl();
     IBookTypeService bookTypeService = new BookTypeServiceImpl();
+    IBookInfoService bookInfoService=new BookInfoServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        doPost(req, resp);
@@ -32,8 +35,14 @@ public class HomeServlet extends HttpServlet {
             case "homeList":
                 getHomeList(req,resp);
                 break;
+            case  "booklist":
+                getBookList(req, resp);
+                break;
         }
     }
+
+
+
     private void getHomeList(HttpServletRequest req, HttpServletResponse resp){
         List<Book> bookList = bookService.getBookList();
         Condition condition= new Condition();
@@ -52,5 +61,20 @@ public class HomeServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getBookList(HttpServletRequest req, HttpServletResponse resp) {
+        String typeid= (String) req.getParameter("typeId");
+        List<Book> bookList = bookInfoService.selectByTypeId(Integer.parseInt(typeid));
+        req.setAttribute("booklist",bookList);
+
+        try {
+            req.getRequestDispatcher("sale/booklist.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

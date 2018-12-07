@@ -20,6 +20,8 @@
         <div class="top center">
             <div class="left fl">
                 <ul>
+                    <li><a href="sale/index.jsp">返回首页</a></li>
+                    <li>|</li>
                     <%--点击进入反馈页面--%>
                     <li><a href="">问题反馈</a></li>
                     <div class="clear"></div>
@@ -58,7 +60,7 @@
         <div class="jieshao mt20 w">
             <div class="left fl"><img src="<%=book.getBookPic()%>"></div>
             <div class="right fr">
-                <div class="h3 ml20 mt20"><%=book.getBookName()%></div>
+                <div class="h3 ml20 mt20">《<%=book.getBookName()%>》</div>
                 <div class="jianjie mr40 ml20 mt10"><%=book.getBookOutline()%></div>
                 <div class="jianjie mr40 ml20">作者：<%=book.getBookAuthor()%></div>
                 <div class="jianjie mr40 ml20">出版社：<%=book.getBookPress()%></div>
@@ -73,13 +75,15 @@
             <div class="clear"></div>
         </div>
     </form>
-    <div >
+    <div style="height: 200px">
         <div class="xiangqing">
             <div class="neirong w">
                 <div class="xiaomi6 fl">概述</div>
             </div>
         </div>
-        <div class="w"><%=book.getBookCatalog()%></div>
+        <div class="w f1">
+            <div class="ml40 ftbc" style="color: #011737;float: left" ><%=book.getBookCatalog()%></div>
+        </div>
     </div>
     <footer class="mt20 center">
 

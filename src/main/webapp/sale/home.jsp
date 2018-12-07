@@ -55,7 +55,7 @@
                     for (BookType bookType:typeList){
                 %>
                 <li>
-                    <a href=""><%=bookType.getBookTypeName()%></a>
+                    <a href="/home.do?method=booklist&typeId=<%=bookType.getBookTypeId()%>&typename=<%=bookType.getBookTypeName()%>"><%=bookType.getBookTypeName()%></a>
                     <div class="pop">
                         <div class="left fl">
                             <%
@@ -98,8 +98,8 @@
                    Book book= bookList.get(i);
             %>
             <div class="mingxing fl">
-                <div class="sub_mingxing"><a href=""><img src="<%=book.getBookPic()%>" alt=""></a></div>
-                <div class="pinpai"><a href=""><%=book.getBookName()%></a></div>
+                <div class="sub_mingxing"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><img src="<%=book.getBookPic()%>" alt=""></a></div>
+                <div class="pinpai"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><%=book.getBookName()%></a></div>
                 <div class="youhui"><%=book.getBookOutline().substring(0,9)%></div>
                 <div class="jiage"><%=book.getBookPrice()%>元起</div>
             </div>
@@ -114,8 +114,8 @@
                     Book book= bookList.get(i);
             %>
             <div class="mingxing fl">
-                <div class="sub_mingxing"><a href=""><img src="<%=book.getBookPic()%>" alt=""></a></div>
-                <div class="pinpai"><a href=""><%=book.getBookName()%></a></div>
+                <div class="sub_mingxing"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><img src="<%=book.getBookPic()%>" alt=""></a></div>
+                <div class="pinpai"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><%=book.getBookName()%></a></div>
                 <div class="youhui"><%=book.getBookOutline().substring(0,9)%></div>
                 <div class="jiage"><%=book.getBookPrice()%>元</div>
             </div>
