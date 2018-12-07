@@ -1,16 +1,16 @@
-package org.lanqiao.dao;
+package org.lanqiao.service;
 
 import org.lanqiao.domain.Book;
-import java.sql.SQLException;
+
 import java.util.List;
 
-public interface IBookInfoDao {
+public interface IBookInfoService {
     //查
     public List<Book> findAll();
     public Book selectById(int bookId);
-    public List<Book> selectByTypeId(int bookTypeId) ;
-    public Book selectByName(String bookName) ;
-    public List<Book> selectByAuthor(String Author) ;
+    public List<Book> selectByTypeId(int bookTypeId);
+    public Book selectByName(String bookName);
+    public List<Book> selectByAuthor(String Author);
     public List<Book> selectByPrice(int MaxPrice,int minPrice);
 
     //增
