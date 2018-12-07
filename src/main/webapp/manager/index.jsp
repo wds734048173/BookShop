@@ -29,7 +29,7 @@
         </div>
         <div class="top">
             <div class="leftTiyle" id="flTitle">分类管理</div>
-            <div class="thisUser">当前用户：<%=request.getAttribute("username")%></div>
+            <div class="thisUser">当前用户：<%=session.getAttribute("username")%></div>
         </div>
         <div class="content"></div>
         <div style="text-align:center;"></div>

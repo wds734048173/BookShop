@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IManagerDao {
  public List<Manager> selectAll() throws SQLException;
+ public Manager getManager(String username,String password);
 }

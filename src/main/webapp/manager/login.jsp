@@ -25,10 +25,16 @@
             line-height: 32px;
             border-radius: 0 4px 4px 0;
         }
+
+        body{
+            margin: 0;
+            padding: 0;
+
+        }
     </style>
 </head>
 <body>
-<div align="center">
+<div align="center" style="margin: 300px">
     <form action="/login.do?method=login" method="post">
         <div class="panel padding" style="width: 450px;text-align: left;">
             <div class="text-center">
@@ -47,12 +53,12 @@
                         <span class="icon icon-key"></span>
                     </div>
                 </div>
-                <%--<div class="form-group">--%>
-                    <%--<div class="field">--%>
-                        <%--<input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />--%>
-                        <%--<img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                <%--<div class="form-group">
+                    <div class="field">
+                        <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                        <img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />
+                    </div>
+                </div>--%>
                 <div class="form-group">
                     <div class="field">
                         <button class="button button-block bg-main text-big">立即登录</button>
