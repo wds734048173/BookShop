@@ -1,4 +1,4 @@
-package org.lanqiao;
+package org.lanqiao.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
