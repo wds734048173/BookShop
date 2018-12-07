@@ -19,4 +19,9 @@ public class ManagerServiceImpl implements IManagerService {
     public Manager getManager(String username, String password) {
         return managerDao.getManager(username,password);
     }
+
+    @Override
+    public int addManager(Manager manager) {
+        return managerDao.addManager(manager);
+    }
 }

@@ -29,4 +29,16 @@ public class ManagerDaoImpl implements IManagerDao {
         }
         return manager;
     }
+
+    @Override
+    public int addManager(Manager manager) {
+        String sql = "INSERT INTO tb_manager (AdminName,AdminPwd,AdminFlag,Ctime,Rtime) VALUES (?,?,0,now(),now())";
+        int result = -1;
+        try {
+            result = qr.execute(sql,manager.getAdminName(),manager.getAdminPwd());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
