@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                     <div class="field text-center">
-                        <p class="text-muted text-center"> <a class="" href="#login.html"><small>忘记密码了？</small></a> | <a class="" href="#register.html">注册新账号</a>
+                        <p class="text-muted text-center"> <a class="" href="/manager/updatePwd.jsp"><small>忘记密码了？</small></a> | <a class="" href="/manager/register.jsp">注册新账号</a>
                         </p>
                     </div>
                 </div>

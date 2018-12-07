@@ -11,4 +11,6 @@ public interface IManagerService {
     public Manager getManager(String username,String password);
     //注册
     public int addManager(Manager manager);
+    //修改密码
+    public int updateManager(Manager manager);
 }

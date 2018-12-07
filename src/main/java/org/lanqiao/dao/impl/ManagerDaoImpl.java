@@ -41,4 +41,16 @@ public class ManagerDaoImpl implements IManagerDao {
         }
         return result;
     }
+
+    @Override
+    public int updatePwd(Manager manager) {
+        String sql = "UPDATE tb_manager SET AdminPwd = ? WHERE AdminName = ?";
+        int result = -1;
+        try {
+            result = qr.execute(sql,manager.getAdminPwd(),manager.getAdminName());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

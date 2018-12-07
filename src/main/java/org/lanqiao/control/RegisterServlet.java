@@ -40,6 +40,26 @@ public class RegisterServlet extends HttpServlet {
             case "register":
                 register(req, resp);
                 break;
+            case "updatePwd":
+                updatePwd(req, resp);
+                break;
+        }
+    }
+
+    private void updatePwd(HttpServletRequest req, HttpServletResponse resp) {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String passwordMd5 = MD5Utils.MD5(password);
+        Manager manager = new Manager();
+        manager.setAdminName(username);
+        manager.setAdminPwd(passwordMd5);
+        int result = managerService.updateManager(manager);
+        if(result == 1){
+            try {
+                resp.sendRedirect("/manager/login.jsp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

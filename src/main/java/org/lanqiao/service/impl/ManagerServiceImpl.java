@@ -24,4 +24,9 @@ public class ManagerServiceImpl implements IManagerService {
     public int addManager(Manager manager) {
         return managerDao.addManager(manager);
     }
+
+    @Override
+    public int updateManager(Manager manager) {
+        return managerDao.updatePwd(manager);
+    }
 }
