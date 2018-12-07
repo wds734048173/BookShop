@@ -12,69 +12,107 @@ import java.util.List;
 
 public class BookInfoDaoImpl implements IBookInfoDao {
     @Override
-    public List<Book> findAll() throws SQLException {
+    public List<Book> findAll() {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql = "select * from tb_bookinfo";
-        List<Book> books=qr.query(sql,new BeanListHandler<>(Book.class));
+        List<Book> books= null;
+        try {
+            books = qr.query(sql,new BeanListHandler<>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return books;
     }
 
     @Override
-    public Book selectById(int bookId) throws SQLException {
+    public Book selectById(int bookId){
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql = "select * from tb_bookinfo where bookid=?";
-        Book book = qr.query(sql,new BeanHandler<>(Book.class),bookId);
+        Book book = null;
+        try {
+            book = qr.query(sql,new BeanHandler<>(Book.class),bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return book;
     }
 
     @Override
-    public List<Book> selectByTypeId(int bookTypeId) throws SQLException {
+    public List<Book> selectByTypeId(int bookTypeId)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
-        String sql="select * from tb_bookinfo where booktypeid=?";
-        List<Book> books = qr.query(sql,new BeanListHandler<>(Book.class),bookTypeId);
+        String sql="select * from tb_bookinfo where BookTypeid=?";
+        List<Book> books = null;
+        try {
+            books = qr.query(sql,new BeanListHandler<>(Book.class),bookTypeId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return books;
     }
 
     @Override
-    public Book selectByName(String bookName) throws SQLException {
+    public Book selectByName(String bookName)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="select * from tb_bookinfo where bookname=?";
-        Book book = qr.query(sql,new BeanHandler<>(Book.class),bookName);
+        Book book = null;
+        try {
+            book = qr.query(sql,new BeanHandler<>(Book.class),bookName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return book;
     }
 
     @Override
-    public List<Book> selectByAuthor(String Author) throws SQLException {
+    public List<Book> selectByAuthor(String Author)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="select * from tb_bookinfo where bookauthor=?";
-        List<Book> books = qr.query(sql,new BeanListHandler<>(Book.class),Author);
+        List<Book> books = null;
+        try {
+            books = qr.query(sql,new BeanListHandler<>(Book.class),Author);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return books;
     }
 
     @Override
-    public List<Book> selectByPrice(int MaxPrice, int minPrice) throws SQLException {
+    public List<Book> selectByPrice(int MaxPrice, int minPrice)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="select * from tb_bookinfo where price between ? and ?";
-        List<Book> books = qr.query(sql,new BeanListHandler<>(Book.class),minPrice,MaxPrice);
+        List<Book> books = null;
+        try {
+            books = qr.query(sql,new BeanListHandler<>(Book.class),minPrice,MaxPrice);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return books;
     }
 
     @Override
-    public void addBook(Book book) throws SQLException {
+    public void addBook(Book book)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="insert into tb_bookinfo values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
-        qr.execute(sql,book.getBookId(),book.getBookTypeld(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        try {
+            qr.execute(sql,book.getBookId(),book.getBookTypeid(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delById(int bookId) throws SQLException {
+    public void delById(int bookId)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql = "delete from tb_bookinfo where bookid=? ";
-        qr.execute(sql,bookId);
+        try {
+            qr.execute(sql,bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void changeBook(Book book) throws SQLException {
+    public void changeBook(Book book) {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql ="update tb_bookinfo set BookId = ?," +
                 "BookTypeId= ?," +
@@ -97,21 +135,33 @@ public class BookInfoDaoImpl implements IBookInfoDao {
                 "BookStoremount= ?," +
                 "BookStoretime= ?," +
                 "BookPackstyle = ?";
-        qr.execute(sql,book.getBookId(),book.getBookTypeld(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        try {
+            qr.execute(sql,book.getBookId(),book.getBookTypeid(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookStoretime(),book.getBookPackstyle());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-}
-
-    @Override
-    public void changeType(int bookId, int typeId) throws SQLException {
-        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
-        String sql="update tb_bookinfo set BookTypeId=? where BookId=";
-        qr.execute(sql,typeId,bookId);
     }
 
     @Override
-    public void changeStore(int bookId, int bookstore) throws SQLException {
+    public void changeType(int bookId, int typeId)  {
+        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+        String sql="update tb_bookinfo set BookTypeId=? where BookId=";
+        try {
+            qr.execute(sql,typeId,bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void changeStore(int bookId, int bookstore)  {
         QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
         String sql="update tb_bookinfo set BookStoremount=? where BookId=";
-        qr.execute(sql,bookstore,bookId);
+        try {
+            qr.execute(sql,bookstore,bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
