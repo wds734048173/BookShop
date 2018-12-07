@@ -3,6 +3,7 @@ package org.lanqiao.control;
 import org.lanqiao.domain.Customer;
 import org.lanqiao.service.ICustomerService;
 import org.lanqiao.service.impl.CustomerServiceImpl;
+import org.lanqiao.utils.MD5Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,6 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);
-
     }
 
     @Override
@@ -36,9 +36,38 @@ public class CustomerServlet extends HttpServlet {
             case "getCustomerlist":
                 getCustomerlist(req,resp);
                 break;
+            case "addCustomer":
+                addCustomer(req, resp);
+                break;
         }
     }
 
+    private void addCustomer(HttpServletRequest req, HttpServletResponse resp) {
+        Customer customer = new Customer();
+        //设置用户名
+        customer.setCustomerName(req.getParameter("username"));
+        //设置密码
+        String pwd = req.getParameter("password");
+        customer.setCustomerPwd(MD5Utils.MD5(pwd));
+        //设置真实姓名
+        customer.setCustomertruename(req.getParameter("name"));
+        //设置电话
+        customer.setCustomerTel(req.getParameter("tel"));
+        //设置邮箱
+        customer.setCustomerEmail(req.getParameter("email"));
+        //设置地址
+        customer.setCustomerAddr(req.getParameter("addr"));
+        //设置性别
+        String sex=req.getParameter("radio1");
+        if (sex.equals("男")){
+            customer.setCustomerSex(0);
+        }else {
+            customer.setCustomerSex(1);
+        }
+        System.out.println(customer);
+        customerService.addCustomer(customer);
+    }
+//    获取全部客户
     private void getCustomerlist(HttpServletRequest req, HttpServletResponse resp) {
         List<Customer> customerList = customerService.getCustomerList();
 

@@ -1,7 +1,10 @@
 package org.lanqiao.control;
 
+import org.lanqiao.domain.Customer;
 import org.lanqiao.domain.Manager;
+import org.lanqiao.service.ICustomerService;
 import org.lanqiao.service.IManagerService;
+import org.lanqiao.service.impl.CustomerServiceImpl;
 import org.lanqiao.service.impl.ManagerServiceImpl;
 import org.lanqiao.utils.MD5Utils;
 
@@ -37,6 +40,41 @@ public class LoginServlet extends HttpServlet {
             case "login":
                 userLogin(req,resp);
                 break;
+            case "customer":
+                customerLogin(req, resp);
+                break;
+        }
+
+    }
+
+    private void customerLogin(HttpServletRequest req, HttpServletResponse resp) {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String passwordMd5 = MD5Utils.MD5(password);
+        ICustomerService customerService = new CustomerServiceImpl();
+        Customer customer = customerService.getCustomer(username,passwordMd5);
+        if (customer == null){
+            String massage = "用户名或密码错误";
+            req.setAttribute("message",massage);
+            try {
+                req.getRequestDispatcher("/sale/login.jsp").forward(req,resp);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+        }else {
+            String name = customer.getCustomertruename();
+            HttpSession session = req.getSession();
+            session.setAttribute("name",name);
+            Cookie cookie = new Cookie("JSESSIONID",session.getId());
+            cookie.setMaxAge(7 * 24 * 60 * 60);
+            resp.addCookie(cookie);
+            try {
+                resp.sendRedirect("/sale/index.jsp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

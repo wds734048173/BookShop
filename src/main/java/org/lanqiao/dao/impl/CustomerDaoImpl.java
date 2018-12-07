@@ -1,6 +1,7 @@
 package org.lanqiao.dao.impl;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.lanqiao.dao.ICommentDao;
 import org.lanqiao.dao.ICustomerDao;
@@ -22,5 +23,37 @@ public class CustomerDaoImpl implements ICustomerDao {
             e.printStackTrace();
         }
         return customerList;
+    }
+
+    @Override
+    public Customer getCustomer(String customerName,String pwd) {
+        String sql="select * from tb_customerinfo where customername=? and CustomerPwd=?";
+        Customer customer=null;
+        try {
+            customer=qr.query(sql,new BeanHandler<>(Customer.class),customerName,pwd);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    @Override
+    public void addCustomer(Customer customer) {
+        String sql="insert into tb_customerinfo (CustomerName,CustomerPwd,Customertruename,CustomerSex,CustomerTel,CustomerEmail,CustomerAddr) values(?,?,?,?,?,?,?)";
+        try {
+            qr.execute(sql,customer.getCustomerName(),customer.getCustomerPwd(),customer.getCustomertruename(),customer.getCustomerSex(),customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        String sql = "update tb_customerinfo set CustomerName=?,CustomerPwd=?,Customertruename=?,CustomerSex=?,CustomerTel=?,CustomerEmail=?,CustomerAddr=? where CustomerId=?";
+        try {
+            qr.execute(sql,customer.getCustomerName(),customer.getCustomerPwd(),customer.getCustomertruename(),customer.getCustomerSex(),customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr(),customer.getCustomerId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
