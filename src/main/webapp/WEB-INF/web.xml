@@ -3,4 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <error-page>
+        <!-- 指定当发生了什么异常跳转到该页面 -->
+        <exception-type>java.lang.ArithmeticException</exception-type>
+        <!-- 指定异常了，跳转的页面 -->
+        <location>/error/error.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 当服务器发生了404 -->
+        <error-code>404</error-code>
+        <!-- 指定异常了，跳转的页面 -->
+        <location>/error/404.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 当服务器发生了404 -->
+        <error-code>500</error-code>
+        <!-- 指定异常了，跳转的页面 -->
+        <location>/error/500.jsp</location>
+    </error-page>
 </web-app>

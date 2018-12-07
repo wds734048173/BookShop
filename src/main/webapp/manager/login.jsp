@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>登录</title>
-    <link  type="text/css" href="css/pintuer.css" rel="stylesheet">
+    <link  type="text/css" href="/manager/css/pintuer.css" rel="stylesheet">
     <script type="text/javascript" src="/manager/js/jquery.js"></script>
     <script type="text/javascript" src="/manager/js/pintuer.js"></script>
     <style type="text/css">
@@ -44,13 +44,13 @@
                 <div class="form-group">
                     <div class="field field-icon-right">
                         <%--校验长度方法： data-validate="required:请填写账号,length#>=5:账号长度不符合要求"--%>
-                        <input type="text" class="input" name="username" placeholder="登录账号" />
+                        <input type="text" class="input" name="username" placeholder="登录账号" value="<%if(request.getAttribute("username")!=null)out.print(request.getAttribute("username"));%>"/>
                         <span class="icon icon-user"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="field field-icon-right">
-                        <input type="password" class="input" name="password" placeholder="登录密码"/>
+                        <input type="password" class="input" name="password" placeholder="登录密码" value="<%if(request.getAttribute("password")!=null)out.print(request.getAttribute("password"));%>"/>
                         <span class="icon icon-key"></span>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
                         <img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />
                     </div>
                 </div>--%>
+                <span id="message" style="color: red;"><%if(request.getAttribute("message") != null)out.print(request.getAttribute("message"));%></span>
                 <div class="form-group">
                     <div class="field">
                         <button class="button button-block bg-main text-big">立即登录</button>

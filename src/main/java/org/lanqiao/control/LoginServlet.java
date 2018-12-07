@@ -49,7 +49,10 @@ public class LoginServlet extends HttpServlet {
         Manager manager = managerService.getManager(username,passwordMd5);
         if(manager == null){
             String message = "用户名或密码错误";
-            resp.sendRedirect("/manager/login.jsp");
+            req.setAttribute("message",message);
+            req.setAttribute("username",username);
+            req.setAttribute("password",password);
+            req.getRequestDispatcher("/manager/login.jsp").forward(req,resp);
         }else{
             String name = manager.getAdminName();
             HttpSession session = req.getSession();

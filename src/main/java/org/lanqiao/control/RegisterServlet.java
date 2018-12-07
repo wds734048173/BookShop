@@ -10,8 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 
 /*
 * 注册
@@ -42,6 +44,9 @@ public class RegisterServlet extends HttpServlet {
                 break;
             case "updatePwd":
                 updatePwd(req, resp);
+                break;
+            case "exit":
+                exit(req, resp);
                 break;
         }
     }
@@ -77,6 +82,16 @@ public class RegisterServlet extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void exit(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        session.setAttribute("username",null);
+        try {
+            resp.sendRedirect("/manager/login.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
