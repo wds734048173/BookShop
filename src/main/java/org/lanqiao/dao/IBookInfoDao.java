@@ -6,19 +6,19 @@ import java.util.List;
 
 public interface IBookInfoDao {
     //查
-    public List<Book> findAll() throws SQLException;
-    public Book selectById(int bookId) throws SQLException;
-    public List<Book> selectByTypeId(int bookTypeId) throws SQLException;
-    public Book selectByName(String bookName) throws SQLException;
-    public List<Book> selectByAuthor(String Author) throws SQLException;
-    public List<Book> selectByPrice(int MaxPrice,int minPrice) throws SQLException;
+    public List<Book> findAll();
+    public Book selectById(int bookId);
+    public List<Book> selectByTypeId(int bookTypeId) ;
+    public Book selectByName(String bookName) ;
+    public List<Book> selectByAuthor(String Author) ;
+    public List<Book> selectByPrice(int MaxPrice,int minPrice);
 
     //增
-    public void addBook(Book book) throws SQLException;
+    public void addBook(Book book);
     //删
-    public void delById(int bookId) throws SQLException;
+    public void delById(int bookId);
     //改
-    public void changeBook(Book book) throws SQLException;
-    public void changeType(int bookId,int typeId) throws SQLException;
-    public void changeStore(int bookId,int bookstore) throws SQLException;
+    public void changeBook(Book book);
+    public void changeType(int bookId,int typeId) ;
+    public void changeStore(int bookId,int bookstore) ;
 }

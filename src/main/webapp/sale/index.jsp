@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="org.lanqiao.domain.BookType" %>
+<%@ page import="org.lanqiao.domain.Book" %><%--
   Created by IntelliJ IDEA.
   User: WDS
   Date: 2018/12/2
@@ -9,8 +11,9 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
-
+    <jsp:forward page="/home.do?method=homeList"></jsp:forward>
 </body>
 </html>

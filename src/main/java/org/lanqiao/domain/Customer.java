@@ -1,14 +1,14 @@
 package org.lanqiao.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 /*客户*/
 public class Customer {
     private int CustomerId;
-    private String UserName;
-    private String Password;
-    private String Name;
-    private String CustomerSex;
+    private String CustomerName;
+    private String CustomerPwd;
+    private String Customertruename;
+    private int CustomerSex;
     private String CustomerTel;
     private String CustomerEmail;
     private String CustomerAddr;
@@ -22,11 +22,27 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId, String userName, String password, String name, String customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
+    public Customer(String customerName, String customerPwd, String customertruename, int customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
+        CustomerName = customerName;
+        CustomerPwd = customerPwd;
+        Customertruename = customertruename;
+        CustomerSex = customerSex;
+        CustomerTel = customerTel;
+        CustomerEmail = customerEmail;
+        CustomerAddr = customerAddr;
+        this.CTime = CTime;
+        this.RTime = RTime;
+        CustomerQues = customerQues;
+        CustomerAnswer = customerAnswer;
+        CustomerLogTime = customerLogTime;
+        CustomerLastLogT = customerLastLogT;
+    }
+
+    public Customer(int customerId, String customerName, String customerPwd, String customertruename, int customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
         CustomerId = customerId;
-        UserName = userName;
-        Password = password;
-        Name = name;
+        CustomerName = customerName;
+        CustomerPwd = customerPwd;
+        Customertruename = customertruename;
         CustomerSex = customerSex;
         CustomerTel = customerTel;
         CustomerEmail = customerEmail;
@@ -47,35 +63,35 @@ public class Customer {
         CustomerId = customerId;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getCustomerName() {
+        return CustomerName;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setCustomerName(String customerName) {
+        CustomerName = customerName;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getCustomerPwd() {
+        return CustomerPwd;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setCustomerPwd(String customerPwd) {
+        CustomerPwd = customerPwd;
     }
 
-    public String getName() {
-        return Name;
+    public String getCustomertruename() {
+        return Customertruename;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setCustomertruename(String customertruename) {
+        Customertruename = customertruename;
     }
 
-    public String getCustomerSex() {
+    public int getCustomerSex() {
         return CustomerSex;
     }
 
-    public void setCustomerSex(String customerSex) {
+    public void setCustomerSex(int customerSex) {
         CustomerSex = customerSex;
     }
 
@@ -155,10 +171,10 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "CustomerId=" + CustomerId +
-                ", UserName='" + UserName + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Name='" + Name + '\'' +
-                ", CustomerSex='" + CustomerSex + '\'' +
+                ", CustomerName='" + CustomerName + '\'' +
+                ", CustomerPwd='" + CustomerPwd + '\'' +
+                ", Customertruename='" + Customertruename + '\'' +
+                ", CustomerSex=" + CustomerSex +
                 ", CustomerTel='" + CustomerTel + '\'' +
                 ", CustomerEmail='" + CustomerEmail + '\'' +
                 ", CustomerAddr='" + CustomerAddr + '\'' +
