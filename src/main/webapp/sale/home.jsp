@@ -50,6 +50,8 @@
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>
+                        <li>|</li>
+                        <li><a href="/logout.do">退出登录</a></li>
                     </ul>
                 </div>
                     <%
@@ -130,7 +132,7 @@
                     Book book= bookList.get(i);
             %>
             <div class="mingxing fl">
-                <div class="sub_mingxing"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><img src="<%=book.getBookPic()%>" alt=""></a></div>
+                <div class="sub_mingxing"></div>
                 <div class="pinpai"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><%=book.getBookName()%></a></div>
                 <div class="youhui"><%=book.getBookOutline().substring(0,9)%></div>
                 <div class="jiage"><%=book.getBookPrice()%>元</div>

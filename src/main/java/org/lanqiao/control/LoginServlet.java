@@ -50,12 +50,15 @@ public class LoginServlet extends HttpServlet {
     private void customerLogin(HttpServletRequest req, HttpServletResponse resp) {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        //对密码进行MD5加密
         String passwordMd5 = MD5Utils.MD5(password);
         ICustomerService customerService = new CustomerServiceImpl();
+        //根据用户名密码获取用户 获取不到则为null
         Customer customer = customerService.getCustomer(username,passwordMd5);
         if (customer == null){
-            String massage = "用户名或密码错误";
-            req.setAttribute("message",massage);
+            String message = "用户名或密码错误";
+            //返回提示信息
+            req.setAttribute("message",message);
             try {
                 req.getRequestDispatcher("/sale/login.jsp").forward(req,resp);
             } catch (IOException e) {
@@ -64,6 +67,7 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }else {
+            //获取用户的真实名字并返回
             String name = customer.getCustomertruename();
             HttpSession session = req.getSession();
             session.setAttribute("name",name);

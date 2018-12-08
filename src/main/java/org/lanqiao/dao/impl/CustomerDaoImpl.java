@@ -9,6 +9,8 @@ import org.lanqiao.domain.Customer;
 import org.lanqiao.utils.jdbcUtils;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CustomerDaoImpl implements ICustomerDao {
@@ -27,10 +29,10 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Override
     public Customer getCustomer(String customerName,String pwd) {
-        String sql="select * from tb_customerinfo where customername=? and CustomerPwd=?";
+        String sql="select * from tb_customerinfo where CustomerName=? and CustomerPwd=?";
         Customer customer=null;
         try {
-            customer=qr.query(sql,new BeanHandler<>(Customer.class),customerName,pwd);
+            customer = qr.query(sql,new BeanHandler<>(Customer.class),customerName,pwd);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,9 +41,10 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Override
     public void addCustomer(Customer customer) {
-        String sql="insert into tb_customerinfo (CustomerName,CustomerPwd,Customertruename,CustomerSex,CustomerTel,CustomerEmail,CustomerAddr) values(?,?,?,?,?,?,?)";
+        String sql="insert into tb_customerinfo (CustomerName,CustomerPwd,Customertruename,CustomerSex,CustomerTel,CustomerEmail,CustomerAddr,CTime,RTime,CustomerLogTime,CustomerLastLogT) values(?,?,?,?,?,?,?,?,?,?,?)";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
-            qr.execute(sql,customer.getCustomerName(),customer.getCustomerPwd(),customer.getCustomertruename(),customer.getCustomerSex(),customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr());
+            qr.execute(sql,customer.getCustomerName(),customer.getCustomerPwd(),customer.getCustomertruename(),customer.getCustomerSex(),customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr(),format.format(new Date()),format.format(new Date()),1,format.format(new Date()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

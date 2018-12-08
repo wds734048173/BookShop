@@ -73,7 +73,7 @@
         </div>
 
         <div class="jieshao mt20 w">
-            <div class="left fl"><img src="<%=book.getBookPic()%>"></div>
+            <div class="left fl"><img src="<%=book.getBookPic()%>" style="background-size:cover;width: 500px;height: 500px;margin: 30px 0 0 30px"></div>
             <div class="right fr">
                 <div class="h3 ml20 mt20">《<%=book.getBookName()%>》</div>
                 <div class="jianjie mr40 ml20 mt10"><%=book.getBookOutline()%></div>
