@@ -13,7 +13,7 @@
 <head>
     <title><%=book.getBookName()%></title>
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -28,12 +28,12 @@
                 </ul>
             </div>
             <div class="right fr">
-                <%--购物车页面--%>
-                <div class="gouwuche fr"><a href="">购物车</a></div>
                     <%
                         String name = (String) session.getAttribute("name");
                         if (name == null){
                     %>
+                <%--购物车页面--%>
+                    <div class="gouwuche fr"><a href="/sale/login.jsp">购物车</a></div>
                     <div class="fr">
                         <ul>
                             <%--登录页面--%>
@@ -46,9 +46,12 @@
                     <%
                     }else {
                     %>
+                    <div class="gouwuche fr"><a href="/bookshop.do?method=getCartItemList&CustomerId=<%=session.getAttribute("CustomerId")%>">购物车</a></div>
                     <div class="fr">
                         <ul>
                             <li>欢迎您：<%=name%></li>
+                            <li>|</li>
+                            <li><a href="/logout.do">退出登录</a></li>
                         </ul>
                     </div>
                     <%

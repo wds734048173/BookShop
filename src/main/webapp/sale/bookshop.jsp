@@ -13,6 +13,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>购物车</title>
     <link rel="stylesheet" href="../bootstrap/css/bookshop.css"/>
+    <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
+    <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
     <%--<script type="text/javascript" src="../bootstrap/js/bookshop.js"></script>--%>
     <script type="text/javascript">
     $(function(){
@@ -28,7 +30,51 @@
     </script>
 </head>
 <body>
-
+<header>
+    <div class="top center">
+        <div class="left fl">
+            <ul>
+                <li><a href="/sale/index.jsp">首页</a></li>
+                <li>|</li>
+                <%--点击进入反馈页面--%>
+                <li><a href="">问题反馈</a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="right fr">
+            <%
+                String name = (String) session.getAttribute("name");
+                if (name == null){
+            %>
+            <%--购物车页面--%>
+            <div class="gouwuche fr"><a href="/sale/login.jsp">购物车</a></div>
+            <div class="fr">
+                <ul>
+                    <%--登录页面--%>
+                    <li><a href="./login.jsp" target="_blank">登录</a></li>
+                    <li>|</li>
+                    <%--注册页面--%>
+                    <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                </ul>
+            </div>
+            <%
+            }else {
+            %>
+            <div class="fr">
+                <ul>
+                    <li>欢迎您：<%=name%></li>
+                    <li>|</li>
+                    <li><a href="/logout.do">退出登录</a></li>
+                </ul>
+            </div>
+            <%
+                }
+            %>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
 <div class="catbox">
 
     <table id="cartTable">

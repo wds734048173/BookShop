@@ -46,6 +46,10 @@ public class BookShopServlet extends HttpServlet {
         String cutomcatidstr = request.getParameter("CustomerId");
         int cutomcatid = Integer.parseInt(cutomcatidstr);
 
+        if (request.getAttribute("CustomerId")!= null){
+            cutomcatid= (int) request.getAttribute("CustomerId");
+        }
+
         List<CartItem> cartItemList = null;
         try {
             cartItemList = iCartItem.findByCustomerId(cutomcatid);
