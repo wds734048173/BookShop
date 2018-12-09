@@ -48,7 +48,7 @@
                 var id = $(this).parent().parent().children("td:eq(0)").text();
                 document.getElementById("gridSystemModalLabel").innerHTML = "修改书籍分类";
                 $.ajax({
-                    //通过id获取餐桌信息
+                    //通过id获取图书分类信息
                     url:"/bookType.do?method=getBookTypeById&bookTypeId=" + id,
                     success:function (data) {
                         var bookType = eval(data);

@@ -47,7 +47,7 @@ public class BookTypeServlet extends HttpServlet {
             case "deleteBookType":
                 deleteBookType(req,resp);
                 break;
-            case "getBookTypeById":
+            case "getBookTypeById"://修改数据获取
                 getBookTypeById(req,resp);
                 break;
         }

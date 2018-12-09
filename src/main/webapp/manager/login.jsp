@@ -25,12 +25,21 @@
             line-height: 32px;
             border-radius: 0 4px 4px 0;
         }
+        #formpar{
+            display: block;
+            position:absolute;
+            left:0;
+            right:0;
+            top:150px;
+            bottom:0;
+            margin:auto;
+        }
     </style>
 </head>
 <body>
-<div align="center">
-    <form action="/login.do?method=login" method="post">
-        <div class="panel padding" style="width: 450px;text-align: left;">
+<div  align="center">
+    <form id="formpar" action="/login.do?method=login" method="post">
+        <div  class="panel padding" style="width: 450px;text-align: left;">
             <div class="text-center">
                 <br>
                 <h2><strong>用户登录</strong></h2></div>
