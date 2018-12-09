@@ -32,7 +32,7 @@ public class SaleFilter implements Filter {
         }
 
         // 登陆页面、注册页面、首页无需过滤
-        if(path.indexOf("/login.jsp") > -1 || path.indexOf("/register.jsp") > -1 || path.indexOf("/index.jsp")>-1) {
+        if(path.indexOf("/login.jsp") > -1 || path.indexOf("/register.jsp") > -1 || path.indexOf("/index.jsp")>-1||path.indexOf("/ShopCarlogin.jsp")>-1) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

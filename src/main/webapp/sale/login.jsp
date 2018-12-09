@@ -11,15 +11,27 @@
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="../sale/css/login.css">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
-    <script type="text/javascript"  src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript"  src="../sale/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../sale/js/login.js"></script>
+    <script type="text/javascript" >
+        <%
+            String success=(String) request.getAttribute("success");
+            if (success=="success"){
+        %>
+            $(function () {
+                alert("注册成功请登录！！")
+            });
+        <%
+            }
+        %>
+    </script>
 </head>
 <body>
     <header>
         <div class="top center" style="background: #333">
             <div class="left fl">
                 <ul>
-                    <li><a href="index.jsp">首页</a></li>
+                    <li><a href="/sale/index.jsp">首页</a></li>
                     <li>|</li>
                     <%--点击进入反馈页面--%>
                     <li><a href="">问题反馈</a></li>
@@ -61,7 +73,7 @@
                     </div>
                     <span>
                         <%if(request.getAttribute("message")!= null){
-                            out.print(request.getParameter("message"));
+                            out.print(request.getAttribute("message"));
                         }else {
                             out.print("&nbsp");
                         }
@@ -77,7 +89,7 @@
     </div>
     <footer>
         <div class="copyright">简体 | 繁体 | English | 常见问题</div>
-        <div class="copyright">公司版权所有-京ICP备10046444-<img src="./image/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号</div>
+        <div class="copyright">公司版权所有-京ICP备10046444-<img src="./imges/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号</div>
 
     </footer>
 </body>

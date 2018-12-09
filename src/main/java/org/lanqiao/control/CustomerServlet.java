@@ -66,6 +66,14 @@ public class CustomerServlet extends HttpServlet {
         }
         System.out.println(customer);
         customerService.addCustomer(customer);
+        try {
+            req.setAttribute("success","success");
+            req.getRequestDispatcher("/sale/login.jsp").forward(req,resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
     }
 //    获取全部客户
     private void getCustomerlist(HttpServletRequest req, HttpServletResponse resp) {

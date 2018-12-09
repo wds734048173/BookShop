@@ -29,32 +29,35 @@
                 </ul>
             </div>
             <div class="right fr">
+                <%
+                    String name = (String) session.getAttribute("name");
+                    if (name == null){
+                %>
                 <%--购物车页面--%>
-                <div class="gouwuche fr"><a href="">购物车</a></div>
-                    <%
-                        String name = (String) session.getAttribute("name");
-                        if (name == null){
-                    %>
-                    <div class="fr">
-                        <ul>
-                            <%--登录页面--%>
-                            <li><a href="./login.jsp" target="_blank">登录</a></li>
-                            <li>|</li>
-                            <%--注册页面--%>
-                            <li><a href="./register.jsp" target="_blank" >注册</a></li>
-                        </ul>
-                    </div>
-                    <%
-                    }else {
-                    %>
-                    <div class="fr">
-                        <ul>
-                            <li>欢迎您：<%=name%></li>
-                        </ul>
-                    </div>
-                    <%
-                        }
-                    %>
+                <div class="gouwuche fr"><a href="/sale/login.jsp">购物车</a></div>
+                <div class="fr">
+                    <ul>
+                        <%--登录页面--%>
+                        <li><a href="./login.jsp" target="_blank">登录</a></li>
+                        <li>|</li>
+                        <%--注册页面--%>
+                        <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                    </ul>
+                </div>
+                <%
+                }else {
+                %>
+                <div class="gouwuche fr"><a href="/bookshop.do?method=getCartItemList&CustomerId=<%=session.getAttribute("CustomerId")%>">购物车</a></div>
+                <div class="fr">
+                    <ul>
+                        <li>欢迎您：<%=name%></li>
+                        <li>|</li>
+                        <li><a href="/logout.do">退出登录</a></li>
+                    </ul>
+                </div>
+                <%
+                    }
+                %>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>

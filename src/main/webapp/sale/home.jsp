@@ -12,8 +12,8 @@
 <html>
 <head>
     <title>主页</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
+    <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
     <script type="text/javascript">
 
     </script>
@@ -29,12 +29,12 @@
                 </ul>
             </div>
             <div class="right fr">
+                <%
+                    String name = (String) session.getAttribute("name");
+                    if (name == null){
+                %>
                 <%--购物车页面--%>
-                <div class="gouwuche fr"><a href="">购物车</a></div>
-                    <%
-                        String name = (String) session.getAttribute("name");
-                        if (name == null){
-                    %>
+                <div class="gouwuche fr"><a href="/sale/login.jsp">购物车</a></div>
                 <div class="fr">
                     <ul>
                         <%--登录页面--%>
@@ -44,17 +44,20 @@
                         <li><a href="./register.jsp" target="_blank" >注册</a></li>
                     </ul>
                 </div>
-                    <%
-                        }else {
-                    %>
+                <%
+                }else {
+                %>
+                <div class="gouwuche fr"><a href="/bookshop.do?method=getCartItemList&CustomerId=<%=session.getAttribute("CustomerId")%>">购物车</a></div>
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>
+                        <li>|</li>
+                        <li><a href="/logout.do">退出登录</a></li>
                     </ul>
                 </div>
-                    <%
-                        }
-                    %>
+                <%
+                    }
+                %>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
@@ -81,7 +84,7 @@
                             <div>
                                 <div class="xuangou_left fl">
                                     <a href="">
-                                        <div class="img fl"><img src="<%=book.getBookPic()%>" alt=""></div>
+                                        <%--<div class="img fl"><img src="<%=book.getBookPic()%>" alt=""></div>--%>
                                         <span class="fl"><%=book.getBookName()%></span>
                                         <div class="clear"></div>
                                     </a>
@@ -130,7 +133,7 @@
                     Book book= bookList.get(i);
             %>
             <div class="mingxing fl">
-                <div class="sub_mingxing"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><img src="<%=book.getBookPic()%>" alt=""></a></div>
+                <div class="sub_mingxing"></div>
                 <div class="pinpai"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><%=book.getBookName()%></a></div>
                 <div class="youhui"><%=book.getBookOutline().substring(0,9)%></div>
                 <div class="jiage"><%=book.getBookPrice()%>元</div>
