@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -39,6 +40,46 @@ public class CustomerServlet extends HttpServlet {
             case "addCustomer":
                 addCustomer(req, resp);
                 break;
+            case "getMyInfo":
+                getCusInfo(req, resp);
+                break;
+            case "updateCustomer":
+                upadteCusInfo(req, resp);
+                break;
+        }
+    }
+
+    private void upadteCusInfo(HttpServletRequest req, HttpServletResponse resp) {
+        Customer customer = new Customer();
+        String id = req.getParameter("CustomerId");
+        String tel = req.getParameter("tel");
+        String email = req.getParameter("email");
+        String addr = req.getParameter("addr");
+        customer.setCustomerId(Integer.parseInt(id));
+        customer.setCustomerTel(tel);
+        customer.setCustomerEmail(email);
+        customer.setCustomerAddr(addr);
+        customerService.updateCustomer(customer);
+        getCusInfo(req, resp);
+    }
+
+    private void getCusInfo(HttpServletRequest req, HttpServletResponse resp) {
+        String id = req.getParameter("id");
+        String customerId = req.getParameter("CustomerId");
+        Customer customer = new Customer();
+        if (id!=null){
+            customer = customerService.getCustomerById(Integer.parseInt(id));
+        }
+        if (customerId != null){
+            customer = customerService.getCustomerById(Integer.parseInt(customerId));
+        }
+        req.setAttribute("Customer",customer);
+        try {
+            req.getRequestDispatcher("/sale/myInfo.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

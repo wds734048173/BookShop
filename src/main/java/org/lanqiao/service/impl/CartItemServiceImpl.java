@@ -34,7 +34,12 @@ public class CartItemServiceImpl implements ICartItemService {
         }
     }
 
-//通过用户名查找购物车
+    @Override
+    public void addToCarList(int CustomerId, int BookId, int num) {
+        dao.addToCarList(CustomerId,BookId,num);
+    }
+
+    //通过用户名查找购物车
     @Override
     public List<CartItem> findByCustomerId(int CustomerId) throws SQLException {
         ICartItemDao iCartItem = new CartItemDaoImpl();

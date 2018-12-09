@@ -14,6 +14,7 @@
         List<Book> bookList= (List<Book>) request.getAttribute("booklist");
     %>
     <title><%=type%></title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
 </head>
 <body>
@@ -38,10 +39,10 @@
                 <div class="fr">
                     <ul>
                         <%--登录页面--%>
-                        <li><a href="./login.jsp" target="_blank">登录</a></li>
+                        <li><a href="/sale/login.jsp" target="_blank">登录</a></li>
                         <li>|</li>
                         <%--注册页面--%>
-                        <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                        <li><a href="/sale/register.jsp" target="_blank" >注册</a></li>
                     </ul>
                 </div>
                 <%
@@ -51,6 +52,8 @@
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>
+                        <li>|</li>
+                        <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
                         <li>|</li>
                         <li><a href="/logout.do">退出登录</a></li>
                     </ul>

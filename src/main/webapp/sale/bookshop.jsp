@@ -12,6 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>购物车</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" href="../bootstrap/css/bookshop.css"/>
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
@@ -35,6 +36,8 @@
         <div class="left fl">
             <ul>
                 <li><a href="/sale/index.jsp">首页</a></li>
+                <li>|</li>
+                <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
                 <li>|</li>
                 <%--点击进入反馈页面--%>
                 <li><a href="">问题反馈</a></li>

@@ -26,6 +26,17 @@ public class CartItemDaoImpl implements ICartItemDao {
         qr.update(sql,CustomerId,BookId);
     }
 
+    @Override
+    public void addToCarList(int CustomerId, int BookId,int num) {
+        String sql="insert into tb_shopbook values(?,?,?)";
+        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+        try {
+            qr.execute(sql,CustomerId,BookId,num);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 //    @Override
 //    public List<CartItem> finfByBookId(int BookId) throws SQLException {

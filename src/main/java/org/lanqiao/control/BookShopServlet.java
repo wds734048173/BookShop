@@ -2,6 +2,7 @@ package org.lanqiao.control;
 
 import org.lanqiao.domain.CartItem;
 import org.lanqiao.service.ICartItemService;
+import org.lanqiao.service.ICustomerService;
 import org.lanqiao.service.impl.CartItemServiceImpl;
 
 import javax.servlet.ServletException;
@@ -37,9 +38,26 @@ public class BookShopServlet extends HttpServlet {
             case  "getCartItemList":
                 getCartItemList(request,response);
                 break;
+            case "addToList":
+                addToCarList(request, response);
+                break;
         }
 
 //        request.getRequestDispatcher("/sale/bookshop.jsp").forward(request,response);
+    }
+
+    private void addToCarList(HttpServletRequest request, HttpServletResponse response) {
+        String bookId = request.getParameter("bookId");
+        String CustomerId = request.getParameter("customerId");
+        String num = request.getParameter("num");
+        service.addToCarList(Integer.parseInt(CustomerId),Integer.parseInt(bookId),Integer.parseInt(num));
+        try {
+            request.getRequestDispatcher("/bookinfo.do?method=detail&bookId="+ bookId +"").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getCartItemList(HttpServletRequest request, HttpServletResponse response) {

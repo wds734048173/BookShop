@@ -21,6 +21,11 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
+    public Customer getCustomerById(int CustomerId) {
+        return customerDao.getCustomerById(CustomerId);
+    }
+
+    @Override
     public void addCustomer(Customer customer) {
         customerDao.addCustomer(customer);
     }

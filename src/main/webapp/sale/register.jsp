@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>注册</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/login.css">
     <script type="text/javascript"  src="../sale/js/jquery.min.js"></script>
     <script type="text/javascript" src="../sale/js/login.js"></script>

@@ -28,6 +28,18 @@ public class CustomerDaoImpl implements ICustomerDao {
     }
 
     @Override
+    public Customer getCustomerById(int CustomerId) {
+        String sql = "select * from tb_customerinfo where CustomerId=?";
+        Customer customer =null;
+        try {
+            customer=qr.query(sql,new BeanHandler<>(Customer.class),CustomerId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    @Override
     public Customer getCustomer(String customerName,String pwd) {
         String sql="select * from tb_customerinfo where CustomerName=? and CustomerPwd=?";
         Customer customer=null;
@@ -52,9 +64,9 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Override
     public void updateCustomer(Customer customer) {
-        String sql = "update tb_customerinfo set CustomerName=?,CustomerPwd=?,Customertruename=?,CustomerSex=?,CustomerTel=?,CustomerEmail=?,CustomerAddr=? where CustomerId=?";
+        String sql = "update tb_customerinfo set CustomerTel=?,CustomerEmail=?,CustomerAddr=? where CustomerId=?";
         try {
-            qr.execute(sql,customer.getCustomerName(),customer.getCustomerPwd(),customer.getCustomertruename(),customer.getCustomerSex(),customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr(),customer.getCustomerId());
+            qr.execute(sql,customer.getCustomerTel(),customer.getCustomerEmail(),customer.getCustomerAddr(),customer.getCustomerId());
         } catch (SQLException e) {
             e.printStackTrace();
         }

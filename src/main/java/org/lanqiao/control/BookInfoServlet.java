@@ -28,10 +28,11 @@ public class BookInfoServlet extends HttpServlet {
                 break;
         }
     }
-    //取得对应书籍的数据
+
     private void getDetail(HttpServletRequest req, HttpServletResponse resp) {
         String bookId = req.getParameter("bookId");
         System.out.println(Integer.parseInt(bookId));
+        //根据bookID取得对应书籍的数据
         Book book = service.selectById(Integer.parseInt(bookId));
         req.setAttribute("bookDetail",book);
         try {

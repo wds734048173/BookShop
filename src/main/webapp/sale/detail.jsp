@@ -12,15 +12,30 @@
 <html>
 <head>
     <title><%=book.getBookName()%></title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+           $("#add").click(function () {
+               var num = $(this).next().val();
+               num++;
+               $("#num").val(num);
+           });
+            $("#reduce").click(function () {
+                var num = $(this).prev().val();
+                if (num >1)num--;
+                $("#num").val(num);
+            });
+        })
+    </script>
 </head>
 <body>
     <header>
         <div class="top center">
             <div class="left fl">
                 <ul>
-                    <li><a href="sale/index.jsp">返回首页</a></li>
+                    <li><a href="../sale/index.jsp">返回首页</a></li>
                     <li>|</li>
                     <%--点击进入反馈页面--%>
                     <li><a href="">问题反馈</a></li>
@@ -33,14 +48,16 @@
                         if (name == null){
                     %>
                 <%--购物车页面--%>
-                    <div class="gouwuche fr"><a href="/sale/login.jsp">购物车</a></div>
+                    <div class="gouwuche fr"><a href="../sale/login.jsp">购物车</a></div>
                     <div class="fr">
                         <ul>
                             <%--登录页面--%>
-                            <li><a href="./login.jsp" target="_blank">登录</a></li>
+                            <li><a href="/sale/login.jsp" target="_blank">登录</a></li>
+                            <li>|</li>
+                            <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
                             <li>|</li>
                             <%--注册页面--%>
-                            <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                            <li><a href="/sale/register.jsp" target="_blank" >注册</a></li>
                         </ul>
                     </div>
                     <%
@@ -62,13 +79,13 @@
             <div class="clear"></div>
         </div>
     </header>
-    <form action="post" method="">
+    <form action="bookshop.do?method=addToList" method="post">
         <div class="xiangqing">
             <div class="neirong w">
                 <div class="xiaomi6 fl"><%=book.getBookName()%></div>
                 <nav class="fr">
                     <%--点击进入用户评价--%>
-                    <li><a href="/sale/privateComment.do?bookid=<%=book.getBookId()%>">用户评价</a></li>
+                    <li><a href="../sale/privateComment.do?bookid=<%=book.getBookId()%>">用户评价</a></li>
                     <div class="clear"></div>
                 </nav>
                 <div class="clear"></div>
@@ -86,8 +103,13 @@
                 <div class="jiage ml20 mt10">售价：<%=book.getBookPrice()%></div>
                 <div class="jianjie mr40 ml20">原价:<%=book.getBookMprice()%></div>
                 <div class="xiadan ml20 mt20">
-                    <input class="jrgwc"  type="button" name="jrgwc" value="立即选购" />
-                    <input class="jrgwc" type="button" name="jrgwc" value="加入购物车" />
+                        <input hidden name="bookId" value="<%=book.getBookId()%>">
+                        <input hidden name="customerId" value="<%=session.getAttribute("CustomerId")%>">
+                        选购数量:
+                        <input type="button" value="+" class="bw" id="add">
+                        <input type="text" name="num" value="1" style="width: 30px" readonly id="num">
+                        <input type="button" value=" - " class="bw" id="reduce"><br/>
+                        <input class="jrgwc" type="submit" name="jrgwc" value="加入购物车" />
                 </div>
             </div>
             <div class="clear"></div>
