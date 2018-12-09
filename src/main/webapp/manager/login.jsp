@@ -34,34 +34,42 @@
             bottom:0;
             margin:auto;
         }
+
+        body{
+            margin: 0;
+            padding: 0;
+
+        }
     </style>
 </head>
 <body>
-<div  align="center">
-    <form id="formpar" action="/login.do?method=login" method="post">
-        <div  class="panel padding" style="width: 450px;text-align: left;">
+<div align="center" style="margin: 300px">
+    <form action="/login.do?method=login" method="post">
+        <div class="panel padding" style="width: 450px;text-align: left;">
             <div class="text-center">
                 <br>
                 <h2><strong>用户登录</strong></h2></div>
             <div class="" style="padding:30px;">
                 <div class="form-group">
                     <div class="field field-icon-right">
-                        <input type="text" class="input" name="username" placeholder="登录账号" data-validate="required:请填写账号,length#>=5:账号长度不符合要求" />
+                        <%--校验长度方法： data-validate="required:请填写账号,length#>=5:账号长度不符合要求"--%>
+                        <input type="text" class="input" name="username" placeholder="登录账号" value="<%if(request.getAttribute("username")!=null)out.print(request.getAttribute("username"));%>"/>
                         <span class="icon icon-user"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="field field-icon-right">
-                        <input type="password" class="input" name="password" placeholder="登录密码" data-validate="required:请填写密码,length#>=8:密码长度不符合要求" />
+                        <input type="password" class="input" name="password" placeholder="登录密码" value="<%if(request.getAttribute("password")!=null)out.print(request.getAttribute("password"));%>"/>
                         <span class="icon icon-key"></span>
                     </div>
                 </div>
-                <%--<div class="form-group">--%>
-                    <%--<div class="field">--%>
-                        <%--<input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />--%>
-                        <%--<img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                <%--<div class="form-group">
+                    <div class="field">
+                        <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                        <img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />
+                    </div>
+                </div>--%>
+                <span id="message" style="color: red;"><%if(request.getAttribute("message") != null)out.print(request.getAttribute("message"));%></span>
                 <div class="form-group">
                     <div class="field">
                         <button class="button button-block bg-main text-big">立即登录</button>
@@ -69,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <div class="field text-center">
-                        <p class="text-muted text-center"> <a class="" href="#login.html"><small>忘记密码了？</small></a> | <a class="" href="#register.html">注册新账号</a>
+                        <p class="text-muted text-center"> <a class="" href="/manager/updatePwd.jsp"><small>忘记密码了？</small></a> | <a class="" href="/manager/register.jsp">注册新账号</a>
                         </p>
                     </div>
                 </div>

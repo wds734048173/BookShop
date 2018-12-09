@@ -29,7 +29,8 @@
         </div>
         <div class="top">
             <div class="leftTiyle" id="flTitle">分类管理</div>
-            <div class="thisUser">当前用户：<%=request.getAttribute("username")%></div>
+            <div class="thisUser">当前用户：<%=session.getAttribute("username")%></div>
+            <div style="float: right;"><input style="line-height: normal;margin-top: 37px;" type="button" width="100px" height="50px" id="exit" onclick="exit()" value="退出登录"/></div>
         </div>
         <div class="content"></div>
         <div style="text-align:center;"></div>
@@ -38,5 +39,9 @@
         $(function(){
             $(".content").load("/bookType.do?method=getBookTypelist");
         })
+        function exit() {
+            var url = "/register.do?method=exit";
+            window.location.href= url;
+        }
     </script>
 </html>
