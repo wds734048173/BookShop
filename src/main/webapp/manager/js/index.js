@@ -12,7 +12,7 @@ function pageClick(k) {
         url = "/book.do?method=getBooklist";
     } else if (text == "管理员信息管理") {
         url = "/manager.do?method=getManagerList";
-    } else if (text == "客服信息管理") {
+    } else if (text == "客户信息管理") {
         url = "/customer.do?method=getCustomerlist";
     } else if (text == "评价信息") {
         url = "/comment.do?method=getCommentlist";
