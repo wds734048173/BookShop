@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <img src="/imgs/500.png" width="925" height="529">
+    <img src="/imgs/500.png" width="960px">
 </body>
 </html>
