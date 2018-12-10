@@ -1,7 +1,8 @@
 <%@ page import="org.lanqiao.domain.BookType" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.lanqiao.domain.Book" %>
-<%@ page import="org.lanqiao.domain.Customer" %><%--
+<%@ page import="org.lanqiao.domain.Customer" %>
+<%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/12/6/006
@@ -12,10 +13,12 @@
 <html>
 <head>
     <title>主页</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
     <script type="text/javascript">
-
+        $(function () {
+        })
     </script>
 </head>
 <body>
@@ -47,10 +50,12 @@
                 <%
                 }else {
                 %>
-                <div class="gouwuche fr"><a href="/bookshop.do?method=getCartItemList&CustomerId=<%=session.getAttribute("CustomerId")%>">购物车</a></div>
+                <div class="gouwuche fr"><a href="/bookshop.do?method=getCartItemList&id=<%=session.getAttribute("CustomerId")%>" target="_blank">购物车</a></div>
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>
+                        <li>|</li>
+                        <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
                         <li>|</li>
                         <li><a href="/logout.do">退出登录</a></li>
                     </ul>

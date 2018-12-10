@@ -1,6 +1,6 @@
 package org.lanqiao.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 /*客户*/
 public class Customer {
@@ -8,7 +8,7 @@ public class Customer {
     private String CustomerName;
     private String CustomerPwd;
     private String Customertruename;
-    private int CustomerSex;
+    private String CustomerSex;
     private String CustomerTel;
     private String CustomerEmail;
     private String CustomerAddr;
@@ -22,23 +22,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String customerName, String customerPwd, String customertruename, int customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
-        CustomerName = customerName;
-        CustomerPwd = customerPwd;
-        Customertruename = customertruename;
-        CustomerSex = customerSex;
-        CustomerTel = customerTel;
-        CustomerEmail = customerEmail;
-        CustomerAddr = customerAddr;
-        this.CTime = CTime;
-        this.RTime = RTime;
-        CustomerQues = customerQues;
-        CustomerAnswer = customerAnswer;
-        CustomerLogTime = customerLogTime;
-        CustomerLastLogT = customerLastLogT;
-    }
-
-    public Customer(int customerId, String customerName, String customerPwd, String customertruename, int customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
+    public Customer(int customerId, String customerName, String customerPwd, String customertruename, String customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
         CustomerId = customerId;
         CustomerName = customerName;
         CustomerPwd = customerPwd;
@@ -87,11 +71,11 @@ public class Customer {
         Customertruename = customertruename;
     }
 
-    public int getCustomerSex() {
+    public String getCustomerSex() {
         return CustomerSex;
     }
 
-    public void setCustomerSex(int customerSex) {
+    public void setCustomerSex(String customerSex) {
         CustomerSex = customerSex;
     }
 
@@ -174,7 +158,7 @@ public class Customer {
                 ", CustomerName='" + CustomerName + '\'' +
                 ", CustomerPwd='" + CustomerPwd + '\'' +
                 ", Customertruename='" + Customertruename + '\'' +
-                ", CustomerSex=" + CustomerSex +
+                ", CustomerSex='" + CustomerSex + '\'' +
                 ", CustomerTel='" + CustomerTel + '\'' +
                 ", CustomerEmail='" + CustomerEmail + '\'' +
                 ", CustomerAddr='" + CustomerAddr + '\'' +

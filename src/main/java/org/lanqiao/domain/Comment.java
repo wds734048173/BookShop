@@ -5,6 +5,7 @@ import java.util.Date;
 public class Comment {
     private int CommentId;
     private int BookId;
+    private String BookName;
     private int CustomerId;
     private String UserName;
     private Date Commentdate;
@@ -14,9 +15,20 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(int commentId, int bookId, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade) {
+    public Comment(int bookId, String bookName, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade) {
+        BookId = bookId;
+        BookName = bookName;
+        CustomerId = customerId;
+        UserName = userName;
+        Commentdate = commentdate;
+        Commentcontent = commentcontent;
+        Commentgrade = commentgrade;
+    }
+
+    public Comment(int commentId, int bookId, String bookName, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade) {
         CommentId = commentId;
         BookId = bookId;
+        BookName = bookName;
         CustomerId = customerId;
         UserName = userName;
         Commentdate = commentdate;
@@ -38,6 +50,14 @@ public class Comment {
 
     public void setBookId(int bookId) {
         BookId = bookId;
+    }
+
+    public String getBookName() {
+        return BookName;
+    }
+
+    public void setBookName(String bookName) {
+        BookName = bookName;
     }
 
     public int getCustomerId() {
@@ -85,6 +105,7 @@ public class Comment {
         return "Comment{" +
                 "CommentId=" + CommentId +
                 ", BookId=" + BookId +
+                ", BookName='" + BookName + '\'' +
                 ", CustomerId=" + CustomerId +
                 ", UserName='" + UserName + '\'' +
                 ", Commentdate=" + Commentdate +

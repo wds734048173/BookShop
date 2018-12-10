@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>登录</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/login.css">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <script type="text/javascript"  src="../sale/js/jquery.min.js"></script>
@@ -42,7 +43,7 @@
                 <div class="fr">
                     <ul>
                         <%--注册页面--%>
-                        <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                        <li><a href="../sale/register.jsp" target="_blank" >注册</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -56,7 +57,7 @@
                 <div class="login_center">
                     <div class="login_top">
                         <div class="left fl">会员登录</div>
-                        <div class="right fr">您还不是我们的会员？<a href="./register.jsp" target="_self">立即注册</a></div>
+                        <div class="right fr">您还不是我们的会员？<a href="../sale/register.jsp" target="_self">立即注册</a></div>
                         <div class="clear"></div>
                         <div class="xian center"></div>
                     </div>
@@ -89,7 +90,7 @@
     </div>
     <footer>
         <div class="copyright">简体 | 繁体 | English | 常见问题</div>
-        <div class="copyright">公司版权所有-京ICP备10046444-<img src="./imges/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号</div>
+        <div class="copyright">公司版权所有-京ICP备10046444-<img src="../sale/imges/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号</div>
 
     </footer>
 </body>

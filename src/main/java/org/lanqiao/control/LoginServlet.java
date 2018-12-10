@@ -71,6 +71,7 @@ public class LoginServlet extends HttpServlet {
             String name = customer.getCustomertruename();
             int CustomerId = customer.getCustomerId();
             HttpSession session = req.getSession();
+            session.setAttribute("username",username);
             session.setAttribute("name",name);
             session.setAttribute("CustomerId",CustomerId);
             Cookie cookie = new Cookie("JSESSIONID",session.getId());

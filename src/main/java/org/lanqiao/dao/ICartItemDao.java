@@ -10,4 +10,6 @@ public interface ICartItemDao {
     public List<CartItem> findByCustomerId(int CustomerId) throws SQLException;
     //删除商品
     public void delByCustomer(int CustomerId,int BookId) throws SQLException;
+    //添加到购物车
+    public void addToCarList(int CustomerId,int BookId,int num);
 }
