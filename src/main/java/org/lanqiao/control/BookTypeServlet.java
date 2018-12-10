@@ -50,6 +50,20 @@ public class BookTypeServlet extends HttpServlet {
             case "getBookTypeById"://修改数据获取
                 getBookTypeById(req,resp);
                 break;
+            case "getBookTypeForSelect":
+                getBookTypeForSelect(req,resp);
+                break;
+        }
+    }
+
+    private void getBookTypeForSelect(HttpServletRequest req, HttpServletResponse resp) {
+        List<BookType> bookTypeList = bookTypeService.getBookTypeList(null);
+        try {
+            PrintWriter out = resp.getWriter();
+            String bookTypeListJson = JSON.toJSONString(bookTypeList);
+            out.print(bookTypeListJson);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -136,6 +150,5 @@ public class BookTypeServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

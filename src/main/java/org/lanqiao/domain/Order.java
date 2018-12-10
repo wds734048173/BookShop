@@ -4,35 +4,39 @@ import java.util.Date;
 
 /*订单*/
 public class Order {
-private int id;
-private String no;
-private int price;
-private int freight;
-private int money;
-private int state;
-private String name;
-private String phone;
-private String address;
-private Date ctime;
-private Date rtime;
-private int customerId;
+    private int id;
+    private String no;
+    private int price;
+    private int freight;
+    private int money;
+    private int state;
+    private String stateStr;
+    private String name;
+    private String phone;
+    private String address;
+    private Date ctime;
+    private Date rtime;
+    private int customerId;
+    private String customerName;
 
     public Order() {
     }
 
-    public Order(int id, String no, int price, int freight, int money, int state, String name, String phone, String address, Date ctime, Date rtime, int customerId) {
+    public Order(int id, String no, int price, int freight, int money, int state, String stateStr, String name, String phone, String address, Date ctime, Date rtime, int customerId, String customerName) {
         this.id = id;
         this.no = no;
         this.price = price;
         this.freight = freight;
         this.money = money;
         this.state = state;
+        this.stateStr = stateStr;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.ctime = ctime;
         this.rtime = rtime;
         this.customerId = customerId;
+        this.customerName = customerName;
     }
 
     public int getId() {
@@ -83,6 +87,14 @@ private int customerId;
         this.state = state;
     }
 
+    public String getStateStr() {
+        return stateStr;
+    }
+
+    public void setStateStr(String stateStr) {
+        this.stateStr = stateStr;
+    }
+
     public String getName() {
         return name;
     }
@@ -131,6 +143,14 @@ private int customerId;
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -140,12 +160,14 @@ private int customerId;
                 ", freight=" + freight +
                 ", money=" + money +
                 ", state=" + state +
+                ", stateStr='" + stateStr + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", ctime=" + ctime +
                 ", rtime=" + rtime +
                 ", customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package org.lanqiao.control;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -73,11 +72,12 @@ public class FileUploadServlet extends HttpServlet {
 
                     //需要保存数据库的信息有：fileName(文件原名)，uuidName(文件生成的uuid名称),filePath(文件路径)
                     File uploadedFile = new File(filePath,uuidName);
-                    JSONObject json = new JSONObject();
-                    result.setStatus("ok");
-                    result.setData(uploadedFile);
-                    resp.setStatus(0);
-
+                    item.write(uploadedFile);
+                    HttpSession session = req.getSession();
+                    session.setAttribute("picUrl",uploadedFile);
+                    Cookie cookie = new Cookie("JSESSIONID",session.getId());
+                    cookie.setMaxAge(7 * 24 * 60 * 60);
+                    resp.addCookie(cookie);
                 }
             }
         } catch (FileUploadException e) {
