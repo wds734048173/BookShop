@@ -140,6 +140,7 @@
     </table>
 </div>
 <%--新增模态框插件--%>
+<%System.out.println(pm.getStartIndex() +"--" +pm.getEndPage());%>
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addBookTypeModel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -62,9 +62,10 @@ public class CommentDaoImpl implements ICommentDao {
             sql.append(" and BookName=?");
             search.add(condition.getName());
         }
-        sql.append("limit ?,?");
+        sql.append(" limit ?,?");
         search.add(condition.getCurrentPage());
         search.add(condition.getPageSize());
+        System.out.println(condition.getCurrentPage() +"---------"+ condition.getPageSize());
         try {
             comments = qr.query(sql.toString(),new BeanListHandler<>(Comment.class),search.toArray());
         } catch (SQLException e) {
@@ -78,11 +79,11 @@ public class CommentDaoImpl implements ICommentDao {
     //后端列表总数
     @Override
     public Long getCommentCoount(Condition condition) {
-        StringBuffer sql = new StringBuffer("SELECT count(1) from tb_comment where 1 = 1 ");
+        StringBuffer sql = new StringBuffer("SELECT count(*) from tb_comment where 1 = 1 ");
         List<Object> search = new ArrayList<>();
         if(condition.getName() != null && !"".equals(condition.getName())){
             sql.append(" and BookName=?");
-            search.add(" %" + condition.getName() + "% ");
+            search.add(condition.getName());
         }
         Long count = 0L;
         try {
@@ -90,7 +91,6 @@ public class CommentDaoImpl implements ICommentDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(count);
         return count;
     }
 }

@@ -222,13 +222,14 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
+            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
             <li  onclick="search(<%=pm.getPrePageNum()%>)">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <%
+                System.out.println(pm.getStartIndex() + "--" +pm.getEndPage());
                 int totalPageNum = pm.getTotalPageNum();
                 for(int i = 1; i <= totalPageNum; i++){
             %>
@@ -242,7 +243,7 @@
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
+            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
         </ul>
     </nav>
 </center>
