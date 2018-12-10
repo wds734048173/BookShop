@@ -242,3 +242,27 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 footer{width: 100%;height: 120px;line-height: 30px;text-align: center;font-size: 12px;background: rgb(250,250,250);padding:30px 0;}
 /*按钮*/
 .bw{width: 15px;height: 15px}
+/*选项卡*/
+#hear{
+	height: 50px;
+	width: 400px;
+	text-align: center;
+	line-height: 50px;
+}
+#hear li {        /*第几个选项卡的样式，有几个选项卡就有几个*/
+	width: 33.33%;
+	float: left;
+}
+#content{
+	margin-top: 30px;
+}
+#content li {                    /*让所有内容页隐藏*/
+	display: none;
+	width: 400px;
+	border: 5px solid red;
+	height: 200px;
+}
+
+#content .action {           /*让选中的内容页显示*/
+	display: block;
+}

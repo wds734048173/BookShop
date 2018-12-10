@@ -50,7 +50,7 @@
             <div class="left fl">
                 <ul>
                     <%--点击进入反馈页面--%>
-                    <li><a href="">问题反馈</a></li>
+                    <li><a href="/reply.do?method=getHomeList">问题反馈</a></li>
                     <div class="clear"></div>
                 </ul>
             </div>
@@ -58,7 +58,7 @@
                 <%
                     String name = (String) session.getAttribute("name");
                 %>
-                <div class="gouwuche fr"><a href="">我的订单</a></div>
+                <div class="gouwuche fr"><a href="../sale/order.jsp">我的订单</a></div>
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>
@@ -79,7 +79,7 @@
 
                 <div class="subddzx">
                     <ul>
-                        <li><a href="./self_info.html">我的个人中心</a></li>
+                        <li><a href="/reply.do?method=myReply">我的反馈</a></li>
                     </ul>
                 </div>
             </div>

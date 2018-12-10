@@ -38,7 +38,7 @@
                     <li><a href="../sale/index.jsp">返回首页</a></li>
                     <li>|</li>
                     <%--点击进入反馈页面--%>
-                    <li><a href="">问题反馈</a></li>
+                    <li><a href="/reply.do?method=getHomeList">问题反馈</a></li>
                     <div class="clear"></div>
                 </ul>
             </div>

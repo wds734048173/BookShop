@@ -40,7 +40,7 @@
                 <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
                 <li>|</li>
                 <%--点击进入反馈页面--%>
-                <li><a href="">问题反馈</a></li>
+                <li><a href="/reply.do?method=getHomeList">问题反馈</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
@@ -54,10 +54,10 @@
             <div class="fr">
                 <ul>
                     <%--登录页面--%>
-                    <li><a href="./login.jsp" target="_blank">登录</a></li>
+                    <li><a href="../sale/login.jsp" target="_blank">登录</a></li>
                     <li>|</li>
                     <%--注册页面--%>
-                    <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                    <li><a href="../sale/register.jsp" target="_blank" >注册</a></li>
                 </ul>
             </div>
             <%

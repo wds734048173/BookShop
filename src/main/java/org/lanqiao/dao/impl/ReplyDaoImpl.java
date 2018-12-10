@@ -10,7 +10,9 @@ import org.lanqiao.domain.Reply;
 import org.lanqiao.utils.jdbcUtils;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReplyDaoImpl implements IReplyDao {
@@ -44,6 +46,19 @@ public class ReplyDaoImpl implements IReplyDao {
     }
 
     @Override
+    public List<Reply> getList()  {
+        String sql= "SELECT * from tb_reply";
+        List<Reply> replies =null;
+        try {
+            replies=qr.query(sql,new BeanListHandler<>(Reply.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return replies;
+    }
+
+
+    @Override
     public Reply getReplyById(int ReplyId) {
         Reply reply = null;
         String sql = "SELECT * from tb_reply where ReplyId = ?";
@@ -56,10 +71,23 @@ public class ReplyDaoImpl implements IReplyDao {
     }
 
     @Override
-    public void addReply(Reply reply) {
-        String sql = "INSERT INTO tb_reply (Ctime,Rtime,CustomerId,ReplyType,Replytitle,Replycontent,Customername) VALUES (now(),now(),?,?,?,?,?)";
+    public List<Reply> getReplyByCustomerId(int CustomerId) {
+        String sql = "select * from tb_reply where CustomerId=?";
+        List<Reply> replyList = null;
         try {
-            qr.execute(sql,reply.getCustomerId(),reply.getReplyType(),reply.getReplytitle(),reply.getReplycontent(),reply.getCustomername(),reply.getRtime(),reply.getCtime());
+            replyList=qr.query(sql,new BeanListHandler<>(Reply.class),CustomerId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return replyList;
+    }
+
+    @Override
+    public void addReply(Reply reply) {
+        String sql = "INSERT INTO tb_reply (Ctime,Rtime,CustomerId,ReplyType,Replytitle,Replycontent,Customername) VALUES (?,?,?,?,?,?,?)";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        try {
+            qr.execute(sql,format.format(new Date()),format.format(new Date()),reply.getCustomerId(),reply.getReplyType(),reply.getReplytitle(),reply.getReplycontent(),reply.getCustomername());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,4 +137,6 @@ public class ReplyDaoImpl implements IReplyDao {
         }
         return count;
     }
+
+
 }

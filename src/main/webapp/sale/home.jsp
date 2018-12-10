@@ -13,7 +13,7 @@
 <html>
 <head>
     <title>主页</title>
-    <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../sale/imges/book.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
     <script type="text/javascript">
@@ -27,7 +27,7 @@
             <div class="left fl">
                 <ul>
                     <%--点击进入反馈页面--%>
-                    <li><a href="">问题反馈</a></li>
+                    <li><a href="/reply.do?method=getHomeList">问题反馈</a></li>
                     <div class="clear"></div>
                 </ul>
             </div>
@@ -41,10 +41,10 @@
                 <div class="fr">
                     <ul>
                         <%--登录页面--%>
-                        <li><a href="./login.jsp" target="_blank">登录</a></li>
+                        <li><a href="../sale/login.jsp" target="_blank">登录</a></li>
                         <li>|</li>
                         <%--注册页面--%>
-                        <li><a href="./register.jsp" target="_blank" >注册</a></li>
+                        <li><a href="../sale/register.jsp" target="_blank" >注册</a></li>
                     </ul>
                 </div>
                 <%
@@ -55,7 +55,7 @@
                     <ul>
                         <li>欢迎您：<%=name%></li>
                         <li>|</li>
-                        <li><a href="/customer.do?method=getMyInfo&id=<%=session.getAttribute("CustomerId")%>" target="_blank">个人中心</a></li>
+                        <li><a href="/customer.do?method=getMyInfo" target="_blank">个人中心</a></li>
                         <li>|</li>
                         <li><a href="/logout.do">退出登录</a></li>
                     </ul>
@@ -138,7 +138,7 @@
                     Book book= bookList.get(i);
             %>
             <div class="mingxing fl">
-                <div class="sub_mingxing"></div>
+                <div class="sub_mingxing"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><img src="<%=book.getBookPic()%>" alt=""></a></div>
                 <div class="pinpai"><a href="/bookinfo.do?method=detail&bookId=<%=book.getBookId()%>"><%=book.getBookName()%></a></div>
                 <div class="youhui"><%=book.getBookOutline().substring(0,9)%></div>
                 <div class="jiage"><%=book.getBookPrice()%>元</div>

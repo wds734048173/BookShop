@@ -70,7 +70,6 @@
                         <input class="shurukuang" type="text" name="addr" placeholder="请填写正确的邮箱地址" id="addr"/>
                         <span class="error"></span>
                     </div>
-
                     </div>
                     <div class="regist_submit">
                         <input class="submit" type="submit" name="submit" value="立即注册" >

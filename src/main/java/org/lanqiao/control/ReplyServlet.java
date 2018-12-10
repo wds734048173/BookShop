@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -46,8 +47,23 @@ public class ReplyServlet extends HttpServlet {
             case "getReplyById":
                 getReplyById(req,resp);
                 break;
+            case "getHomeList":
+                getHomeList(req, resp);
+                break;
+            case "myReply":
+                getCustomerList(req, resp);
+                break;
+            case "deleteMyReply":
+                deleteMyReply(req, resp);
+                break;
+            case "addReply":
+                addReply(req, resp);
+                break;
         }
     }
+
+
+
 
     private void getReplyById(HttpServletRequest req, HttpServletResponse resp) {
         int replyId = Integer.valueOf(req.getParameter("ReplyId"));
@@ -121,5 +137,58 @@ public class ReplyServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    //查找所有反馈到前端
+    private void getHomeList(HttpServletRequest req, HttpServletResponse resp) {
+        List<Reply> replyList = replyService.getList();
+
+        req.setAttribute("replyList",replyList);
+        try {
+            req.getRequestDispatcher("sale/reply.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //查找用户的反馈信息
+    private void getCustomerList(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session = req.getSession();
+        int id = (int) session.getAttribute("CustomerId");
+        List<Reply> replyList = replyService.getReplyByCustomerId(id);
+        req.setAttribute("replyList",replyList);
+        try {
+            req.getRequestDispatcher("sale/myReply.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteMyReply(HttpServletRequest req, HttpServletResponse resp) {
+
+        String replyId = req.getParameter("replyId");
+        System.out.println(replyId);
+        replyService.deleteReply(Integer.parseInt(replyId));
+        getCustomerList(req, resp);
+    }
+
+    private void addReply(HttpServletRequest req, HttpServletResponse resp){
+        Reply reply = new Reply();
+        HttpSession session = req.getSession();
+        String type=req.getParameter("type");
+        String title=req.getParameter("title");
+        String content=req.getParameter("content");
+        String name = req.getParameter("name");
+        reply.setCustomerId((Integer) session.getAttribute("CustomerId"));
+        reply.setCustomername(name);
+        reply.setReplyType(type);
+        reply.setReplytitle(title);
+        reply.setReplycontent(content);
+        System.out.println(reply);
+        replyService.addReply(reply);
+        getCustomerList(req, resp);
     }
 }
