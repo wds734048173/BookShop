@@ -17,22 +17,30 @@
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
-        $(function () {
-            //删除
-            $(".deleteBookType").click(function () {
-                var isDelete = confirm ("确定删除吗？");
-                if(isDelete){
-                    var id = $(this).parent().parent().children("td:eq(0)").text();
-                    //查询条件
-                    var searchBookTypeName = $("#searchBookTypeName").val();
-                    var currentPage = $("#currentPage").val();
-                    var url = "/bookType.do?method=deleteBookType&bookTypeId=" + id + "&searchBookTypeName=" + searchBookTypeName + "&currentPage=" + currentPage;
-                    $(".content").load(url);
-                }else{
-                    return;
-                }
-            })
-        })
+        //修改订单状态
+        function updateOrderState(orderId,state) {
+            if(state == 3){
+                var isUpdate = confirm("确定发货吗？");
+            }else if(state == 6){
+                var isUpdate = confirm("确定作废吗？");
+            }
+            if (isUpdate) {
+                //查询条件
+                var searchOrderNo = $("#searchOrderNo").val();
+                var searchOrderState = $("#searchOrderState").val();
+                var currentPage = $("#currentPage").val();
+                var url = "/order.do?method=updateOrderState&orderId=" + orderId + "&state=" + state + "&searchOrderNo=" + searchOrderNo + "&searchOrderState=" + searchOrderState + "&currentPage=" + currentPage;
+                $(".content").load(url);
+            } else {
+                return;
+            }
+        }
+
+        //查看订单详情
+        function getOrderInfo(orderId) {
+            var url = "/order.do?method=getOrderInfo&orderId=" + orderId;
+            $(".content").load(url);
+        }
 
         //查询的手动提交方式
         function search(currentPage) {
@@ -65,7 +73,16 @@
         </div>--%>
         <div class="form-group">
             <label for="searchOrderState" class="control-label">订单状态:</label>
-            <input type="text" class="form-control" id="searchOrderState" name="searchOrderState" value="<%=condition.getState()%>">
+            <%--<input type="text" class="form-control" id="searchOrderState" name="searchOrderState" value="<%=%>">--%>
+            <select id="searchOrderState" name="searchOrderState" class="form-control">
+                <option value="" <%if("".equals(condition.getState()))out.print(" selected ");%>>全部</option>
+                <option value="1" <%if("1".equals(condition.getState()))out.print(" selected ");%>>未付款</option>
+                <option value="2" <%if("2".equals(condition.getState()))out.print(" selected ");%>>已付款</option>
+                <option value="3" <%if("3".equals(condition.getState()))out.print(" selected ");%>>已发货</option>
+                <option value="4" <%if("4".equals(condition.getState()))out.print(" selected ");%>>已收货</option>
+                <option value="5" <%if("5".equals(condition.getState()))out.print(" selected ");%>>已评价</option>
+                <option value="6" <%if("6".equals(condition.getState()))out.print(" selected ");%>>已作废</option>
+            </select>
         </div>
     </form>
     <div class="form-group">
@@ -100,16 +117,24 @@
             <td><%=order.getPrice()%></td>
             <td><%=order.getFreight()%></td>
             <td><%=order.getMoney()%></td>
-            <td><%=order.getState()%></td>
+            <td><%=order.getStateStr()%></td>
             <td><%=order.getCtime()%></td>
             <td><%=order.getRtime()%></td>
-            <td><%=order.getCustomerId()%></td>
+            <td><%=order.getCustomerName()%></td>
             <td>
-                <a class="btn btn-default updateOrder" href="#" role="button"  name="updateOrder">订单详情</a>
+                <a class="btn btn-default getOrderInfo" href="#" role="button"  name="getOrderInfo"  onclick="getOrderInfo(<%=order.getId()%>)">订单详情</a>
+
+                <%if(order.getState() == 2){
+                    %>
                 <%--已付款的订单可发货--%>
-                <a class="btn btn-default updateOrder" href="#" role="button"  name="updateOrder">发货</a>
+                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(<%=order.getId()%>,3)">发货</a>
+                <%
+                }else if(order.getState() == 1){
+                    %>
                 <%--未付款的订单可取消订单--%>
-                <a class="btn btn-default deleteOrder" href="#" role="button"  name="deleteOrder">取消订单</a>
+                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(<%=order.getId()%>,6)">作废</a>
+                <%
+                }%>
             </td>
         </tr>
         <%
@@ -118,7 +143,6 @@
         </tbody>
     </table>
 </div>
-
 <%--分页插件--%>
 <center>
     <nav aria-label="Page navigation">

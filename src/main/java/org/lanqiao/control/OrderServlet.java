@@ -2,6 +2,7 @@ package org.lanqiao.control;
 
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
+import org.lanqiao.domain.OrderItem;
 import org.lanqiao.service.IOrderService;
 import org.lanqiao.service.impl.OrderServiceImpl;
 import org.lanqiao.utils.PageModel;
@@ -44,10 +45,36 @@ IOrderService orderService = new OrderServiceImpl();
             case "getOrderInfo":
                 getOrderInfo(req,resp);
                 break;
+            case "updateOrderState":
+                updateOrderState(req,resp);
+                break;
         }
     }
 
+    private void updateOrderState(HttpServletRequest req, HttpServletResponse resp) {
+        int orderId = Integer.valueOf(req.getParameter("orderId"));
+        int state = Integer.valueOf(req.getParameter("state"));
+        orderService.updateOrderState(orderId,state);
+        getOrderlist(req,resp);
+    }
+
     private void getOrderInfo(HttpServletRequest req, HttpServletResponse resp) {
+        int orderId = Integer.valueOf(req.getParameter("orderId"));
+        //获取订单列表的详细信息
+        Order order = orderService.getOrderById(orderId);
+        //获取订单子表信息
+        List<OrderItem> orderItemList = orderService.getOrderItemList(orderId);
+        req.setAttribute("order",order);
+        req.setAttribute("orderItemList",orderItemList);
+        try {
+            req.getRequestDispatcher("/manager/orderInfo.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void getOrderlist(HttpServletRequest req, HttpServletResponse resp) {

@@ -1,12 +1,13 @@
 package org.lanqiao.dao.impl;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.lanqiao.dao.IOrderDao;
-import org.lanqiao.domain.BookType;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
+import org.lanqiao.domain.OrderItem;
 import org.lanqiao.utils.jdbcUtils;
 
 
@@ -61,5 +62,39 @@ public class OrderDaoImpl implements IOrderDao {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Override
+    public void updateOrderState(int orderId, int state) {
+        String sql = "UPDATE tb_order SET state = ? WHERE id = ?";
+        try {
+            qr.execute(sql,state,orderId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Order getOrderById(int orderId) {
+        String sql = "SELECT * FROM tb_order WHERE id = ?";
+        Order order = null;
+        try {
+            order = qr.query(sql,new BeanHandler<>(Order.class),orderId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    @Override
+    public List<OrderItem> getOrderItemList(int orderId) {
+        String sql = "SELECT * FROM tb_orderitem WHERE oId = ?";
+        List<OrderItem> orderItemList = null;
+        try {
+            orderItemList = qr.query(sql,new BeanListHandler<>(OrderItem.class),orderId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItemList;
     }
 }

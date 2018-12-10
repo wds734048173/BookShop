@@ -22,13 +22,15 @@ public class CustomerDaoImpl implements ICustomerDao {
         List<Customer> customerList = null;
         StringBuffer sql = new StringBuffer("SELECT * from tb_customerinfo where 1 = 1 ");
         List<Object> search = new ArrayList<>();
-        if(condition.getName() != null && !"".equals(condition.getName())){
-            sql.append(" and CustomerName like ? ");
-            search.add("%" + condition.getName() + "%");
+        if(condition != null){
+            if(condition.getName() != null && !"".equals(condition.getName())){
+                sql.append(" and CustomerName like ? ");
+                search.add("%" + condition.getName() + "%");
+            }
+            sql.append(" limit ?,?");
+            search.add(condition.getCurrentPage());
+            search.add(condition.getPageSize());
         }
-        sql.append(" limit ?,?");
-        search.add(condition.getCurrentPage());
-        search.add(condition.getPageSize());
         try {
             customerList = qr.query(sql.toString(),new BeanListHandler<>(Customer.class),search.toArray());
         } catch (SQLException e) {
