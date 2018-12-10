@@ -6,6 +6,7 @@ import java.util.Date;
 public class Book {
     private int BookId;
     private int BookTypeid;
+    private String BookTypeName;
     private String BookName;
     private String BookPress;
     private Date BookPubDate;
@@ -28,9 +29,10 @@ public class Book {
     public Book() {
     }
 
-    public Book(int bookId, int bookTypeid, String bookName, String bookPress, Date bookPubDate, String bookSize, String bookVersion, String bookAuthor, String bookTanslor, String bookisbn, int bookPrice, int bookPages, String bookOutline, String bookCatalog, int bookMprice, String bookPic, int bookPicStatus, int bookStoremount, Date bookStoretime, String bookPackstyle) {
+    public Book(int bookId, int bookTypeid, String bookTypeName, String bookName, String bookPress, Date bookPubDate, String bookSize, String bookVersion, String bookAuthor, String bookTanslor, String bookisbn, int bookPrice, int bookPages, String bookOutline, String bookCatalog, int bookMprice, String bookPic, int bookPicStatus, int bookStoremount, Date bookStoretime, String bookPackstyle) {
         BookId = bookId;
         BookTypeid = bookTypeid;
+        BookTypeName = bookTypeName;
         BookName = bookName;
         BookPress = bookPress;
         BookPubDate = bookPubDate;
@@ -65,6 +67,14 @@ public class Book {
 
     public void setBookTypeid(int bookTypeid) {
         BookTypeid = bookTypeid;
+    }
+
+    public String getBookTypeName() {
+        return BookTypeName;
+    }
+
+    public void setBookTypeName(String bookTypeName) {
+        BookTypeName = bookTypeName;
     }
 
     public String getBookName() {
@@ -216,6 +226,7 @@ public class Book {
         return "Book{" +
                 "BookId=" + BookId +
                 ", BookTypeid=" + BookTypeid +
+                ", BookTypeName='" + BookTypeName + '\'' +
                 ", BookName='" + BookName + '\'' +
                 ", BookPress='" + BookPress + '\'' +
                 ", BookPubDate=" + BookPubDate +

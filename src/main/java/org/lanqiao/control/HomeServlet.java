@@ -44,7 +44,7 @@ public class HomeServlet extends HttpServlet {
 
 
     private void getHomeList(HttpServletRequest req, HttpServletResponse resp){
-        List<Book> bookList = bookService.getBookList();
+        List<Book> bookList = bookService.getBookList(null);
         Condition condition= new Condition();
         condition.setName(null);
         condition.setCurrentPage(0);

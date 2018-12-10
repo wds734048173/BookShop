@@ -20,13 +20,15 @@ public class BookTypeDaoImpl implements IBookTypeDao {
         List<BookType> bookTypeList = null;
         StringBuffer sql = new StringBuffer("SELECT * from tb_booktypeinfo where 1 = 1 ");
         List<Object> search = new ArrayList<>();
-        if(condition.getName() != null && !"".equals(condition.getName())){
-            sql.append(" and bookTypeName like ? ");
-            search.add("%" + condition.getName() + "%");
+        if(condition != null){
+            if(condition.getName() != null && !"".equals(condition.getName())){
+                sql.append(" and bookTypeName like ? ");
+                search.add("%" + condition.getName() + "%");
+            }
+            sql.append(" limit ?,?");
+            search.add(condition.getCurrentPage());
+            search.add(condition.getPageSize());
         }
-        sql.append(" limit ?,?");
-        search.add(condition.getCurrentPage());
-        search.add(condition.getPageSize());
         try {
             bookTypeList = qr.query(sql.toString(),new BeanListHandler<>(BookType.class),search.toArray());
         } catch (SQLException e) {
