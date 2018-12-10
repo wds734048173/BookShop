@@ -66,7 +66,7 @@ public class OrderDaoImpl implements IOrderDao {
 
     @Override
     public void updateOrderState(int orderId, int state) {
-        String sql = "UPDATE tb_order SET state = ? WHERE id = ?";
+        String sql = "UPDATE tb_order SET rtime = now(),state = ? WHERE id = ?";
         try {
             qr.execute(sql,state,orderId);
         } catch (SQLException e) {
