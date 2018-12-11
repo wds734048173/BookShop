@@ -97,4 +97,16 @@ public class OrderDaoImpl implements IOrderDao {
         }
         return orderItemList;
     }
+
+    @Override
+    public List<Order> getOrderByCusId(int CustomerId) {
+        String sql = "select * from tb_order where customerId=?";
+        List<Order> orderList = null;
+        try {
+            orderList= qr.query(sql,new BeanListHandler<>(Order.class),CustomerId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderList;
+    }
 }

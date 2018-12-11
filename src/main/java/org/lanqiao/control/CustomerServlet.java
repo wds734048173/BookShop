@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -43,7 +44,35 @@ public class CustomerServlet extends HttpServlet {
             case "getCustomerById":
                 getCustomerById(req,resp);
                 break;
+            case "getMyInfo":
+                getMyInfo(req, resp);
+                break;
         }
+    }
+
+    private void getMyInfo(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("CustomerId") == null){
+            try {
+                req.getRequestDispatcher("sale/login.jsp").forward(req,resp);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        int id = (int) session.getAttribute("CustomerId");
+        Customer customer = customerService.getCustomerById(id);
+
+        req.setAttribute("Customer",customer);
+        try {
+            req.getRequestDispatcher("sale/myInfo.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void getCustomerById(HttpServletRequest req, HttpServletResponse resp) {

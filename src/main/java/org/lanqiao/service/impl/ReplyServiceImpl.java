@@ -17,6 +17,11 @@ public class ReplyServiceImpl implements IReplyService {
     }
 
     @Override
+    public List<Reply> getList() {
+        return replyDao.getList();
+    }
+
+    @Override
     public int getReplyCount(Condition condition) {
         return Integer.valueOf(replyDao.getReplyCount(condition).toString());
     }
@@ -40,5 +45,10 @@ public class ReplyServiceImpl implements IReplyService {
     public Reply getReplyById(int ReplyId) {
         return replyDao.getReplyById(ReplyId);
 
+    }
+
+    @Override
+    public List<Reply> getReplyByCustomerId(int CustomerId) {
+        return replyDao.getReplyByCustomerId(CustomerId);
     }
 }

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -48,8 +49,13 @@ IOrderService orderService = new OrderServiceImpl();
             case "updateOrderState":
                 updateOrderState(req,resp);
                 break;
+            case "getOrderAll":
+                getOrderAll(req, resp);
+                break;
         }
     }
+
+
 
     private void updateOrderState(HttpServletRequest req, HttpServletResponse resp) {
         int orderId = Integer.valueOf(req.getParameter("orderId"));
@@ -120,4 +126,20 @@ IOrderService orderService = new OrderServiceImpl();
             e.printStackTrace();
         }
     }
+
+    private void getOrderAll(HttpServletRequest req, HttpServletResponse resp) {
+            Condition condition = new Condition();
+            HttpSession session = req.getSession();
+            int id = (int) session.getAttribute("CustomerId");
+            List<Order> orderList= orderService.getOrderByCusId(id);
+            req.setAttribute("orderList",orderList);
+        try {
+            req.getRequestDispatcher("sale/order.jsp").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

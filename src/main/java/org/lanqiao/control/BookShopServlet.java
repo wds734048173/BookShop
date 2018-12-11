@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Service;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @WebServlet("/bookshop.do")
 public class BookShopServlet extends HttpServlet {
-    int total = 0;
+
     ICartItemService service = new CartItemServiceImpl();
     ICartItemService iCartItem = new CartItemServiceImpl() ;
 
@@ -61,8 +62,9 @@ public class BookShopServlet extends HttpServlet {
     }
 
     private void getCartItemList(HttpServletRequest request, HttpServletResponse response) {
-        String cutomcatidstr = request.getParameter("CustomerId");
-        int cutomcatid = Integer.parseInt(cutomcatidstr);
+        int total = 0;
+        HttpSession session = request.getSession();
+        int cutomcatid= (int) session.getAttribute("CustomerId");
 
         if (request.getAttribute("CustomerId")!= null){
             cutomcatid= (int) request.getAttribute("CustomerId");
