@@ -5,6 +5,7 @@ import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Customer;
 import org.lanqiao.service.ICustomerService;
 import org.lanqiao.service.impl.CustomerServiceImpl;
+import org.lanqiao.utils.MD5Utils;
 import org.lanqiao.utils.PageModel;
 
 import javax.servlet.ServletException;
@@ -47,6 +48,9 @@ public class CustomerServlet extends HttpServlet {
             case "getMyInfo":
                 getMyInfo(req, resp);
                 break;
+            case "addCustomer":
+                addCustomer(req, resp);
+                break;
         }
     }
 
@@ -73,6 +77,40 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    private void addCustomer(HttpServletRequest req, HttpServletResponse resp) {
+        Customer customer = new Customer();
+        //设置用户名
+        customer.setCustomerName(req.getParameter("username"));
+        //设置密码
+        String pwd = req.getParameter("password");
+        customer.setCustomerPwd(MD5Utils.MD5(pwd));
+        //设置真实姓名
+        customer.setCustomertruename(req.getParameter("name"));
+        //设置电话
+        customer.setCustomerTel(req.getParameter("tel"));
+        //设置邮箱
+        customer.setCustomerEmail(req.getParameter("email"));
+        //设置地址
+        customer.setCustomerAddr(req.getParameter("addr"));
+        //设置性别
+        String sex=req.getParameter("radio1");
+        if (sex.equals("男")){
+            customer.setCustomerSex("0");
+        }else {
+            customer.setCustomerSex("1");
+        }
+        System.out.println(customer);
+        customerService.addCustomer(customer);
+        try {
+            req.setAttribute("success","success");
+            req.getRequestDispatcher("/sale/login.jsp").forward(req,resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getCustomerById(HttpServletRequest req, HttpServletResponse resp) {
