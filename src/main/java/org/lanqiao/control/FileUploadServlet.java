@@ -60,7 +60,8 @@ public class FileUploadServlet extends HttpServlet {
 
                     //给上传的文件，按照日期进行分类存储
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    File filePath = new File("D://upload/" + sdf.format(new Date()));
+                    File filePath = new File("C://Users//WDS//IdeaProjects//JavaWebDemo//BookShop//src//main//webapp//upload" + sdf.format(new Date()));
+                    File savePath = new File("/upload" + sdf.format(new Date()));
                     //如果文件名不存在，就创建，存在就不用创建
                     if(!filePath.exists()){
                         filePath.mkdirs();
@@ -68,9 +69,10 @@ public class FileUploadServlet extends HttpServlet {
 
                     //需要保存数据库的信息有：fileName(文件原名)，uuidName(文件生成的uuid名称),filePath(文件路径)
                     File uploadedFile = new File(filePath,uuidName);
+                    File saveFile = new File(savePath,uuidName);
                     item.write(uploadedFile);
                     HttpSession session = req.getSession();
-                    session.setAttribute("picUrl",uploadedFile);
+                    session.setAttribute("picUrl",saveFile);
                     Cookie cookie = new Cookie("JSESSIONID",session.getId());
                     cookie.setMaxAge(7 * 24 * 60 * 60);
                     resp.addCookie(cookie);
