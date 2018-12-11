@@ -4,7 +4,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.lanqiao.domain.AjaxResult;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -39,7 +38,6 @@ public class FileUploadServlet extends HttpServlet {
         //创建一个新的文件上传处理程序
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setHeaderEncoding("UTF-8");
-        AjaxResult result = new AjaxResult();
         //解析请求
         try {
             List<FileItem> items = upload.parseRequest(req);
@@ -50,14 +48,12 @@ public class FileUploadServlet extends HttpServlet {
                     //处理常规元素
                     String name = item.getFieldName();
                     String value = item.getString();
-                    System.out.println(name + "---" + value);
                 } else {
                     String fieldName = item.getFieldName();
                     String fileName = item.getName();
                     String contentType = item.getContentType();
                     boolean isInMemory = item.isInMemory();
                     long sizeInBytes = item.getSize();
-                    System.out.println(fieldName + "---" + fileName + "---" + contentType + "---" + isInMemory + "---" + sizeInBytes);
 
                     //保护文件的安全性，给上传的文件重新命名
                     String uuidName = UUID.randomUUID().toString() + fileName.substring(fileName.lastIndexOf("."));
@@ -81,8 +77,6 @@ public class FileUploadServlet extends HttpServlet {
                 }
             }
         } catch (FileUploadException e) {
-            result.setStatus("error");
-            resp.setStatus(1);
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

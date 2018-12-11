@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>登录</title>
-    <link  type="text/css" href="css/pintuer.css" rel="stylesheet">
+    <link  type="text/css" href="/manager/css/pintuer.css" rel="stylesheet">
     <script type="text/javascript" src="/manager/js/jquery.js"></script>
     <script type="text/javascript" src="/manager/js/pintuer.js"></script>
     <style type="text/css">

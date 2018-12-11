@@ -1,6 +1,7 @@
 package org.lanqiao.dao.impl;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.lanqiao.dao.IBookDao;
@@ -66,5 +67,52 @@ public class BookDaoImpl implements IBookDao {
         }
         return count;
     }
+
+    @Override
+    public void deleteBookById(int bookId) {
+        String sql = "DELETE FROM tb_bookinfo WHERE BookId = ?";
+        try {
+            qr.execute(sql,bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addBook(Book book) {
+        String sql = "INSERT INTO tb_bookinfo (BookTypeid,BookName,BookPress,BookPubDate,BookSize,BookVersion,BookAuthor,BookTanslor,Bookisbn,BookPrice," +
+                "BookPages,BookOutline,BookCatalog,BookMprice,BookPic,BookPicStatus,BookStoremount,BookStoretime,BookPackstyle) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+        try {
+            qr.execute(sql,book.getBookTypeid(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),
+            book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookPackstyle());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Book getBookById(int bookId) {
+        String sql = "select * from tb_bookinfo where BookId = ?";
+        Book book = null;
+        try {
+            book = qr.query(sql,new BeanHandler<>(Book.class),bookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+
+    @Override
+    public void updateBook(Book book) {
+        String sql = "update tb_bookinfo set BookTypeid = ?,BookName = ?,BookPress = ?,BookPubDate = ?,BookSize = ?,BookVersion = ?,BookAuthor = ?,BookTanslor = ?,Bookisbn = ?,BookPrice = ?," +
+                "BookPages = ?,BookOutline = ?,BookCatalog = ?,BookMprice = ?,BookPic = ?,BookPicStatus = ?,BookStoremount = ?,BookPackstyle = ? where BookId = ?";
+        try {
+            qr.execute(sql,book.getBookTypeid(),book.getBookName(),book.getBookPress(),book.getBookPubDate(),book.getBookSize(),book.getBookVersion(),book.getBookAuthor(),book.getBookTanslor(),book.getBookisbn(),book.getBookPrice(),
+                    book.getBookPages(),book.getBookOutline(),book.getBookCatalog(),book.getBookMprice(),book.getBookPic(),book.getBookPicStatus(),book.getBookStoremount(),book.getBookPackstyle(),book.getBookId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

@@ -19,4 +19,24 @@ public class BookServiceImpl implements IBookService {
     public int getBookCount(Condition condition) {
         return Integer.valueOf(bookDao.getBookCount(condition).toString());
     }
+
+    @Override
+    public void deleteBookById(int bookId) {
+        bookDao.deleteBookById(bookId);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        bookDao.addBook(book);
+    }
+
+    @Override
+    public Book getBookById(int bookId) {
+        return bookDao.getBookById(bookId);
+    }
+
+    @Override
+    public void updateBook(Book book) {
+        bookDao.updateBook(book);
+    }
 }

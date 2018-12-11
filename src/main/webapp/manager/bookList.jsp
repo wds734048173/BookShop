@@ -16,29 +16,29 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <style type="text/css">
+        img:hover{
+            transform: scale(2);
+        }
+    </style>
     <script type="text/javascript">
         $(function () {
-            //新增
+            //新增,跳转页面
             $("#addBook").click(function () {
-                $('#addBookModel').modal({
-                    keyboard: false,
-                    show:true
-                })
+                $(".content").load("/manager/addBook.jsp")
             })
-            //保存
-            $("#save").click(function () {
-                var bookTypeId = $("#bookTypeId").val();
-                var bookTypeName = $("#bookTypeName").val();
-                //查询条件
-                var searchBookTypeName = $("#searchBookTypeName").val();
-                var currentPage = $("#currentPage").val();
-                var url = "/bookType.do?method=addBookType&currentPage="+currentPage+"&searchBookTypeName="+searchBookTypeName+"&bookTypeId="+bookTypeId+"&bookTypeName="+bookTypeName;
-                $(".content").load(url);
-                $(".modal-backdrop").remove();
+            //获取图书详情
+            $(".getBookInfo").click(function () {
+                var id = $(this).parent().parent().children("td:eq(1)").text();
+                $(".content").load("/book.do?method=getBookById&param=getBookInfo&bookId="+id);
             })
-            //修改
-            $(".updateBookType").click(function () {
-                var id = $(this).parent().parent().children("td:eq(0)").text();
+            //修改图书信息
+            $(".updateBook").click(function () {
+                var id = $(this).parent().parent().children("td:eq(1)").text();
+                $(".content").load("/book.do?method=getBookById&param=updateBook&bookId="+id);
+            })
+            /*$(".updateBookType").click(function () {
+                var id = $(this).parent().parent().children("td:eq(1)").text();
                 $("#gridSystemModalLabel").innerHTML = "修改图书信息";
                 $.ajax({
                     //通过id获取餐桌信息
@@ -49,20 +49,22 @@
                         $("#bookTypeName").val(bookType.bookTypeName);
                     }
                 })
-                $('#addBookTypeModel').modal({
+                $('#bookInfoModel').modal({
                     keyboard: false,
                     show:true
                 })
-            })
+            })*/
             //删除
             $(".deleteBook").click(function () {
                 var isDelete = confirm ("确定删除吗？");
                 if(isDelete){
-                    var id = $(this).parent().parent().children("td:eq(0)").text();
+                    var id = $(this).parent().parent().children("td:eq(1)").text();
                     //查询条件
+                    var searchBookTypeId = $("#searchBookTypeId").val();
                     var searchBookName = $("#searchBookName").val();
+                    var searchBookAuthor = $("#searchBookAuthor").val();
                     var currentPage = $("#currentPage").val();
-                    var url = "/book.do?method=deleteBook&bookId=" + id + "&searchBookName=" + searchBookName + "&currentPage=" + currentPage;
+                    var url = "/book.do?method=deleteBook&bookId=" + id + "&currentPage="+currentPage+"&searchBookTypeId="+searchBookTypeId+"&searchBookName="+searchBookName+"&searchBookAuthor="+searchBookAuthor;
                     $(".content").load(url);
                 }else{
                     return;
@@ -135,7 +137,7 @@
             for(Book book : bookList){
         %>
         <tr>
-            <td><%=book.getBookPic()%></td>
+            <td><img src="<%=book.getBookPic()%>" style="width: 100px;height: 100px;" a></td>
             <td><%=book.getBookId()%></td>
             <td><%=book.getBookTypeid()%></td>
             <td><%=book.getBookName()%></td>
@@ -155,7 +157,7 @@
     </table>
 </div>
 <%--新增模态框插件--%>
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addBookModel">
+<%--<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="bookInfoModel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -163,24 +165,84 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">新增图书信息</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="/bookType.do?method=addBookType" id="addForm">
+                <form method="post" action="/book.do?method=addBook" id="addForm">
                     <div class="form-group hidden">
-                        <label for="addBookTypeId" class="control-label">分类id:</label>
-                        <input type="text" class="form-control" id="addBookTypeId" name="addBookTypeId">
+                        <label for="bookId" class="control-label">图书名称:</label>
+                        <input type="text" class="form-control" id="bookId" name="bookId">
                     </div>
                     <div class="form-group">
-                        <label for="bookTypeName" class="control-label">分类名称:</label>
-                        <input type="text" class="form-control" id="bookTypeName" name="bookTypeName">
+                        <label for="bookName" class="control-label">图书名称:</label>
+                        <input type="text" class="form-control" id="bookName" name="bookName">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTypeId" class="control-label">图书分类:</label>
+                        <input type="text" class="form-control" id="bookTypeId" name="bookTypeId">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPress" class="control-label">出版社:</label>
+                        <input type="text" class="form-control" id="bookPress" name="bookPress">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookSize" class="control-label">开本:</label>
+                        <input type="text" class="form-control" id="bookSize" name="bookSize">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookVersion" class="control-label">版次:</label>
+                        <input type="text" class="form-control" id="bookVersion" name="bookVersion">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthor" class="control-label">图书作者:</label>
+                        <input type="text" class="form-control" id="bookAuthor" name="bookAuthor">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTanslor" class="control-label">图书译者:</label>
+                        <input type="text" class="form-control" id="bookTanslor" name="bookTanslor">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookisbn" class="control-label">图书ISBN:</label>
+                        <input type="text" class="form-control" id="bookisbn" name="bookisbn">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPrice" class="control-label">图书定价:</label>
+                        <input type="text" class="form-control" id="bookPrice" name="bookPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookMprice" class="control-label">市场价:</label>
+                        <input type="text" class="form-control" id="bookMprice" name="bookMprice">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPages" class="control-label">图书页码:</label>
+                        <input type="text" class="form-control" id="bookPages" name="bookPages">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookOutline" class="control-label">图书简介:</label>
+                        <input type="text" class="form-control" id="bookOutline" name="bookOutline">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookCatalog" class="control-label">图书目录:</label>
+                        <input type="text" class="form-control" id="bookCatalog" name="bookCatalog">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"for="bookPic">图书封面图:</label>
+                        <img src="" id="bookPic" name="bookPic" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookStoremount" class="control-label">图书库存量:</label>
+                        <input type="text" class="form-control" id="bookStoremount" name="bookStoremount">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPackstyle" class="control-label">封装方法:</label>
+                        <input type="text" class="form-control" id="bookPackstyle" name="bookPackstyle">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="save">保存</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>--%><!-- /.modal -->
 <%--分页插件--%>
 <center>
     <nav aria-label="Page navigation">
@@ -219,13 +281,9 @@
                 var bookTypeList = eval(data);
                 $.each(bookTypeList,function (index,obj) {
                     var bookType = eval(obj);
-                    var str = "";
-                    if(searchBookTypeIdHidden == bookType.bookTypeId){
-                        str = "<option value="+bookType.bookTypeId +" selected >"+bookType.bookTypeName+"</option>";
-                    }else{
-                        str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
-                    }
+                    var  str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
                     $("#searchBookTypeId").append(str);
+                    $("#bookTypeId").append(str);
                 });
             }
         })
