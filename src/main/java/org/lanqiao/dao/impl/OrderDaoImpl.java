@@ -12,7 +12,9 @@ import org.lanqiao.utils.jdbcUtils;
 
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrderDaoImpl implements IOrderDao {
@@ -108,5 +110,16 @@ public class OrderDaoImpl implements IOrderDao {
             e.printStackTrace();
         }
         return orderList;
+    }
+
+    @Override
+    public void createOrder(Order order) {
+        String sql = "insert into tb_order(no,price,money,state,name,phone,address,ctime,rtime,freight,customerId) values(?,?,?,?,?,?,?,?,?,?,?)";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        try {
+            qr.execute(sql,order.getNo(),order.getPrice(),order.getMoney(),order.getState(),order.getName(),order.getPhone(),order.getAddress(),format.format(new Date()),format.format(new Date()),order.getFreight(),order.getCustomerId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

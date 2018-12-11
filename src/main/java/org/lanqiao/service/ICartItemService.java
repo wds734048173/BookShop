@@ -12,4 +12,5 @@ public interface ICartItemService {
     //添加到购物车
     public void addToCarList(int CustomerId,int BookId,int num);
     public List<CartItem> findByCustomerId(int CustomerId) throws SQLException;
+    public void delBookShop(int CustomerId);
 }

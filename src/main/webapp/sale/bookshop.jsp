@@ -111,7 +111,7 @@
         </thead>
     </table>
     <div class="foot" id="foot">
-        <div class="fr closing"><a href="#">结 算</a></div>
+        <div class="fr closing"><a href="/bookshop.do?method=findByCustomerId&total=<%=request.getAttribute("total")%>">结 算</a></div>
         <div class="fr total">合计：￥<span id="priceTotal"><%=request.getAttribute("total")%></span></div>
         <%--<div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up"></span><span class="arrow down"></span></div>--%>
         <%--<div class="selected-view">--%>

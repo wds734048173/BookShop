@@ -1,5 +1,6 @@
 package org.lanqiao.service.impl;
 
+
 import org.lanqiao.dao.IOrderDao;
 import org.lanqiao.dao.impl.OrderDaoImpl;
 import org.lanqiao.domain.Condition;
@@ -67,5 +68,10 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<Order> getOrderByCusId(int CustomerId) {
         return orderDao.getOrderByCusId(CustomerId);
+    }
+
+    @Override
+    public void createOrder(Order order) {
+        orderDao.createOrder(order);
     }
 }

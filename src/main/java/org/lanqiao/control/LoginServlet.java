@@ -70,10 +70,14 @@ public class LoginServlet extends HttpServlet {
             //获取用户的真实名字并返回
             String name = customer.getCustomertruename();
             int CustomerId = customer.getCustomerId();
+            String CustomerAddr = customer.getCustomerAddr();
+            String CustomerTel = customer.getCustomerTel();
             HttpSession session = req.getSession();
             session.setAttribute("username",username);
             session.setAttribute("name",name);
             session.setAttribute("CustomerId",CustomerId);
+            session.setAttribute("CustomerTel",CustomerTel);
+            session.setAttribute("CustomerAddr",CustomerAddr);
             Cookie cookie = new Cookie("JSESSIONID",session.getId());
             cookie.setMaxAge(7 * 24 * 60 * 60);
             resp.addCookie(cookie);
