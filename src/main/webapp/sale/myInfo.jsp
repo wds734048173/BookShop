@@ -12,6 +12,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
     <link rel="stylesheet" type="text/css" href="../sale/css/style.css">
     <link rel="stylesheet" type="text/css" href="../sale/css/login.css">
+    <link rel="stylesheet" href="../bootstrap/css/bookshop.css"/>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
 
     <script type="text/javascript" src="../sale/js/jquery.min.js"></script>
     <script type="text/javascript" src="../sale/js/login.js"></script>
@@ -50,6 +52,7 @@
             <div class="left fl">
                 <ul>
                     <%--点击进入反馈页面--%>
+
                     <li><a href="/reply.do?method=getHomeList">问题反馈</a></li>
                     <div class="clear"></div>
                 </ul>
@@ -75,13 +78,18 @@
         <div class="selfinfo center">
             <div class="lfnav fl">
                 <div class="ddzx">个人中心</div>
-                <div class="ddzx">订单中心</div>
-
-                <div class="subddzx">
-                    <ul>
-                        <li><a href="/reply.do?method=myReply">我的反馈</a></li>
-                    </ul>
+                <div class="ddzx"><a href="/order.do?method=getOrderAll">订单中心</a></div>
+                <div class="ddzx">
+                    <a href="/privateComment.do?method=selectByCustomerId&customerid=<%=session.getAttribute("CustomerId")%>">我的评价</a>
                 </div>
+                <div class="ddzx">
+                    <a href="/reply.do?method=myReply" class="success">我的反馈</a>
+                </div>
+                <div class="ddzx">
+                    <a href="../sale/index.jsp" class="success">返回首页</a>
+                </div>
+
+
             </div>
             <div class="rtcont fr">
                 <div class="ddzxbt">我的个人信息</div>
@@ -124,7 +132,7 @@
                         <span class="error"></span>
                     </div>
                     <div class="regist_submit">
-                        <input class="jrgwc" type="submit" name="submit" value="保存" >
+                        <input class="jrgwc btn btn-primary btn-warning active" type="submit" name="submit" value="保存" >
                     </div>
                     </div>
                 </form>

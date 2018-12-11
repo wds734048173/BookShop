@@ -47,4 +47,9 @@ public class CartItemServiceImpl implements ICartItemService {
         return cartItemList;
     }
 
+    @Override
+    public void delBookShop(int CustomerId) {
+        dao.delBookShop(CustomerId);
+    }
+
 }

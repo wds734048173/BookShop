@@ -37,6 +37,17 @@ public class CartItemDaoImpl implements ICartItemDao {
         }
     }
 
+    @Override
+    public void delBookShop(int CustomerId) {
+        String sql = "delete  from tb_shopbook where CustomerId=?";
+        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+        try {
+            qr.update(sql,CustomerId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 //    @Override
 //    public List<CartItem> finfByBookId(int BookId) throws SQLException {

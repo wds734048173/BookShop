@@ -103,9 +103,10 @@
                             %>
                             <div class="ddbh fl">订单号：<%=order.getNo()%></div>
                             <div class="ztxx fl"><%=state%></div>
-                            <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                            <div class="ztxx fl">￥<%=order.getPrice()%></div>
                             <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                            <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="/sale/addComment.jsp">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                             <div class="clear"></div>
                             <%
                                 }
@@ -120,9 +121,10 @@
                             %>
                             <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
                             <div class="ztxx fl">未付款</div>
-                            <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                            <div class="ztxx fl">￥<%=order.getPrice()%></div>
                             <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                            <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                             <div class="clear"></div>
                             <%
                                     }
@@ -131,84 +133,99 @@
                         </div>
                     </li>
                     <li id="content3">
+                        <div class="ddxq">
                         <%
                             for (Order order:orderList){
                                 if (order.getState()==2){
                         %>
                         <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
                         <div class="ddbh fl">已付款</div>
-                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                         <div class="clear"></div>
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </li>
                     <li id="content4">
+                        <div class="ddxq">
                         <%
                             for (Order order:orderList){
                                 if (order.getState()==3){
                         %>
                         <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
                         <div class="ddbh fl">已发货</div>
-                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                         <div class="clear"></div>
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </li>
                     <li id="content5">
+                        <div class="ddxq">
                         <%
                             for (Order order:orderList){
                                 if (order.getState()==4){
                         %>
                         <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
                         <div class="ddbh fl">已收货</div>
-                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                         <div class="clear"></div>
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </li>
                     <li id="content6">
+                        <div class="ddxq">
                         <%
                             for (Order order:orderList){
                                 if (order.getState()==5){
                         %>
                         <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
                         <div class="ddbh fl">已评价</div>
-                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                         <div class="clear"></div>
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </li>
                     <li id="content7">
+                        <div class="ddxq">
                         <%
                             for (Order order:orderList){
                                 if (order.getState()==6){
                         %>
-                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%></div>
                         <div class="ddbh fl">已作废</div>
-                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
-                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="ztxx fr"><a href="">进行评价></a></div><%  int price = order.getPrice();%>
+                            <div class="ztxx fr"><a href="/bookshop.do?method=findByOrderId&id=<%=order.getId()%>&total=<%=order.getPrice()%>">订单详情></a></div>
                         <div class="clear"></div>
                         <%
                                 }
                             }
                         %>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -1,9 +1,12 @@
 package org.lanqiao.control;
 
 import org.lanqiao.domain.CartItem;
+import org.lanqiao.domain.OrderItem;
 import org.lanqiao.service.ICartItemService;
 import org.lanqiao.service.ICustomerService;
+import org.lanqiao.service.IOrderService;
 import org.lanqiao.service.impl.CartItemServiceImpl;
+import org.lanqiao.service.impl.OrderServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,9 +45,54 @@ public class BookShopServlet extends HttpServlet {
             case "addToList":
                 addToCarList(request, response);
                 break;
+            case "findByCustomerId":
+                findByCusId(request, response);
+                break;
+            case "findByOrderId":
+                findByOrderId(request,response);
+                break;
         }
 
 //        request.getRequestDispatcher("/sale/bookshop.jsp").forward(request,response);
+    }
+
+    private void findByOrderId(HttpServletRequest request, HttpServletResponse response) {
+        int orderid =0;
+        String id = request.getParameter("id");
+        if (id!=null){
+            orderid = Integer.parseInt(id);
+        }
+        id = (String) request.getAttribute("id");
+        if (id != null){
+            orderid = Integer.parseInt(id);
+        }
+        IOrderService service = new OrderServiceImpl();
+        List<OrderItem> cartItems=service.getOrderItemList(orderid);
+        request.setAttribute("cartItems",cartItems);
+        try {
+            request.getRequestDispatcher("sale/orderItem.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void findByCusId(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        int id = (int) session.getAttribute("CustomerId");
+        List<CartItem> cartItems=null;
+        try {
+            cartItems=service.findByCustomerId(id);
+            request.setAttribute("cartItems",cartItems);
+            request.getRequestDispatcher("sale/pay.jsp").forward(request,response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addToCarList(HttpServletRequest request, HttpServletResponse response) {

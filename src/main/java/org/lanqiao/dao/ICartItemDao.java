@@ -12,4 +12,6 @@ public interface ICartItemDao {
     public void delByCustomer(int CustomerId,int BookId) throws SQLException;
     //添加到购物车
     public void addToCarList(int CustomerId,int BookId,int num);
+    //删除用户的购物车
+    public void delBookShop(int CustomerId);
 }

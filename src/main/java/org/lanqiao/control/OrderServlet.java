@@ -3,7 +3,9 @@ package org.lanqiao.control;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
 import org.lanqiao.domain.OrderItem;
+import org.lanqiao.service.ICartItemService;
 import org.lanqiao.service.IOrderService;
+import org.lanqiao.service.impl.CartItemServiceImpl;
 import org.lanqiao.service.impl.OrderServiceImpl;
 import org.lanqiao.utils.PageModel;
 
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -52,9 +56,43 @@ IOrderService orderService = new OrderServiceImpl();
             case "getOrderAll":
                 getOrderAll(req, resp);
                 break;
+            case "createOrder":
+                createOrder(req,resp);
         }
     }
 
+    private void createOrder(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        String price = req.getParameter("totalPrice");
+        int money = (int) (Integer.parseInt(price)*1.3);
+        int trueprice = Integer.parseInt(price);
+        int state = 2;
+        String name = (String) session.getAttribute("name");
+        String phone = (String) session.getAttribute("CustomerTel");
+        String addr = (String) session.getAttribute("CustomerAddr");
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        int id = (int) session.getAttribute("CustomerId");
+        Order order = new Order();
+        order.setNo(dateFormat.format(date));
+        order.setPrice(trueprice);
+        order.setMoney(money);
+        order.setState(state);
+        order.setName(name);
+        order.setPhone(phone);
+        order.setAddress(addr);
+        order.setCustomerId(id);
+        orderService.createOrder(order);
+        ICartItemService service = new CartItemServiceImpl();
+        service.delBookShop(id);
+        try {
+            req.getRequestDispatcher("/order.do?method=getOrderAll").forward(req,resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void updateOrderState(HttpServletRequest req, HttpServletResponse resp) {
