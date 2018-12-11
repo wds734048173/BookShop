@@ -35,7 +35,7 @@ public class HomeServlet extends HttpServlet {
             case "homeList":
                 getHomeList(req,resp);
                 break;
-            case  "booklist":
+            case "booklist":
                 getBookList(req, resp);
                 break;
         }
@@ -44,7 +44,8 @@ public class HomeServlet extends HttpServlet {
 
 
     private void getHomeList(HttpServletRequest req, HttpServletResponse resp){
-        List<Book> bookList = bookService.getBookList(null);
+
+        List<Book> bookList = bookInfoService.findAll();
         Condition condition= new Condition();
         condition.setName(null);
         condition.setCurrentPage(0);
@@ -64,9 +65,10 @@ public class HomeServlet extends HttpServlet {
     }
 
     private void getBookList(HttpServletRequest req, HttpServletResponse resp) {
+        //根据typeid获取书的详细信息
         String typeid= (String) req.getParameter("typeId");
         List<Book> bookList = bookInfoService.selectByTypeId(Integer.parseInt(typeid));
-        req.setAttribute("booklist",bookList);
+        req.setAttribute("books",bookList);
 
         try {
             req.getRequestDispatcher("sale/booklist.jsp").forward(req,resp);

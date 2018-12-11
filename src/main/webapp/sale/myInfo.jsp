@@ -58,7 +58,7 @@
                 <%
                     String name = (String) session.getAttribute("name");
                 %>
-                <div class="gouwuche fr"><a href="../sale/order.jsp">我的订单</a></div>
+                <div class="gouwuche fr"><a href="/order.do?method=getOrderAll">我的订单</a></div>
                 <div class="fr">
                     <ul>
                         <li>欢迎您：<%=name%></li>

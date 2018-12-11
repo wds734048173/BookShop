@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="org.lanqiao.domain.Order" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/12/10/010
@@ -59,7 +60,8 @@
                     <ul id="hear" class="fl">
                         <!--带action的会默认选中-->
                         <li class="action" style="color: #FF4200;border-bottom: 1px solid #FF4200;"> 全部订单</li>
-                        <li>未发货</li>
+                        <li>未付款</li>
+                        <li>已付款</li>
                         <li>已发货</li>
                         <li>已收货</li>
                         <li>已评价</li>
@@ -67,19 +69,149 @@
                     </ul>
                 </div>
             </div>
+            <%
+                List<Order> orderList = (List<Order>) request.getAttribute("orderList");
+            %>
             <div class="rtcont fr">
                 <div class="ddzxbt">交易订单</div>
                 <ul id="content"> <!--选项卡内容列表-->
                     <li class="action" id="content1">
-                        第一页内容
+                        <div class="ddxq">
+                            <%
+                                for (Order order:orderList){
+                                    String state="";
+                                    switch (order.getState()){
+                                        case 1:
+                                            state="未付款";
+                                            break;
+                                        case 2:
+                                            state="已付款";
+                                            break;
+                                        case 3:
+                                            state="已发货";
+                                            break;
+                                        case 4:
+                                            state="已收货";
+                                            break;
+                                        case 5:
+                                            state="已评价";
+                                            break;
+                                        case 6:
+                                            state="已作废";
+                                            break;
+                                    }
+                            %>
+                            <div class="ddbh fl">订单号：<%=order.getNo()%></div>
+                            <div class="ztxx fl"><%=state%></div>
+                            <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                            <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                            <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="clear"></div>
+                            <%
+                                }
+                            %>
+                        </div>
                     </li>
-                    <li id="content2"> 第二页内容 </li>
-                    <li id="content3"> 第三页内容 </li>
-                    <li id="content4">第四页内容</li>
-                    <li id="content5">第五页内容</li>
-                    <li id="content6">第六页内容</li>
+                    <li id="content2">
+                        <div class="ddxq">
+                            <%
+                                for (Order order:orderList){
+                                    if (order.getState()==1){
+                            %>
+                            <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                            <div class="ztxx fl">未付款</div>
+                            <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                            <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                            <div class="ztxx fr"><a href="">订单详情></a></div>
+                            <div class="clear"></div>
+                            <%
+                                    }
+                                }
+                            %>
+                        </div>
+                    </li>
+                    <li id="content3">
+                        <%
+                            for (Order order:orderList){
+                                if (order.getState()==2){
+                        %>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">已付款</div>
+                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                        <div class="clear"></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </li>
+                    <li id="content4">
+                        <%
+                            for (Order order:orderList){
+                                if (order.getState()==3){
+                        %>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">已发货</div>
+                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                        <div class="clear"></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </li>
+                    <li id="content5">
+                        <%
+                            for (Order order:orderList){
+                                if (order.getState()==4){
+                        %>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">已收货</div>
+                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                        <div class="clear"></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </li>
+                    <li id="content6">
+                        <%
+                            for (Order order:orderList){
+                                if (order.getState()==5){
+                        %>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">已评价</div>
+                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                        <div class="clear"></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </li>
+                    <li id="content7">
+                        <%
+                            for (Order order:orderList){
+                                if (order.getState()==6){
+                        %>
+                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl">已作废</div>
+                        <div class="ztxx fl">￥<%=order.getMoney()%></div>
+                        <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
+                        <div class="ztxx fr"><a href="">订单详情></a></div>
+                        <div class="clear"></div>
+                        <%
+                                }
+                            }
+                        %>
+                    </li>
                 </ul>
-
+            </div>
         </div>
     </div>
 </body>

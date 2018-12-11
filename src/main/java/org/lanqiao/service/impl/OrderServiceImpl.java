@@ -63,4 +63,9 @@ public class OrderServiceImpl implements IOrderService {
     public List<OrderItem> getOrderItemList(int orderId) {
         return orderDao.getOrderItemList(orderId);
     }
+
+    @Override
+    public List<Order> getOrderByCusId(int CustomerId) {
+        return orderDao.getOrderByCusId(CustomerId);
+    }
 }

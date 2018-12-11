@@ -83,7 +83,6 @@ public class BookTypeServlet extends HttpServlet {
         int bookTypeId = Integer.valueOf(req.getParameter("bookTypeId"));
         bookTypeService.deleteBookType(bookTypeId);
         getBookTypelist(req,resp,"delete");
-
     }
 
     private void addBookType(HttpServletRequest req, HttpServletResponse resp) {

@@ -12,4 +12,5 @@ public interface IOrderService {
     public void updateOrderState(int orderId,int state);
     public Order getOrderById(int orderId);
     public List<OrderItem> getOrderItemList(int orderId);
+    public List<Order> getOrderByCusId(int CustomerId);
 }

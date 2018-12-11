@@ -75,7 +75,6 @@
                 <%
                     List<BookType> typeList = (List<BookType>) request.getAttribute("typeList");
                     List<Book> bookList = (List<Book>) request.getAttribute("bookList");
-
                     for (BookType bookType:typeList){
                 %>
                 <li>

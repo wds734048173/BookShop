@@ -11,7 +11,7 @@
 <head>
     <%
         String type= (String) request.getParameter("typename");
-        List<Book> bookList= (List<Book>) request.getAttribute("booklist");
+        List<Book> bookList= (List<Book>) request.getAttribute("books");
     %>
     <title><%=type%></title>
     <link rel="shortcut icon" type="image/x-icon" href="imges/logo.ico">
