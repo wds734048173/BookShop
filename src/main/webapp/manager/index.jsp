@@ -11,32 +11,37 @@
         <meta charset="utf-8" />
         <title>首页</title>
         <link rel="stylesheet" href="css/page.css" />
-        <script type="text/javascript" src="js/jquery.min.js" ></script>
-        <script type="text/javascript" src="js/index.js" ></script>
+        <script type="text/javascript" src="/manager/js/jquery.min.js" ></script>
+        <script type="text/javascript" src="/manager/js/index.js" ></script>
     </head>
     <body>
         <div class="left">
             <div class="bigTitle">网上书店后台管理系统</div>
             <div class="lines">
-                <div onclick="pageClick(this)" class="active"><img src="img/icon-1.png" />分类管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-4.png" />图书信息管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-3.png" />订单管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-4.png" />管理员信息管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-5.png" />客服信息管理</div>
-                <div onclick="pageClick(this)"><img src="img/icon-5.png" />评价信息</div>
-                <div onclick="pageClick(this)"><img src="img/icon-5.png" />信息反馈</div>
+                <div onclick="pageClick(this)" class="active"><img src="/manager/img/icon-1.png" />分类管理</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-4.png" />图书信息管理</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-3.png" />订单管理</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-4.png" />管理员信息管理</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-5.png" />客户信息管理</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-5.png" />评价信息</div>
+                <div onclick="pageClick(this)"><img src="/manager/img/icon-5.png" />信息反馈</div>
             </div>
         </div>
         <div class="top">
             <div class="leftTiyle" id="flTitle">分类管理</div>
-            <div class="thisUser">当前用户：小UU</div>
+            <div class="thisUser">当前用户：<%=session.getAttribute("username")%></div>
+            <div style="float: right;"><input style="line-height: normal;margin-top: 37px;" type="button" width="100px" height="50px" id="exit" onclick="exit()" value="退出登录"/></div>
         </div>
         <div class="content"></div>
         <div style="text-align:center;"></div>
     </body>
-    <%--<script type="text/javascript">
+    <script type="text/javascript">
         $(function(){
-            $("#content").load("/bookType.do?method=getBookTypelist");
+            $(".content").load("/bookType.do?method=getBookTypelist");
         })
-    </script>--%>
+        function exit() {
+            var url = "/register.do?method=exit";
+            window.location.href= url;
+        }
+    </script>
 </html>

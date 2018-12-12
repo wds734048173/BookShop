@@ -5,9 +5,9 @@ import java.util.Date;
 /*客户*/
 public class Customer {
     private int CustomerId;
-    private String UserName;
-    private String Password;
-    private String Name;
+    private String CustomerName;
+    private String CustomerPwd;
+    private String Customertruename;
     private String CustomerSex;
     private String CustomerTel;
     private String CustomerEmail;
@@ -22,11 +22,11 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId, String userName, String password, String name, String customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
+    public Customer(int customerId, String customerName, String customerPwd, String customertruename, String customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
         CustomerId = customerId;
-        UserName = userName;
-        Password = password;
-        Name = name;
+        CustomerName = customerName;
+        CustomerPwd = customerPwd;
+        Customertruename = customertruename;
         CustomerSex = customerSex;
         CustomerTel = customerTel;
         CustomerEmail = customerEmail;
@@ -47,28 +47,28 @@ public class Customer {
         CustomerId = customerId;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getCustomerName() {
+        return CustomerName;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setCustomerName(String customerName) {
+        CustomerName = customerName;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getCustomerPwd() {
+        return CustomerPwd;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setCustomerPwd(String customerPwd) {
+        CustomerPwd = customerPwd;
     }
 
-    public String getName() {
-        return Name;
+    public String getCustomertruename() {
+        return Customertruename;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setCustomertruename(String customertruename) {
+        Customertruename = customertruename;
     }
 
     public String getCustomerSex() {
@@ -155,9 +155,9 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "CustomerId=" + CustomerId +
-                ", UserName='" + UserName + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Name='" + Name + '\'' +
+                ", CustomerName='" + CustomerName + '\'' +
+                ", CustomerPwd='" + CustomerPwd + '\'' +
+                ", Customertruename='" + Customertruename + '\'' +
                 ", CustomerSex='" + CustomerSex + '\'' +
                 ", CustomerTel='" + CustomerTel + '\'' +
                 ", CustomerEmail='" + CustomerEmail + '\'' +

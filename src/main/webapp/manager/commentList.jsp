@@ -1,5 +1,8 @@
 <%@ page import="org.lanqiao.domain.Comment" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.lanqiao.utils.PageModel" %>
+<%@ page import="org.lanqiao.domain.Condition" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -11,45 +14,125 @@
 <html>
 <head>
     <title>评价信息列表</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
-        function getReplyList(){
-            $.ajax({
-                url:"/comment.do?method=getCommentList",
-                // data:{"greensClassId":id,"currentPage":currentPage,"searchGreensClassStateId":searchGreensClassStateId,"searchGreensClassName":searchGreensClassName},
-                success:function (data) {
-                    var replys = eval(data);
+        $(function () {
+            //新增
+            $("#addComment").click(function () {
+                $('#addcommentModel').modal({
+                    keyboard: false,
+                    show: true
+                })
+            })
 
-                    // var resultMap  = eval(data);
-                    // var result = 0;
-                    // var pageNum = 1;
-                    // $.each(resultMap,function (name,value) {
-                    //     if(name == "result"){
-                    //         result = eval(value);
-                    //     }else if (name == "pageNum"){
-                    //         pageNum = eval(value);
-                    //     }
+            //保存
+            $("#save").click(function () {
+                    // $('#addBookTypeModel').modal({
+                    //     keyboard: true,
+                    //     show:false
                     // })
-                    // if(result == 1){
-                    //     alert("删除成功");
-                    // }else{
-                    //     alert("删除失败");
-                    // }
-                    window.location.href="/greensClass.do?method=getGreensClassList&searchGreensClassStateId="+searchGreensClassStateId+"&searchGreensClassName="+searchGreensClassName+"&currentPage="+pageNum;
+                    //方法一：可以成功，但是跳转页面有问题
+                    // $("#addForm").submit();
+                    // 方法二
+                    var commentId = $("#commentId").val();
+                    var BookId = $("#BookId").val();
+                    var BookName = $("#BookName").val();
+                    var CustomerId = $("#CustomerId").val();
+                    var UserName = $("#UserName").val();
+                    var commentContent = $("#commentContent").val();
+                    var commentGrade = $("#commentGrade").val();
+                    //查询条件
+                    var searchBookName = $("#searchBookName").val();
+                    var currentPage = $("#currentPage").val();
+                    var url = "/comment.do?method=addComment&searchBookName="+searchBookName+"&currentPage="+currentPage+"&commentId="+commentId+"&BookId="+BookId+"&BookName="+BookName+"&CustomerId="+CustomerId+"&UserName="+UserName+"&commentContent="+commentContent+"&commentGrade="+commentGrade;
+                    //进去对应selvet
+                    $(".content").load(url);
+                    $(".modal-backdrop").remove();
+            })
+            //修改
+            $(".updateComment").click(function () {
+                var id = $(this).parent().parent().children("td:eq(0)").text();
+                document.getElementById("gridSystemModalLabel").innerHTML = "修改评语";
+                $.ajax({
+                    //通过id获取评语信息
+                    url:"/comment.do?method=getCommentById&commentId=" + id,
+                    success:function (data) {
+                        var comment = eval(data);
+                        $("#commentId").val(comment.commentId);
+                        $("#BookId").val(comment.bookId);
+                        $("#BookName").val(comment.bookName);
+                        $("#CustomerId").val(comment.customerId);
+                        $("#UserName").val(comment.userName);
+                        $("#Commentdate").val(comment.commentdate);
+                        $("#commentContent").val(comment.commentcontent);
+                        $("#commentGrade").val(comment.commentgrade);
+                    }
+                })
+                $('#addcommentModel').modal({
+                    keyboard: false,
+                    show:true
+                })
+            })
+            //删除
+            $(".deleteComment").click(function () {
+                var isDelete = confirm ("确定删除吗?");
+                if(isDelete){
+                    var id = $(this).parent().parent().children("td:eq(0)").text();
+                    //查询条件
+                    var searchBookName = $("#searchBookName").val();
+                    var currentPage = $("#currentPage").val();
+                    var url = "/comment.do?method=deleteComment&bookId=" + id + "&searchBookName=" + searchBookName + "&currentPage=" + currentPage;
+                    $(".content").load(url);
+                }else{
+                    return;
                 }
             })
-        }
-        $(function () {
-            window.onload(getCommentList())
         })
+
+        //查询的手动提交方式
+        function search(currentPage) {
+            var name = $("#searchBookName").val();
+            if(currentPage == null){
+                var currentPage = $("#currentPage").val();
+            }else{
+                var currentPage = currentPage;
+            }
+            var url = "/comment.do?method=getCommentlist&currentPage="+currentPage+"&searchBookName="+name;
+            $(".content").load(url);
+        }
     </script>
+
 </head>
+
 <body>
-<a href="#" role="button" id="addComment" name="addComment">添加评价信息</a>
+
+<%--查询--%>
+<%
+    Condition condition = (Condition) request.getAttribute("condition");
+%>
+<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<div class="modal-body">
+    <form name="searchForm" id="searchForm">
+        <div class="form-group">
+            <label for="searchBookName" class="control-label">图书名称:</label>
+            <input type="text" class="form-control" id="searchBookName" name="searchBookName" value="">
+            <%--<%=condition.getName()%>--%>
+        </div>
+    </form>
+    <div class="form-group">
+        <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
+    </div>
+</div>
+<%--查询完--%>
+
+<a class="btn btn-default" href="#" role="button" id="addComment" name="addComment">添加评价信息</a>
 <table class="table table-hover table-bordered">
     <thead>
     <th>订单评价id</th>
     <th>图书编号</th>
+    <th>图书名</th>
     <th>评论客服编号</th>
     <th>评论客服名</th>
     <th>评论时间</th>
@@ -59,20 +142,22 @@
     </thead>
     <tbody>
     <%
-        List<Comment> commentList = (List<Comment>)request.getAttribute("commentList");
+        PageModel pm = (PageModel) request.getAttribute("pm");
+        List<Comment> commentList = (List<Comment>)request.getAttribute("commentListCur");
         for(Comment comment : commentList){
     %>
     <tr>
         <td><%=comment.getCommentId()%></td>
         <td><%=comment.getBookId()%></td>
+        <td><%=comment.getBookName()%></td>
         <td><%=comment.getCustomerId()%></td>
         <td><%=comment.getUserName()%></td>
         <td><%=comment.getCommentdate()%></td>
         <td><%=comment.getCommentcontent()%></td>
         <td><%=comment.getCommentgrade()%></td>
         <td>
-            <a class="updateComment" href="#" role="button"  name="updateComment">修改</a>
-            <a class="deleteComment" href="#" role="button"  name="deleteComment">删除</a>
+            <a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>
+            <a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>
         </td>
     </tr>
     <%
@@ -80,5 +165,87 @@
     %>
     </tbody>
 </table>
+<br><br>
+
+<%--新增模态框插件--%>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addcommentModel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">新增评价</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/bookType.do?method=addComment" id="addForm">
+                    <div class="form-group hidden">
+                        <label for="commentId" class="control-label">订单评价id:</label>
+                        <input type="text" class="form-control" id="commentId" name="commentId">
+                    </div>
+                    <div class="form-group">
+                        <label for="BookId" class="control-label">图书编号:</label>
+                        <input type="text" class="form-control" id="BookId" name="BookId">
+                    </div>
+                    <div class="form-group">
+                        <label for="BookName" class="control-label">图书名称:</label>
+                        <input type="text" class="form-control" id="BookName" name="BookName">
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerId" class="control-label">评论客服编号:</label>
+                        <input type="text" class="form-control" id="CustomerId" name="CustomerId">
+                    </div>
+                    <div class="form-group">
+                        <label for="UserName" class="control-label">评论客服名:</label>
+                        <input type="text" class="form-control" id="UserName" name="UserName">
+                    </div>
+                    <div class="form-group hidden">
+                        <label for="Commentdate" class="control-label">评论客服名:</label>
+                        <input type="text" class="form-control" id="Commentdate" name="Commentdate">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentContent" class="control-label">评语:</label>
+                        <input type="text" class="form-control" id="commentContent" name="commentContent">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentGrade" class="control-label">评论等级:</label>
+                        <input type="text" class="form-control" id="commentGrade" name="commentGrade">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="save">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<%--分页插件--%>
+<center>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
+            <li  onclick="search(<%=pm.getPrePageNum()%>)">
+                <a href="javascript:void(0);"  aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <%
+                System.out.println(pm.getStartIndex() + "--" +pm.getEndPage());
+                int totalPageNum = pm.getTotalPageNum();
+                for(int i = 1; i <= totalPageNum; i++){
+            %>
+            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
+            <%
+                }
+            %>
+            <li onclick="search(<%=pm.getNextPageNum()%>)">
+                <a href="#" class="page"  aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <%--实现方法一，但是目前不可以--%>
+            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
+        </ul>
+    </nav>
+</center>
 </body>
 </html>

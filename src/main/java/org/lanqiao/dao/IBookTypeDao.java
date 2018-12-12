@@ -1,6 +1,7 @@
 package org.lanqiao.dao;
 
 import org.lanqiao.domain.BookType;
+import org.lanqiao.domain.Condition;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 * */
 public interface IBookTypeDao {
     //获取书籍分类列表
-    public List<BookType> getBookTypeList();
+    public List<BookType> getBookTypeList(Condition condition);
     //通过书籍分类id获取详情
     public BookType getBookTypeById(int bookTypeId);
     //新增书籍分类
@@ -18,4 +19,6 @@ public interface IBookTypeDao {
     public void deleteBookTypeById(int bookTypeId);
     //修改书籍分类
     public void updateBookType(BookType bookType);
+    //获取书籍分类列表数量
+    public Long getBookTypeCount(Condition condition);
 }
