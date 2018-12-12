@@ -1,7 +1,3 @@
-<%@ page import="org.lanqiao.domain.Comment" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
-<%@ page import="org.lanqiao.domain.Condition" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -11,10 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>评价信息列表</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/pintuer.css">
+    <script type="text/javascript" src="js/pintuer.js"></script>
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
@@ -109,10 +108,10 @@
 <body>
 
 <%--查询--%>
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<%--<%--%>
+    <%--Condition condition = (Condition) request.getAttribute("condition");--%>
+<%--%>--%>
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
@@ -126,43 +125,63 @@
     </div>
 </div>
 <%--查询完--%>
-
-<a class="btn btn-default" href="#" role="button" id="addComment" name="addComment">添加评价信息</a>
+<%--<div class="button-group">--%>
+    <%--<button type="button" class="button dropdown-toggle">--%>
+        <%--图书名称 <span class="downward"></span>--%>
+    <%--</button>--%>
+    <%--<ul class="drop-menu">--%>
+        <%--<li><a href="#">动画</a> </li>--%>
+        <%--<li><a href="#">模块</a> </li>--%>
+    <%--</ul>--%>
+<%--</div>--%>
+<br>
 <table class="table table-hover table-bordered">
     <thead>
-    <th>订单评价id</th>
-    <th>图书编号</th>
+    <th style="display: none">订单评价id</th>
+    <th style="display: none">图书编号</th>
     <th>图书名</th>
-    <th>评论客服编号</th>
-    <th>评论客服名</th>
+    <th style="display: none">评论客户编号</th>
+    <th >评论客户名</th>
     <th>评论时间</th>
     <th>评论内容</th>
     <th>评论等级</th>
     <th>操作</th>
     </thead>
     <tbody>
-    <%
-        PageModel pm = (PageModel) request.getAttribute("pm");
-        List<Comment> commentList = (List<Comment>)request.getAttribute("commentListCur");
-        for(Comment comment : commentList){
-    %>
-    <tr>
-        <td><%=comment.getCommentId()%></td>
-        <td><%=comment.getBookId()%></td>
-        <td><%=comment.getBookName()%></td>
-        <td><%=comment.getCustomerId()%></td>
-        <td><%=comment.getUserName()%></td>
-        <td><%=comment.getCommentdate()%></td>
-        <td><%=comment.getCommentcontent()%></td>
-        <td><%=comment.getCommentgrade()%></td>
-        <td>
-            <a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>
-            <a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>
-        </td>
-    </tr>
-    <%
-        }
-    %>
+    <c:forEach begin="0" end="${commentListCur.size()}" items="${commentListCur}" var="commentList" step="1">
+        <tr>
+            <td style="display: none">${commentList.commentId}</td>
+            <td style="display: none">${commentList.bookId}</td>
+            <td>${commentList.bookName}</td>
+            <td style="display: none">${commentList.customerId}</td>
+            <td>${commentList.userName}</td>
+            <td>${commentList.commentdate}</td>
+            <td>${commentList.commentcontent}</td>
+            <td>${commentList.commentgrade}</td>
+            <td>
+                <a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>
+                <a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>
+            </td>
+        </tr>
+    </c:forEach>
+    <%--<%List<Comment> comments = (List<Comment>) request.getAttribute("commentListCur");--%>
+    <%--for (Comment comments1:comments){--%>
+
+    <%--%>--%>
+    <%--<tr>--%>
+    <%--<td style="display: none"><%=comments1.getCommentId()%></td>--%>
+    <%--<td style="display: none"><%=comments1.getBookId()%></td>--%>
+    <%--<td><%=comments1.getBookName()%></td>--%>
+    <%--<td style="display: none"><%=comments1.getCustomerId()%></td>--%>
+    <%--<td><%=comments1.getUserName()%></td>--%>
+    <%--<td><%=comments1.getCommentdate()%></td>--%>
+    <%--<td><%=comments1.getCommentcontent()%></td>--%>
+    <%--<td><%=comments1.getCommentgrade()%></td>--%>
+    <%--<td>--%>
+    <%--<a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>--%>
+    <%--<a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>--%>
+    <%--</td>--%>
+    <%--<%}%>--%>
     </tbody>
 </table>
 <br><br>
@@ -222,28 +241,24 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
-            <li  onclick="search(<%=pm.getPrePageNum()%>)">
+            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
+            <li  onclick="search(${pm.prePageNum})">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-                System.out.println(pm.getStartIndex() + "--" +pm.getEndPage());
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="search(<%=pm.getNextPageNum()%>)">
+
+            <c:forEach begin="1" end="${pm.totalPageNum}" var="i" step="1">
+                <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}">style = 'color:red;'</c:if>> ${i}</span></a></li>
+            </c:forEach>
+
+            <li onclick="search(${pm.nextPageNum})">
                 <a href="#" class="page"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
+            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
         </ul>
     </nav>
 </center>
