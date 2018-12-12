@@ -10,48 +10,49 @@
 <head>
     <title>登录</title>
     <link  type="text/css" href="/manager/css/pintuer.css" rel="stylesheet">
+    <link href='//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css' rel='stylesheet'>
     <script type="text/javascript" src="/manager/js/jquery.js"></script>
     <script type="text/javascript" src="/manager/js/pintuer.js"></script>
+    <script src="//cstaticdun.126.net/load.min.js"></script>
+    <script> // 验证码组件初始化
+    initNECaptcha({
+        captchaId: 'eda6d7f57cf54b5d8f9b0ed24e5b6e66',
+        element: '#captcha_div',
+        mode: 'float', // 如果要用触发式，这里改为float即可 embeb
+        width: '320px',
+        onVerify: function(err, ret){
+            if(!err){
+                // ret['validate'] 获取二次校验数据
+            }
+        }
+    }, function (instance) {
+        // 初始化成功后得到验证实例instance，可以调用实例的方法
+    }, function (err) {
+        // 初始化失败后触发该函数，err对象描述当前错误信息
+    })
+    </script>
     <style type="text/css">
-        /*特别说明，验证码样式不包含在拼图pintuer.css文件内，需要自己添加到自己的style.css文件中，若要使用登录模块，需复制.passcode样式。*/
-        .passcode {
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 32px;
-            margin: 1px;
-            border-left: solid 1px #ddd;
-            text-align: center;
-            line-height: 32px;
-            border-radius: 0 4px 4px 0;
-        }
-        #formpar{
-            display: block;
-            position:absolute;
-            left:0;
-            right:0;
-            top:150px;
-            bottom:0;
-            margin:auto;
-        }
-
-        body{
-            margin: 0;
-            padding: 0;
-
+        .backgroundimage{
+            width: 100%;
+            height: 100%;
+            background-image:url("img/icon-6.jpg") ;
+            background-repeat: no-repeat;/*只显示一次*/
+            background-size: cover;
+            margin: auto;/*居中*/
         }
     </style>
 </head>
 <body>
-<div align="center" style="margin: 300px">
+<div class="backgroundimage">
+<div  align="center" style="height: 300px;">
     <form action="/login.do?method=login" method="post">
-        <div class="panel padding" style="width: 450px;text-align: left;">
+        <div class="panel padding" style="width: 450px;text-align: left;background:rgba(255,255,37,0.03);">
             <div class="text-center">
                 <br>
-                <h2><strong>用户登录</strong></h2></div>
-            <div class="" style="padding:30px;">
+                <h2><strong>网上书店后端登录</strong></h2></div>
+            <div class="" style="padding:50px;width: 420px;text-align: center">
                 <div class="form-group">
-                    <div class="field field-icon-right">
+                    <div class="field field-icon-right" >
                         <%--校验长度方法： data-validate="required:请填写账号,length#>=5:账号长度不符合要求"--%>
                         <input type="text" class="input" name="username" placeholder="登录账号" value="<%if(request.getAttribute("username")!=null)out.print(request.getAttribute("username"));%>"/>
                         <span class="icon icon-user"></span>
@@ -59,16 +60,13 @@
                 </div>
                 <div class="form-group">
                     <div class="field field-icon-right">
-                        <input type="password" class="input" name="password" placeholder="登录密码" value="<%if(request.getAttribute("password")!=null)out.print(request.getAttribute("password"));%>"/>
+                        <input type="password" class="input"  name="password" placeholder="登录密码" value="<%if(request.getAttribute("password")!=null)out.print(request.getAttribute("password"));%>"/>
                         <span class="icon icon-key"></span>
                     </div>
                 </div>
-                <%--<div class="form-group">
-                    <div class="field">
-                        <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
-                        <img src="http://www.pintuer.com/demo/pintuer2/images/passcode.jpg" width="80" height="32" class="passcode" />
-                    </div>
-                </div>--%>
+                <%--验证码--%>
+                <div style="margin: 10px auto;" id="captcha_div"></div> <!-- 验证码容器元素定义 -->
+                <%--验证码完--%>
                 <span id="message" style="color: red;"><%if(request.getAttribute("message") != null)out.print(request.getAttribute("message"));%></span>
                 <div class="form-group">
                     <div class="field">
@@ -84,6 +82,7 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>
