@@ -75,18 +75,18 @@
         </div>
         <div class="col-xs-3">
             <label for="searchOrderCtime" >下单日期:</label>
-            <input type="text" class="myinput"  placeholder="" id="searchOrderCtime" name="searchOrderCtime" value="${condition.name}">
+            <input type="text" class="myinput"  placeholder="" id="searchOrderCtime" name="searchOrderCtime" value="${condition.date}">
         </div>
         <div class="col-xs-2">
             <label for="searchOrderState">订单状态</label>
             <select class=" myinput" name="searchOrderState" id="searchOrderState">
                 <option value="" <c:if test="${empty condition.state}" > selected </c:if> >全部</option>
-                <option value="" <c:if test="${condition.state} == 1" > selected </c:if> >未付款</option>
-                <option value="" <c:if test="${condition.state} == 2" > selected </c:if> >已付款</option>
-                <option value="" <c:if test="${condition.state} == 3" > selected </c:if> >已发货</option>
-                <option value="" <c:if test="${condition.state} == 4" > selected </c:if> >已收货</option>
-                <option value="" <c:if test="${condition.state} == 5" > selected </c:if> >已评价</option>
-                <option value="" <c:if test="${condition.state} == 6" > selected </c:if> >已作废</option>
+                <option value="1" <c:if test="${condition.state} == 1" > selected </c:if> >未付款</option>
+                <option value="2" <c:if test="${condition.state} == 2" > selected </c:if> >已付款</option>
+                <option value="3" <c:if test="${condition.state} == 3" > selected </c:if> >已发货</option>
+                <option value="4" <c:if test="${condition.state} == 4" > selected </c:if> >已收货</option>
+                <option value="5" <c:if test="${condition.state} == 5" > selected </c:if> >已评价</option>
+                <option value="6" <c:if test="${condition.state} == 6" > selected </c:if> >已作废</option>
             </select>
         </div>
     </div>

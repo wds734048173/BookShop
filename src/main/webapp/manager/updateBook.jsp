@@ -178,8 +178,13 @@
                 var bookTypeList = eval(data);
                 $.each(bookTypeList,function (index,obj) {
                     var bookType = eval(obj);
-                    var  str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
-                    $("#searchBookTypeId").append(str);
+                    var id = bookType.bookTypeId;
+                    if(bookType.bookTypeId == ${book.bookTypeid}){
+                        var  str = "<option value="+bookType.bookTypeId  +"  selected>" +bookType.bookTypeName+"</option>";
+                    }else{
+                        var  str = "<option value="+bookType.bookTypeId  + ">" +bookType.bookTypeName+"</option>";
+                    }
+
                     $("#bookTypeId").append(str);
                 });
             }

@@ -158,12 +158,27 @@
             url:"/bookType.do?method=getBookTypeForSelect",
             success:function (data) {
                 var bookTypeList = eval(data);
-                $.each(bookTypeList,function (index,obj) {
-                    var bookType = eval(obj);
-                    var  str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
-                    $("#searchBookTypeId").append(str);
-                    $("#bookTypeId").append(str);
-                });
+                <c:choose>
+                <c:when test="${not empty condition.bookTypeId}">
+                    $.each(bookTypeList,function (index,obj) {
+                        var bookType = eval(obj);
+                        var str = "";
+                        if(bookType.bookTypeId == ${condition.bookTypeId}){
+                            str = "<option value="+bookType.bookTypeId +"  selected>"+bookType.bookTypeName+"</option>";
+                        }else{
+                            str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
+                        }
+                        $("#searchBookTypeId").append(str);
+                    });
+                </c:when>
+                <c:otherwise>
+                    $.each(bookTypeList,function (index,obj) {
+                        var bookType = eval(obj);
+                        var str = "<option value="+bookType.bookTypeId +">"+bookType.bookTypeName+"</option>";
+                        $("#searchBookTypeId").append(str);
+                    });
+                </c:otherwise>
+                </c:choose>
             }
         })
     })
