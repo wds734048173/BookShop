@@ -1,7 +1,4 @@
-<%@ page import="org.lanqiao.domain.Customer" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
-<%@ page import="org.lanqiao.domain.Condition" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -32,15 +29,12 @@
     </script>
 </head>
 <body>
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-7">
             <label for="searchCustomerName" class="control-label">客户姓名:</label>
-            <input type="text" class="form-control" id="searchCustomerName" name="searchCustomerName" value="<%=condition.getName()%>">
+            <input type="text" class="form-control" id="searchCustomerName" name="searchCustomerName" value="${condition.name}">
         </div>
     </form>
     <div class="form-group">
@@ -67,30 +61,44 @@
         <th>最近登录时间</th>
         </thead>
         <tbody>
-        <%
-            List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");
-            PageModel pm = (PageModel) request.getAttribute("pm");
-            for(Customer customer : customerList){
-        %>
-        <tr>
-            <td><%=customer.getCustomerId()%></td>
-            <td><%=customer.getCustomerName()%></td>
-            <td><%=customer.getCustomertruename()%></td>
-            <td><%=customer.getCustomerSex()%></td>
-            <td><%=customer.getCustomerTel()%></td>
-            <td><%=customer.getCustomerEmail()%></td>
-            <td><%=customer.getCustomerAddr()%></td>
-            <td><%=customer.getCTime()%></td>
-            <td><%=customer.getRTime()%></td>
-            <td><%=customer.getCustomerQues()%></td>
-            <td><%=customer.getCustomerAnswer()%></td>
-            <td><%=customer.getCustomerLogTime()%></td>
-            <td><%=customer.getCustomerLastLogT()%></td>
+        <%--<%--%>
+            <%--List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");--%>
+            <%--PageModel pm = (PageModel) request.getAttribute("pm");--%>
+            <%--for(Customer customer : customerList){--%>
+        <%--%>--%>
+        <%--<tr>--%>
+            <%--<td><%=customer.getCustomerId()%></td>--%>
+            <%--<td><%=customer.getCustomerName()%></td>--%>
+            <%--<td><%=customer.getCustomertruename()%></td>--%>
+            <%--<td><%=customer.getCustomerSex()%></td>--%>
+            <%--<td><%=customer.getCustomerTel()%></td>--%>
+            <%--<td><%=customer.getCustomerEmail()%></td>--%>
+            <%--<td><%=customer.getCustomerAddr()%></td>--%>
+            <%--<td><%=customer.getCTime()%></td>--%>
+            <%--<td><%=customer.getRTime()%></td>--%>
+            <%--<td><%=customer.getCustomerQues()%></td>--%>
+            <%--<td><%=customer.getCustomerAnswer()%></td>--%>
+            <%--<td><%=customer.getCustomerLogTime()%></td>--%>
+            <%--<td><%=customer.getCustomerLastLogT()%></td>--%>
 
-        </tr>
-        <%
-            }
-        %>
+        <%--</tr>--%>
+        <c:forEach begin="0" end="${customerList.size()}" var="customer" items="${customerList}" step="1">
+            <tr>
+                <td>${customer.customerId}</td>
+                <td>${customer.customerName}</td>
+                <td>${customer.customertruename}</td>
+                <td>${customer.customerSex}</td>
+                <td>${customer.customerTel}</td>
+                <td>${customer.customerEmail}</td>
+                <td>${customer.customerAddr}</td>
+                <td>${customer.CTime}</td>
+                <td>${customer.CTime}</td>
+                <td>${customer.customerQues}</td>
+                <td>${customer.customerAnswer}</td>
+                <td>${customer.customerLogTime}</td>
+                <td>${customer.customerLastLogT}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
@@ -98,27 +106,22 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="search(<%=pm.getPrePageNum()%>)">
+            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+            <li  onclick="search(${pm.prePageNum})">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="search(<%=pm.getNextPageNum()%>)">
+            <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+                <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+            </c:forEach>
+            <li onclick="search(${pm.nextPageNum})">
                 <a href="#" class="page"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
+            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
         </ul>
     </nav>
 </center>
