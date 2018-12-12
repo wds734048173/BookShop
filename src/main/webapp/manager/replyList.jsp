@@ -1,5 +1,6 @@
 <%@ page import="org.lanqiao.domain.Condition" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -86,30 +87,14 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-        <th>信息反馈id</th>
-        <th>留言类型</th>
-        <th>留言主题</th>
-        <th>留言内容</th>
-        <th>留言客户名</th>
-        <th>留言日期</th>
+            <th>信息反馈id</th>
+            <th>留言类型</th>
+            <th>留言主题</th>
+            <th>留言内容</th>
+            <th>留言客户名</th>
+            <th>留言日期</th>
         </thead>
         <tbody>
-        <%--<%--%>
-            <%--List<Reply> replyList = (List<Reply>)request.getAttribute("replyList");--%>
-            <%--PageModel pm = (PageModel) request.getAttribute("pm");--%>
-            <%--for(Reply reply : replyList){--%>
-        <%--%>--%>
-        <%--<tr>--%>
-            <%--<td><%=reply.getReplyId()%></td>--%>
-            <%--<td><%=reply.getReplyType()%></td>--%>
-            <%--<td><%=reply.getReplytitle()%></td>--%>
-            <%--<td><%=reply.getReplycontent()%></td>--%>
-            <%--<td><%=reply.getCustomername()%></td>--%>
-            <%--<td><%=reply.getCtime()%></td>--%>
-            <%--<td>--%>
-                <%--<a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>--%>
-            <%--</td>--%>
-        <%--</tr>--%>
         <c:forEach begin="0" end="${replyList.size()}" var="reply" items="${replyList}" step="1">
             <tr>
                 <td>${reply.replyId}</td>
@@ -117,7 +102,7 @@
                 <td>${reply.replytitle}</td>
                 <td>${reply.replycontent}</td>
                 <td>${reply.customername}</td>
-                <td>${reply.ctime}</td>
+                <td><fmt:formatDate value="${reply.ctime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
             </tr>
         </c:forEach>
         </tbody>

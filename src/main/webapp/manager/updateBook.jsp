@@ -16,6 +16,9 @@
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="/manager/css/webuploader.css">
     <script type="text/javascript" src="/manager/js/webuploader.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         //要想绑定页面必须使用js提交。
         function updateBook() {
@@ -47,6 +50,14 @@
                 + "&bookStoremount=" + bookStoremount + "&bookPackstyle=" + bookPackstyle;
             $(".content").load(url)
         }
+
+        $('#bookPubDate').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:"month",
+            autoclose:true,
+            todayBtn:true
+        })
     </script>
 </head>
 <body>
@@ -72,8 +83,8 @@
             <input type="text" class="form-control" id="bookPress" name="bookPress"  value="${book.bookPress}">
         </div>
         <div class="form-group">
-            <label for="bookPubDate" class="control-label">出版日期:</label>
-            <input type="text" class="form-control" id="bookPubDate" name="bookPubDate"  value="<fmt:formatDate value="${book.bookPubDate}" pattern="yyyy-MM-dd"></fmt:formatDate>">
+            <label for="bookPubDate" class="control-label">出版日期</label>
+            <input class="form-control" id="bookPubDate" size="16" name="hiredate" value="<fmt:formatDate value="${book.bookPubDate}" pattern="yyyy-MM-dd"></fmt:formatDate>" readonly>
         </div>
         <div class="form-group">
             <label for="bookSize" class="control-label">开本:</label>

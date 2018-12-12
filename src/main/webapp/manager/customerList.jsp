@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -70,8 +71,8 @@
                     <td>${customer.customerTel}</td>
                     <td>${customer.customerEmail}</td>
                     <td>${customer.customerAddr}</td>
-                    <td>${customer.CTime}</td>
-                    <td>${customer.CTime}</td>
+                    <td><fmt:formatDate value="${customer.CTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+                    <td><fmt:formatDate value="${customer.RTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                     <%--<td>${customer.customerQues}</td>--%>
                     <%--<td>${customer.customerAnswer}</td>--%>
                     <td>${customer.customerLogTime}</td>

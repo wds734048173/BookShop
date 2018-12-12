@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>评价信息列表</title>
@@ -112,32 +113,34 @@
     </div>
 </div>
 <br>
-<table class="table table-hover table-bordered">
-    <thead>
-    <th style="display: none">订单评价id</th>
-    <th style="display: none">图书编号</th>
-    <th>图书名</th>
-    <th style="display: none">评论客户编号</th>
-    <th >评论客户名</th>
-    <th>评论时间</th>
-    <th>评论内容</th>
-    <th>评论等级</th>
-    </thead>
-    <tbody>
-    <c:forEach begin="0" end="${commentListCur.size()}" items="${commentListCur}" var="commentList" step="1">
-        <tr>
-            <td style="display: none">${commentList.commentId}</td>
-            <td style="display: none">${commentList.bookId}</td>
-            <td>${commentList.bookName}</td>
-            <td style="display: none">${commentList.customerId}</td>
-            <td>${commentList.userName}</td>
-            <td>${commentList.commentdate}</td>
-            <td>${commentList.commentcontent}</td>
-            <td>${commentList.commentgrade}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<div class="modal-body">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <th style="display: none">订单评价id</th>
+        <th style="display: none">图书编号</th>
+        <th>图书名</th>
+        <th style="display: none">评论客户编号</th>
+        <th >评论客户名</th>
+        <th>评论时间</th>
+        <th>评论内容</th>
+        <th>评论等级</th>
+        </thead>
+        <tbody>
+        <c:forEach begin="0" end="${commentListCur.size()}" items="${commentListCur}" var="commentList" step="1">
+            <tr>
+                <td style="display: none">${commentList.commentId}</td>
+                <td style="display: none">${commentList.bookId}</td>
+                <td>${commentList.bookName}</td>
+                <td style="display: none">${commentList.customerId}</td>
+                <td>${commentList.userName}</td>
+                <td><fmt:formatDate value="${commentList.commentdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+                <td>${commentList.commentcontent}</td>
+                <td>${commentList.commentgrade}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <br><br>
 
 <%--新增模态框插件--%>

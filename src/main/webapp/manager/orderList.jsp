@@ -14,6 +14,9 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         //修改订单状态
         function updateOrderState(orderId,state) {
@@ -52,6 +55,14 @@
             var url = "/order.do?method=getOrderlist&currentPage="+currentPage+"&searchOrderNo="+searchOrderNo+"&searchOrderState="+searchOrderState;
             $(".content").load(url);
         }
+
+        $('#searchOrderCtime').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:"month",
+            autoclose:true,
+            todayBtn:true
+        })
     </script>
 </head>
 <body>
@@ -62,10 +73,10 @@
             <label for="searchOrderNo" class="control-label">订单编号:</label>
             <input type="text" class="form-control" id="searchOrderNo" name="searchOrderNo" value="${condition.name}">
         </div>
-        <%--  <div class="form-group">
+          <div class="form-group">
             <label for="searchOrderCtime" class="control-label">下单日期:</label>
-            <input type="text" class="form-control" id="searchOrderCtime" name="searchOrderCtime" value="${condition.date}">
-        </div>--%>
+            <input type="text" class="form-control" id="searchOrderCtime" name="searchOrderCtime" size="16" value="${condition.date}">
+        </div>
         <div class="form-group">
             <label for="searchOrderState" class="control-label">订单状态:</label>
             <select id="searchOrderState" name="searchOrderState" class="form-control">
@@ -108,7 +119,7 @@
                     <td>${order.freight}</td>
                     <td>${order.money}</td>
                     <td>${order.stateStr}</td>
-                    <td>${order.ctime}</td>
+                    <td><fmt:formatDate value="${order.ctime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                     <%--<td>${order.rtime}</td>--%>
                     <td>${order.customerName}</td>
                     <td>

@@ -1,4 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -83,8 +84,8 @@
                 <td>${manager.adminId}</td>
                 <td>${manager.adminName}</td>
                 <%--<td>${manager.adminFlag}</td>--%>
-                <td>${manager.ctime}</td>
-                <td>${manager.rtime}</td>
+                <td><fmt:formatDate value="${manager.ctime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+                <td><fmt:formatDate value="${manager.rtime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                 <td>
                     <a class="btn btn-default deleteManager" href="#" role="button"  name="deleteManager">删除</a>
                 </td>
