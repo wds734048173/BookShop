@@ -1,7 +1,4 @@
-<%@ page import="org.lanqiao.domain.Manager" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
-<%@ page import="org.lanqiao.domain.Condition" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -57,16 +54,12 @@
 </head>
 <body>
 <br>
-
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
             <label for="searchAdminName" class="control-label">管理员姓名:</label>
-            <input type="text" class="form-control" id="searchAdminName" name="searchAdminName" value="<%=condition.getName()%>">
+            <input type="text" class="form-control" id="searchAdminName" name="searchAdminName" value="${condition.name}">
         </div>
     </form>
     <div class="form-group">
@@ -79,32 +72,24 @@
         <thead>
         <th>管理员编号</th>
         <th>管理员名称</th>
-        <th>密码</th>
         <th>权限标志</th>
         <th>注册时间</th>
         <th>修改内容</th>
         <th>操作</th>
         </thead>
         <tbody>
-        <%
-            List<Manager> managerList = (List<Manager>)request.getAttribute("managerList");
-            PageModel pm = (PageModel) request.getAttribute("pm");
-            for(Manager manager : managerList){
-        %>
-        <tr>
-            <td><%=manager.getAdminId()%></td>
-            <td><%=manager.getAdminName()%></td>
-            <td><%=manager.getAdminPwd()%></td>
-            <td><%=manager.getAdminFlag()%></td>
-            <td><%=manager.getCtime()%></td>
-            <td><%=manager.getRtime()%></td>
-            <td>
-                <a class="btn btn-default deleteManager" href="#" role="button"  name="deleteManager">删除</a>
-            </td>
-        </tr>
-        <%
-            }
-        %>
+        <c:forEach begin="0" end="${managerList.size()}" var="manager" items="${managerList}" step="1">
+            <tr>
+                <td>${manager.adminId}</td>
+                <td>${manager.adminName}</td>
+                <td>${manager.adminFlag}</td>
+                <td>${manager.ctime}</td>
+                <td>${manager.rtime}</td>
+                <td>
+                    <a class="btn btn-default deleteManager" href="#" role="button"  name="deleteManager">删除</a>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
@@ -112,27 +97,22 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="managersearch(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="managersearch(<%=pm.getPrePageNum()%>)">
+            <li  onclick="managersearch(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+            <li  onclick="managersearch(${pm.prePageNum})">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="managersearch(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="managersearch(<%=pm.getNextPageNum()%>)">
+            <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+                <li  onclick="managersearch(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+            </c:forEach>
+            <li onclick="managersearch(${pm.nextPageNum})">
                 <a href="#" class="page"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="managersearch(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
+            <li onclick="managersearch(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
         </ul>
     </nav>
 </center>

@@ -1,7 +1,4 @@
-<%@ page import="org.lanqiao.domain.BookType" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
-<%@ page import="org.lanqiao.domain.Condition" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -27,13 +24,6 @@
             })
             //保存
             $("#save").click(function () {
-                // $('#addBookTypeModel').modal({
-                //     keyboard: true,
-                //     show:false
-                // })
-                //方法一：可以成功，但是跳转页面有问题
-                // $("#addForm").submit();
-                // 方法二
                 var bookTypeId = $("#bookTypeId").val();
                 var bookTypeName = $("#bookTypeName").val();
                 //查询条件
@@ -95,15 +85,12 @@
 <div class="modal-body">
     <a class="btn btn-default" href="#" role="button"  id="addBookType" name="addBookType">添加图书分类</a>
 </div>
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
             <label for="searchBookTypeName" class="control-label">图书分类名称:</label>
-            <input type="text" class="form-control" id="searchBookTypeName" name="searchBookTypeName" value="<%=condition.getName()%>">
+            <input type="text" class="form-control" id="searchBookTypeName" name="searchBookTypeName" value="${condition.name}">
         </div>
     </form>
     <div class="form-group">
@@ -120,22 +107,16 @@
             <th>操作</th>
         </thead>
         <tbody>
-            <%
-            List<BookType> bookTypeList = (List<BookType>)request.getAttribute("bookTypeList");
-            PageModel pm = (PageModel) request.getAttribute("pm");
-            for(BookType bookType : bookTypeList){
-        %>
-        <tr>
-            <td><%=bookType.getBookTypeId()%></td>
-            <td><%=bookType.getBookTypeName()%></td>
-            <td>
-                <a class="btn btn-default updateBookType" href="#" role="button"  name="updateBookType">修改</a>
-                <a class="btn btn-default deleteBookType" href="#" role="button"  name="deleteBookType">删除</a>
-            </td>
-        </tr>
-            <%
-            }
-        %>
+            <c:forEach begin="0" end="${bookTypeList.size()}" var="bookType" items="${bookTypeList}" step="1">
+            <tr>
+                <td>${bookType.bookTypeId}</td>
+                <td>${bookType.bookTypeName}</td>
+                <td>
+                    <a class="btn btn-default updateBookType" href="#" role="button"  name="updateBookType">修改</a>
+                    <a class="btn btn-default deleteBookType" href="#" role="button"  name="deleteBookType">删除</a>
+                </td>
+            </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>
@@ -170,27 +151,22 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="search(<%=pm.getPrePageNum()%>)">
+            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+            <li  onclick="search(${pm.prePageNum})">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="search(<%=pm.getNextPageNum()%>)">
+            <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+            <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+            </c:forEach>
+            <li onclick="search(${pm.nextPageNum})">
                 <a href="#" class="page"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
+            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
         </ul>
     </nav>
 </center>

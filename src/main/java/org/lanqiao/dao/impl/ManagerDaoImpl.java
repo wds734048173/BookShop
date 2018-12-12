@@ -23,6 +23,9 @@ public class ManagerDaoImpl implements IManagerDao {
             sql.append(" and AdminName like ? ");
             search.add("%" + condition.getName() + "%");
         }
+        sql.append(" limit ?,?");
+        search.add(condition.getCurrentPage());
+        search.add(condition.getPageSize());
         List<Manager> managerList = new ArrayList<>();
         try {
             managerList = qr.query(sql.toString(),new BeanListHandler<>(Manager.class),search.toArray());
