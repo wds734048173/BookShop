@@ -1,7 +1,5 @@
-<%@ page import="org.lanqiao.domain.Order" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.domain.Condition" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -57,31 +55,27 @@
     </script>
 </head>
 <body>
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
             <label for="searchOrderNo" class="control-label">订单编号:</label>
-            <input type="text" class="form-control" id="searchOrderNo" name="searchOrderNo" value="<%=condition.getName()%>">
+            <input type="text" class="form-control" id="searchOrderNo" name="searchOrderNo" value="${condition.name}">
         </div>
         <%--  <div class="form-group">
             <label for="searchOrderCtime" class="control-label">下单日期:</label>
-            <input type="text" class="form-control" id="searchOrderCtime" name="searchOrderCtime" value="<%=condition.getDate()%>">
+            <input type="text" class="form-control" id="searchOrderCtime" name="searchOrderCtime" value="${condition.date}">
         </div>--%>
         <div class="form-group">
             <label for="searchOrderState" class="control-label">订单状态:</label>
-            <%--<input type="text" class="form-control" id="searchOrderState" name="searchOrderState" value="<%=%>">--%>
             <select id="searchOrderState" name="searchOrderState" class="form-control">
-                <option value="" <%if("".equals(condition.getState()))out.print(" selected ");%>>全部</option>
-                <option value="1" <%if("1".equals(condition.getState()))out.print(" selected ");%>>未付款</option>
-                <option value="2" <%if("2".equals(condition.getState()))out.print(" selected ");%>>已付款</option>
-                <option value="3" <%if("3".equals(condition.getState()))out.print(" selected ");%>>已发货</option>
-                <option value="4" <%if("4".equals(condition.getState()))out.print(" selected ");%>>已收货</option>
-                <option value="5" <%if("5".equals(condition.getState()))out.print(" selected ");%>>已评价</option>
-                <option value="6" <%if("6".equals(condition.getState()))out.print(" selected ");%>>已作废</option>
+                <option value="" <c:if test="${empty condition.state}" > selected </c:if> >全部</option>
+                <option value="" <c:if test="${condition.state} == 1" > selected </c:if> >未付款</option>
+                <option value="" <c:if test="${condition.state} == 2" > selected </c:if> >已付款</option>
+                <option value="" <c:if test="${condition.state} == 3" > selected </c:if> >已发货</option>
+                <option value="" <c:if test="${condition.state} == 4" > selected </c:if> >已收货</option>
+                <option value="" <c:if test="${condition.state} == 5" > selected </c:if> >已评价</option>
+                <option value="" <c:if test="${condition.state} == 6" > selected </c:if> >已作废</option>
             </select>
         </div>
     </form>
@@ -106,71 +100,59 @@
         <th>操作</th>
         </thead>
         <tbody>
-        <%
-            List<Order> orderList = (List<Order>)request.getAttribute("orderList");
-            PageModel pm = (PageModel) request.getAttribute("pm");
-            for(Order order : orderList){
-        %>
-        <tr>
-            <td><%=order.getId()%></td>
-            <td><%=order.getNo()%></td>
-            <td><%=order.getPrice()%></td>
-            <td><%=order.getFreight()%></td>
-            <td><%=order.getMoney()%></td>
-            <td><%=order.getStateStr()%></td>
-            <td><%=order.getCtime()%></td>
-            <td><%=order.getRtime()%></td>
-            <td><%=order.getCustomerName()%></td>
-            <td>
-                <a class="btn btn-default getOrderInfo" href="#" role="button"  name="getOrderInfo"  onclick="getOrderInfo(<%=order.getId()%>)">订单详情</a>
-
-                <%if(order.getState() == 2){
-                    %>
-                <%--已付款的订单可发货--%>
-                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(<%=order.getId()%>,3)">发货</a>
-                <%
-                }else if(order.getState() == 1){
-                    %>
-                <%--未付款的订单可取消订单--%>
-                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(<%=order.getId()%>,6)">作废</a>
-                <%
-                }%>
-            </td>
-        </tr>
-        <%
-            }
-        %>
+            <c:forEach begin="0" end="${orderList.size()}" var="order" items="${orderList}" step="1">
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.no}</td>
+                    <td>${order.price}</td>
+                    <td>${order.freight}</td>
+                    <td>${order.money}</td>
+                    <td>${order.stateStr}</td>
+                    <td>${order.ctime}</td>
+                    <td>${order.rtime}</td>
+                    <td>${order.customerName}</td>
+                    <td>
+                        <a class="btn btn-default getOrderInfo" href="#" role="button"  name="getOrderInfo"  onclick="getOrderInfo(${order.id})">订单详情</a>
+                        <%--已付款的订单可发货--%>
+                        <c:choose>
+                            <c:when test="${order.state == 2}">
+                                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(${order.id},3)">发货</a>
+                            </c:when>
+                            <%--未付款的订单可取消订单--%>
+                            <c:when test="${order.state == 1}">
+                                <a class="btn btn-default updateOrderState" href="#" role="button"  name="updateOrderState" onclick="updateOrderState(${order.id},6)">作废</a>
+                            </c:when>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>
 <%--分页插件--%>
 <c:if test="${orderList.size() != 0}">
     <center>
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="search(<%=pm.getPrePageNum()%>)">
-                <a href="javascript:void(0);"  aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <%
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="search(<%=pm.getNextPageNum()%>)">
-                <a href="#" class="page"  aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
-        </ul>
-    </nav>
-</center>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+                <li  onclick="search(${pm.prePageNum})">
+                    <a href="javascript:void(0);"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+                    <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+                </c:forEach>
+                <li onclick="search(${pm.nextPageNum})">
+                    <a href="#" class="page"  aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                    <%--实现方法一，但是目前不可以--%>
+                <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
+            </ul>
+        </nav>
+    </center>
 </c:if>
 </body>
 </html>
