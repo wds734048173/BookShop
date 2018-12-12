@@ -88,28 +88,28 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-        <th>订单id</th>
+        <th hidden>订单id</th>
         <th>订单编号</th>
         <th>原价</th>
         <th>运费</th>
         <th>实付金额</th>
         <th>状态</th>
         <th>创建时间</th>
-        <th>修改时间</th>
+        <%--<th>修改时间</th>--%>
         <th>客户id</th>
         <th>操作</th>
         </thead>
         <tbody>
             <c:forEach begin="0" end="${orderList.size()}" var="order" items="${orderList}" step="1">
                 <tr>
-                    <td>${order.id}</td>
+                    <td hidden>${order.id}</td>
                     <td>${order.no}</td>
                     <td>${order.price}</td>
                     <td>${order.freight}</td>
                     <td>${order.money}</td>
                     <td>${order.stateStr}</td>
                     <td>${order.ctime}</td>
-                    <td>${order.rtime}</td>
+                    <%--<td>${order.rtime}</td>--%>
                     <td>${order.customerName}</td>
                     <td>
                         <a class="btn btn-default getOrderInfo" href="#" role="button"  name="getOrderInfo"  onclick="getOrderInfo(${order.id})">订单详情</a>

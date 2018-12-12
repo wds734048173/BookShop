@@ -122,7 +122,6 @@
     <th>评论时间</th>
     <th>评论内容</th>
     <th>评论等级</th>
-    <th>操作</th>
     </thead>
     <tbody>
     <c:forEach begin="0" end="${commentListCur.size()}" items="${commentListCur}" var="commentList" step="1">
@@ -135,10 +134,6 @@
             <td>${commentList.commentdate}</td>
             <td>${commentList.commentcontent}</td>
             <td>${commentList.commentgrade}</td>
-            <td>
-                <a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>
-                <a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>
-            </td>
         </tr>
     </c:forEach>
     </tbody>

@@ -55,8 +55,8 @@
             <th>地址</th>
             <th>注册时间</th>
             <th>修改时间</th>
-            <th>提示问题</th>
-            <th>问题答案</th>
+            <%--<th>提示问题</th>--%>
+            <%--<th>问题答案</th>--%>
             <th>登录次数</th>
             <th>最近登录时间</th>
         </thead>
@@ -72,8 +72,8 @@
                     <td>${customer.customerAddr}</td>
                     <td>${customer.CTime}</td>
                     <td>${customer.CTime}</td>
-                    <td>${customer.customerQues}</td>
-                    <td>${customer.customerAnswer}</td>
+                    <%--<td>${customer.customerQues}</td>--%>
+                    <%--<td>${customer.customerAnswer}</td>--%>
                     <td>${customer.customerLogTime}</td>
                     <td>${customer.customerLastLogT}</td>
                 </tr>

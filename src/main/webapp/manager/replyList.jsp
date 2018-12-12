@@ -92,7 +92,6 @@
         <th>留言内容</th>
         <th>留言客户名</th>
         <th>留言日期</th>
-        <th>操作</th>
         </thead>
         <tbody>
         <%--<%--%>
@@ -119,9 +118,6 @@
                 <td>${reply.replycontent}</td>
                 <td>${reply.customername}</td>
                 <td>${reply.ctime}</td>
-                <td>
-                    <a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>
-                </td>
             </tr>
         </c:forEach>
         </tbody>

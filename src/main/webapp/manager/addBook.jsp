@@ -51,11 +51,11 @@
         <form method="post" action="/book.do?method=addBook" id="addForm">
             <div class="form-group hidden">
                 <label for="bookId" class="control-label">图书id:</label>
-                <input type="number" class="form-control" id="bookId" name="bookId">
+                <input type="number" class="form-control" id="bookId" name="bookId" >
             </div>
             <div class="form-group">
                 <label for="bookName" class="control-label">图书名称:</label>
-                <input type="text" class="form-control" id="bookName" name="bookName">
+                <input type="text" class="form-control" id="bookName" name="bookName" placeholder="请输入图书名称" required >
             </div>
             <div class="form-group">
                 <label for="bookTypeId" class="control-label">图书分类:</label>

@@ -72,7 +72,7 @@
         <thead>
         <th>管理员编号</th>
         <th>管理员名称</th>
-        <th>权限标志</th>
+        <%--<th>权限标志</th>--%>
         <th>注册时间</th>
         <th>修改内容</th>
         <th>操作</th>
@@ -82,7 +82,7 @@
             <tr>
                 <td>${manager.adminId}</td>
                 <td>${manager.adminName}</td>
-                <td>${manager.adminFlag}</td>
+                <%--<td>${manager.adminFlag}</td>--%>
                 <td>${manager.ctime}</td>
                 <td>${manager.rtime}</td>
                 <td>
