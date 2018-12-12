@@ -1,7 +1,5 @@
-<%@ page import="org.lanqiao.domain.Reply" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.lanqiao.utils.PageModel" %>
 <%@ page import="org.lanqiao.domain.Condition" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: WDS
@@ -61,16 +59,13 @@
 </head>
 <body>
 <br>
-
-<%
-    Condition condition = (Condition) request.getAttribute("condition");
-%>
-<input type="hidden" name="currentPage" id="currentPage" value="<%=request.getAttribute("currentPage")%>">
+<%Condition condition = (Condition) request.getAttribute("condition");%>
+<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
             <label for="searchCustomerId" class="control-label">留言客户:</label>
-            <input type="text" class="form-control" id="searchCustomerId" name="searchCustomerId" value="<%=condition.getBookTypeId()%>">
+            <input type="text" class="form-control" id="searchCustomerId" name="searchCustomerId" value="${condition.bookTypeId}">
 
             <label for="searchReplyType" class="control-label">留言类型:</label>
             <select id="searchReplyType" name="searchReplyType"  class="form-control">
@@ -80,7 +75,7 @@
                 <option value="2" <%if(("鼓励").equals(condition.getState())){out.print("selected");}%>>鼓励</option>
             </select>
             <label for="searchReplycontent" class="control-label">留言内容:</label>
-            <input type="text" class="form-control" id="searchReplycontent" name="searchReplycontent" value="<%=condition.getName()%>">
+            <input type="text" class="form-control" id="searchReplycontent" name="searchReplycontent" value="${condition.name}">
         </div>
     </form>
     <div class="form-group">
@@ -100,25 +95,35 @@
         <th>操作</th>
         </thead>
         <tbody>
-        <%
-            List<Reply> replyList = (List<Reply>)request.getAttribute("replyList");
-            PageModel pm = (PageModel) request.getAttribute("pm");
-            for(Reply reply : replyList){
-        %>
-        <tr>
-            <td><%=reply.getReplyId()%></td>
-            <td><%=reply.getReplyType()%></td>
-            <td><%=reply.getReplytitle()%></td>
-            <td><%=reply.getReplycontent()%></td>
-            <td><%=reply.getCustomername()%></td>
-            <td><%=reply.getCtime()%></td>
-            <td>
-                <a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>
-            </td>
-        </tr>
-        <%
-            }
-        %>
+        <%--<%--%>
+            <%--List<Reply> replyList = (List<Reply>)request.getAttribute("replyList");--%>
+            <%--PageModel pm = (PageModel) request.getAttribute("pm");--%>
+            <%--for(Reply reply : replyList){--%>
+        <%--%>--%>
+        <%--<tr>--%>
+            <%--<td><%=reply.getReplyId()%></td>--%>
+            <%--<td><%=reply.getReplyType()%></td>--%>
+            <%--<td><%=reply.getReplytitle()%></td>--%>
+            <%--<td><%=reply.getReplycontent()%></td>--%>
+            <%--<td><%=reply.getCustomername()%></td>--%>
+            <%--<td><%=reply.getCtime()%></td>--%>
+            <%--<td>--%>
+                <%--<a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>--%>
+            <%--</td>--%>
+        <%--</tr>--%>
+        <c:forEach begin="0" end="${replyList.size()}" var="reply" items="${replyList}" step="1">
+            <tr>
+                <td>${reply.replyId}</td>
+                <td>${reply.replyType}</td>
+                <td>${reply.replytitle}</td>
+                <td>${reply.replycontent}</td>
+                <td>${reply.customername}</td>
+                <td>${reply.ctime}</td>
+                <td>
+                    <a class="btn btn-default deleteReply" href="#" role="button"  name="deleteReply">删除</a>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
@@ -126,27 +131,22 @@
 <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="search(<%=pm.getPrePageNum()%>)">
+            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+            <li  onclick="search(${pm.prePageNum})">
                 <a href="javascript:void(0);"  aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <%
-                int totalPageNum = pm.getTotalPageNum();
-                for(int i = 1; i <= totalPageNum; i++){
-            %>
-            <li  onclick="search(<%=i%>)"><a href="javascript:void(0);"><span <%if(i==pm.getCurrentPageNum()){out.print("style = 'color:red;'");}%>> <%=i%></span></a></li>
-            <%
-                }
-            %>
-            <li onclick="search(<%=pm.getNextPageNum()%>)">
+            <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+                <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+            </c:forEach>
+            <li onclick="search(${pm.nextPageNum})">
                 <a href="#" class="page"  aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(<%=pm.getEndPage()%>)"><a href="javascript:void(0);">尾页</a></li>
+            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
         </ul>
     </nav>
 </center>
