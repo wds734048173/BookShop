@@ -145,27 +145,29 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <%--分页插件--%>
-<center>
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
-            <li  onclick="search(${pm.prePageNum})">
-                <a href="javascript:void(0);"  aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
-            <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
-            </c:forEach>
-            <li onclick="search(${pm.nextPageNum})">
-                <a href="#" class="page"  aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
-        </ul>
-    </nav>
-</center>
+<c:if test="${bookTypeList.size() != 0}">
+    <center>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);">首页</a></li>
+                <li  onclick="search(${pm.prePageNum})">
+                    <a href="javascript:void(0);"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:forEach step="1" var="i" begin="1" end="${pm.totalPageNum}">
+                <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}"> style = 'color:red;' </c:if>> ${i}</span></a></li>
+                </c:forEach>
+                <li onclick="search(${pm.nextPageNum})">
+                    <a href="#" class="page"  aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <%--实现方法一，但是目前不可以--%>
+                <li onclick="search(${pm.endPage})"><a href="javascript:void(0);">尾页</a></li>
+            </ul>
+        </nav>
+    </center>
+</c:if>
 </body>
 </html>

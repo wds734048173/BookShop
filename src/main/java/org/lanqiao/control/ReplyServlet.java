@@ -113,7 +113,8 @@ public class ReplyServlet extends HttpServlet {
         int totalRecords = replyService.getReplyCount(condition);
         //不同操作，不同的当前页设置
         PageModel pm = new PageModel(pageNum,totalRecords,pageSize);
-        if(pageNum > pm.getTotalPageNum()){
+        //如果当前页大于总页数，但是排除查询不到数据的情况。当前页等于最大页
+        if(pageNum > pm.getTotalPageNum() && pm.getTotalPageNum() != 0){
             pageNum = pm.getTotalPageNum();
         }
 

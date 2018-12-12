@@ -144,7 +144,8 @@ public class CustomerServlet extends HttpServlet {
         int totalRecords = customerService.getCustomerCount(condition);
 
         PageModel pm = new PageModel(pageNum,totalRecords,pageSize);
-        if(pageNum > pm.getTotalPageNum()){
+        //如果当前页大于总页数，但是排除查询不到数据的情况。当前页等于最大页
+        if(pageNum > pm.getTotalPageNum() && pm.getTotalPageNum() != 0){
             pageNum = pm.getTotalPageNum();
         }
 

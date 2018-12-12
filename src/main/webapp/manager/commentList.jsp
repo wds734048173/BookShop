@@ -12,8 +12,6 @@
 <head>
     <title>评价信息列表</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/pintuer.css">
-    <script type="text/javascript" src="js/pintuer.js"></script>
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
@@ -28,27 +26,20 @@
 
             //保存
             $("#save").click(function () {
-                    // $('#addBookTypeModel').modal({
-                    //     keyboard: true,
-                    //     show:false
-                    // })
-                    //方法一：可以成功，但是跳转页面有问题
-                    // $("#addForm").submit();
-                    // 方法二
-                    var commentId = $("#commentId").val();
-                    var BookId = $("#BookId").val();
-                    var BookName = $("#BookName").val();
-                    var CustomerId = $("#CustomerId").val();
-                    var UserName = $("#UserName").val();
-                    var commentContent = $("#commentContent").val();
-                    var commentGrade = $("#commentGrade").val();
-                    //查询条件
-                    var searchBookName = $("#searchBookName").val();
-                    var currentPage = $("#currentPage").val();
-                    var url = "/comment.do?method=addComment&searchBookName="+searchBookName+"&currentPage="+currentPage+"&commentId="+commentId+"&BookId="+BookId+"&BookName="+BookName+"&CustomerId="+CustomerId+"&UserName="+UserName+"&commentContent="+commentContent+"&commentGrade="+commentGrade;
-                    //进去对应selvet
-                    $(".content").load(url);
-                    $(".modal-backdrop").remove();
+                var commentId = $("#commentId").val();
+                var BookId = $("#BookId").val();
+                var BookName = $("#BookName").val();
+                var CustomerId = $("#CustomerId").val();
+                var UserName = $("#UserName").val();
+                var commentContent = $("#commentContent").val();
+                var commentGrade = $("#commentGrade").val();
+                //查询条件
+                var searchBookName = $("#searchBookName").val();
+                var currentPage = $("#currentPage").val();
+                var url = "/comment.do?method=addComment&searchBookName="+searchBookName+"&currentPage="+currentPage+"&commentId="+commentId+"&BookId="+BookId+"&BookName="+BookName+"&CustomerId="+CustomerId+"&UserName="+UserName+"&commentContent="+commentContent+"&commentGrade="+commentGrade;
+                //进去对应selvet
+                $(".content").load(url);
+                $(".modal-backdrop").remove();
             })
             //修改
             $(".updateComment").click(function () {
@@ -107,10 +98,6 @@
 
 <body>
 
-<%--查询--%>
-<%--<%--%>
-    <%--Condition condition = (Condition) request.getAttribute("condition");--%>
-<%--%>--%>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
@@ -124,16 +111,6 @@
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>
 </div>
-<%--查询完--%>
-<%--<div class="button-group">--%>
-    <%--<button type="button" class="button dropdown-toggle">--%>
-        <%--图书名称 <span class="downward"></span>--%>
-    <%--</button>--%>
-    <%--<ul class="drop-menu">--%>
-        <%--<li><a href="#">动画</a> </li>--%>
-        <%--<li><a href="#">模块</a> </li>--%>
-    <%--</ul>--%>
-<%--</div>--%>
 <br>
 <table class="table table-hover table-bordered">
     <thead>
@@ -164,24 +141,6 @@
             </td>
         </tr>
     </c:forEach>
-    <%--<%List<Comment> comments = (List<Comment>) request.getAttribute("commentListCur");--%>
-    <%--for (Comment comments1:comments){--%>
-
-    <%--%>--%>
-    <%--<tr>--%>
-    <%--<td style="display: none"><%=comments1.getCommentId()%></td>--%>
-    <%--<td style="display: none"><%=comments1.getBookId()%></td>--%>
-    <%--<td><%=comments1.getBookName()%></td>--%>
-    <%--<td style="display: none"><%=comments1.getCustomerId()%></td>--%>
-    <%--<td><%=comments1.getUserName()%></td>--%>
-    <%--<td><%=comments1.getCommentdate()%></td>--%>
-    <%--<td><%=comments1.getCommentcontent()%></td>--%>
-    <%--<td><%=comments1.getCommentgrade()%></td>--%>
-    <%--<td>--%>
-    <%--<a class="btn btn-default updateComment" href="#" role="button"  name="updateComment">修改</a>--%>
-    <%--<a class="btn btn-default deleteComment" href="#" role="button"  name="deleteComment">删除</a>--%>
-    <%--</td>--%>
-    <%--<%}%>--%>
     </tbody>
 </table>
 <br><br>
@@ -238,29 +197,31 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <%--分页插件--%>
-<center>
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
-            <li  onclick="search(${pm.prePageNum})">
-                <a href="javascript:void(0);"  aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
+<c:if test="${commentListCur.size() != 0}">
+    <center>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li  onclick="search(${pm.startPage})"><a href="javascript:void(0);"><span aria-hidden="true">首页</span></a></li>
+                <li  onclick="search(${pm.prePageNum})">
+                    <a href="javascript:void(0);"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
 
-            <c:forEach begin="1" end="${pm.totalPageNum}" var="i" step="1">
-                <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}">style = 'color:red;'</c:if>> ${i}</span></a></li>
-            </c:forEach>
+                <c:forEach begin="1" end="${pm.totalPageNum}" var="i" step="1">
+                    <li  onclick="search(${i})"><a href="javascript:void(0);"><span <c:if test="${i==pm.currentPageNum}">style = 'color:red;'</c:if>> ${i}</span></a></li>
+                </c:forEach>
 
-            <li onclick="search(${pm.nextPageNum})">
-                <a href="#" class="page"  aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            <%--实现方法一，但是目前不可以--%>
-            <li onclick="search(${pm.endPage})"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
-        </ul>
-    </nav>
-</center>
+                <li onclick="search(${pm.nextPageNum})">
+                    <a href="#" class="page"  aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <%--实现方法一，但是目前不可以--%>
+                <li onclick="search(${pm.endPage})"><a href="javascript:void(0);"><span aria-hidden="true">尾页</span></a></li>
+            </ul>
+        </nav>
+    </center>
+</c:if>
 </body>
 </html>

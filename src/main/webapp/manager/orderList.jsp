@@ -144,7 +144,8 @@
     </table>
 </div>
 <%--分页插件--%>
-<center>
+<c:if test="${orderList.size() != 0}">
+    <center>
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li  onclick="search(<%=pm.getStartPage()%>)"><a href="javascript:void(0);">首页</a></li>
@@ -170,6 +171,7 @@
         </ul>
     </nav>
 </center>
+</c:if>
 </body>
 </html>
 
