@@ -59,96 +59,112 @@
 </head>
 <body>
     <div class="modal-body">
-        <form method="post" action="/book.do?method=addBook" id="addForm">
-            <div class="form-group hidden">
-                <label for="bookId" class="control-label">图书id:</label>
-                <input type="number" class="form-control" id="bookId" name="bookId" >
-            </div>
-            <div class="form-group">
-                <label for="bookName" class="control-label">图书名称:</label>
-                <input type="text" class="form-control" id="bookName" name="bookName" placeholder="请输入图书名称" required >
-            </div>
-            <div class="form-group">
-                <label for="bookTypeId" class="control-label">图书分类:</label>
-                <%--<input type="text" class="form-control" id="bookTypeId" name="bookTypeId">--%>
-                <select type="select" class="form-control" id="bookTypeId" name="bookTypeId">
-
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="bookPress" class="control-label">出版社:</label>
-                <input type="text" class="form-control" id="bookPress" name="bookPress">
-            </div>
-            <div class="form-group">
-                <label for="bookPubDate" class="control-label">出版日期</label>
-                <input class="form-control" id="bookPubDate" size="16" name="hiredate" value="" readonly >
-            </div>
-
-            <div class="form-group">
-                <label for="bookSize" class="control-label">开本:</label>
-                <input type="text" class="form-control" id="bookSize" name="bookSize">
-            </div>
-            <div class="form-group">
-                <label for="bookVersion" class="control-label">版次:</label>
-                <input type="text" class="form-control" id="bookVersion" name="bookVersion">
-            </div>
-            <div class="form-group">
-                <label for="bookAuthor" class="control-label">图书作者:</label>
-                <input type="text" class="form-control" id="bookAuthor" name="bookAuthor">
-            </div>
-            <div class="form-group">
-                <label for="bookTanslor" class="control-label">图书译者:</label>
-                <input type="text" class="form-control" id="bookTanslor" name="bookTanslor">
-            </div>
-            <div class="form-group">
-                <label for="bookisbn" class="control-label">图书ISBN:</label>
-                <input type="text" class="form-control" id="bookisbn" name="bookisbn">
-            </div>
-            <div class="form-group">
-                <label for="bookPrice" class="control-label">图书定价:</label>
-                <input type="number" class="form-control" id="bookPrice" name="bookPrice" onkeyup="this.value=this.value.replace(/\D/g,'')">
-            </div>
-            <div class="form-group">
-                <label for="bookMprice" class="control-label">市场价:</label>
-                <input type="number" class="form-control" id="bookMprice" name="bookMprice" onkeyup="this.value=this.value.replace(/\D/g,'')">
-            </div>
-            <div class="form-group">
-                <label for="bookPages" class="control-label">图书页码:</label>
-                <input type="number" class="form-control" id="bookPages" name="bookPages" onkeyup="this.value=this.value.replace(/\D/g,'')">
-            </div>
-            <div class="form-group">
-                <label for="bookOutline" class="control-label">图书简介:</label>
-                <input type="text" class="form-control" id="bookOutline" name="bookOutline">
-            </div>
-            <div class="form-group">
-                <label for="bookCatalog" class="control-label">图书目录:</label>
-                <input type="text" class="form-control" id="bookCatalog" name="bookCatalog">
-            </div>
-            <div class="form-group">
-                <label class="control-label">图书封面图:</label>
-                <div id="uploader-demo">
-                    <!--用来存放item-->
-                    <div id="fileList" class="uploader-list"></div>
-                    <div id="filePicker">选择图片</div>
+        <center>
+            <form method="post" action="/book.do?method=addBook" id="addForm">
+                <div class="form-group hidden">
+                    <label for="bookId" class="control-label ">图书&nbsp&nbspid:</label>
+                    <input type="number" class=" myinput" id="bookId" name="bookId">
                 </div>
-            </div>
+                <div class="col-xs-6">
+                    <label for="bookName">图书名称:</label>
+                    <input type="text" class=" myinput" id="bookName" name="bookName">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookTypeId">图书分类:</label>
+                    <%--<input type="text" class="form-control" id="bookTypeId" name="bookTypeId">--%>
+                    <select type="select" class="myinput" id="bookTypeId" name="bookTypeId">
 
-            <div class="form-group">
-                <label for="bookStoremount" class="control-label">图书库存量:</label>
-                <input type="number" class="form-control" id="bookStoremount" name="bookStoremount" onkeyup="this.value=this.value.replace(/\D/g,'')">
-            </div>
-            <div class="form-group">
-                <label for="bookPackstyle" class="control-label">封装方法:</label>
-                <input type="text" class="form-control" id="bookPackstyle" name="bookPackstyle">
-            </div>
-        </form>
+                    </select>
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookPress" >出 &nbsp版 &nbsp社:</label>
+                    <input type="text" class="myinput" id="bookPress" name="bookPress">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookPubDate" >出版日期:</label>
+                    <input type="text" class="myinput" id="bookPubDate" name="bookPubDate">
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookSize" >开&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp本:</label>
+                    <input type="text" class="myinput" id="bookSize" name="bookSize">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookVersion" >版&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp次:</label>
+                    <input type="text" class="myinput" id="bookVersion" name="bookVersion">
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookAuthor" >图书作者:</label>
+                    <input type="text" class="myinput" id="bookAuthor" name="bookAuthor">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookTanslor" >图书译者:</label>
+                    <input type="text" class="myinput" id="bookTanslor" name="bookTanslor">
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookisbn" >图书ISBN:</label>
+                    <input type="text" class="myinput" id="bookisbn" name="bookisbn">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookPrice" >图书定价:</label>
+                    <input type="number" class="myinput" id="bookPrice" name="bookPrice" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookMprice" >市 场 价:</label>
+                    <input type="number" class="myinput" id="bookMprice" name="bookMprice" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookPages" >图书页码:</label>
+                    <input type="number" class="myinput" id="bookPages" name="bookPages" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                </div>
+                <br>
+                <br>
+                <div class="col-xs-6">
+                    <label for="bookOutline" >图书简介:</label>
+                    <input type="text" class="myinput" id="bookOutline" name="bookOutline">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookCatalog" >图书目录:</label>
+                    <input type="text" class="myinput" id="bookCatalog" name="bookCatalog">
+                </div>
+                <br>
+                <br>
+
+                <div class="col-xs-6">
+                    <label for="bookStoremount">图书库存:</label>
+                    <input type="number" class="myinput" id="bookStoremount" name="bookStoremount" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                </div>
+                <div class="col-xs-6">
+                    <label for="bookPackstyle">封装方法:</label>
+                    <input type="text" class="myinput" id="bookPackstyle" name="bookPackstyle">
+                </div>
+                <br>
+                <br>
+                <div >
+                    <label >图书封面:</label>
+                    <div id="uploader-demo" CLASS="myinput">
+                        <!--用来存放item-->
+                        <div id="fileList" class="uploader-list"></div>
+                        <div id="filePicker">选择图片</div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="save" onclick="addBook()">保存</button>
+            </form>
+        </center>
         <center>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="save" onclick="addBook()">保存</button>
             </div>
         </center>
     </div>
-
 </body>
 <script type="text/javascript">
     $(function(){

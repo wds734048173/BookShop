@@ -67,66 +67,90 @@
             <label for="bookId" class="control-label">图书id:</label>
             <input type="text" class="form-control" id="bookId" name="bookId"  value="${book.bookId}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookName" class="control-label">图书名称:</label>
             <input type="text" class="form-control" id="bookName" name="bookName"  value="${book.bookName}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookTypeId" class="control-label">图书分类:</label>
             <%--<input type="text" class="form-control" id="bookTypeId" name="bookTypeId"   value="${book.bookTypeName}">--%>
             <select type="select" class="form-control" id="bookTypeId" name="bookTypeId">
 
             </select>
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookPress" class="control-label">出版社:</label>
             <input type="text" class="form-control" id="bookPress" name="bookPress"  value="${book.bookPress}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookPubDate" class="control-label">出版日期</label>
             <input class="form-control" id="bookPubDate" size="16" name="hiredate" value="<fmt:formatDate value="${book.bookPubDate}" pattern="yyyy-MM-dd"></fmt:formatDate>" readonly>
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookSize" class="control-label">开本:</label>
             <input type="text" class="form-control" id="bookSize" name="bookSize"  value="${book.bookSize}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookVersion" class="control-label">版次:</label>
             <input type="text" class="form-control" id="bookVersion" name="bookVersion"  value="${book.bookVersion}">
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookAuthor" class="control-label">图书作者:</label>
             <input type="text" class="form-control" id="bookAuthor" name="bookAuthor"  value="${book.bookAuthor}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookTanslor" class="control-label">图书译者:</label>
             <input type="text" class="form-control" id="bookTanslor" name="bookTanslor"  value="${book.bookTanslor}">
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookisbn" class="control-label">图书ISBN:</label>
             <input type="text" class="form-control" id="bookisbn" name="bookisbn"  value="${book.bookisbn}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookPrice" class="control-label">图书定价:</label>
             <input type="number" class="form-control" id="bookPrice" name="bookPrice"  value="${book.bookPrice}" onkeyup="this.value=this.value.replace(/\D/g,'')">
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookMprice" class="control-label">市场价:</label>
             <input type="number" class="form-control" id="bookMprice" name="bookMprice"  value="${book.bookMprice}" onkeyup="this.value=this.value.replace(/\D/g,'')">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookPages" class="control-label">图书页码:</label>
             <input type="number" class="form-control" id="bookPages" name="bookPages"  value="${book.bookPages}" onkeyup="this.value=this.value.replace(/\D/g,'')">
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label for="bookOutline" class="control-label">图书简介:</label>
             <input type="text" class="form-control" id="bookOutline" name="bookOutline"  value="${book.bookOutline}">
         </div>
-        <div class="form-group">
+        <div class="col-xs-6">
             <label for="bookCatalog" class="control-label">图书目录:</label>
             <input type="text" class="form-control" id="bookCatalog" name="bookCatalog"  value="${book.bookCatalog}">
         </div>
-        <div class="form-group">
+        <br>
+        <br>
+        <div class="col-xs-6">
+            <label for="bookStoremount" class="control-label">图书库存量:</label>
+            <input type="number" class="form-control" id="bookStoremount" name="bookStoremount"  value="${book.bookStoremount}" onkeyup="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <div class="col-xs-6">
+            <label for="bookPackstyle" class="control-label">封装方法:</label>
+            <input type="text" class="form-control" id="bookPackstyle" name="bookPackstyle"   value="${book.bookPackstyle}">
+        </div>
+        <br>
+        <br>
+        <div class="col-xs-6">
             <label class="control-label">图书封面图:</label>
             <img src="${book.bookPic}">
             <div id="uploader-demo">
@@ -134,14 +158,6 @@
                 <div id="fileList" class="uploader-list"></div>
                 <div id="filePicker">选择图片</div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="bookStoremount" class="control-label">图书库存量:</label>
-            <input type="number" class="form-control" id="bookStoremount" name="bookStoremount"  value="${book.bookStoremount}" onkeyup="this.value=this.value.replace(/\D/g,'')">
-        </div>
-        <div class="form-group">
-            <label for="bookPackstyle" class="control-label">封装方法:</label>
-            <input type="text" class="form-control" id="bookPackstyle" name="bookPackstyle"   value="${book.bookPackstyle}">
         </div>
     </form>
     <center>
