@@ -142,6 +142,12 @@ public class CustomerServlet extends HttpServlet {
         Condition condition = new Condition();
         condition.setName(searchCustomerName);
         int totalRecords = customerService.getCustomerCount(condition);
+
+        PageModel pm = new PageModel(pageNum,totalRecords,pageSize);
+        if(pageNum > pm.getTotalPageNum()){
+            pageNum = pm.getTotalPageNum();
+        }
+
         PageModel pageModel = new PageModel(pageNum,totalRecords,pageSize);
         //分页条件封装
         condition.setCurrentPage(pageModel.getStartIndex());

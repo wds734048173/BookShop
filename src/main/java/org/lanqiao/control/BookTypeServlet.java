@@ -126,7 +126,7 @@ public class BookTypeServlet extends HttpServlet {
             pageNum = pm.getEndPage();
         }else if("update".equals(mark)){
             pageNum = Integer.valueOf(req.getParameter("currentPage"));
-        }else if("delete".equals(mark)){
+        }else{
             pageNum = Integer.valueOf(req.getParameter("currentPage"));
             if(pageNum > pm.getTotalPageNum()){
                 pageNum = pm.getTotalPageNum();

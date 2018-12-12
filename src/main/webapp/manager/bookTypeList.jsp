@@ -81,24 +81,21 @@
     </script>
 </head>
 <body>
-<br><br>
-<div class="modal-body">
-    <a class="btn btn-default" href="#" role="button"  id="addBookType" name="addBookType">添加图书分类</a>
-</div>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
         <div class="form-group">
             <label for="searchBookTypeName" class="control-label">图书分类名称:</label>
-            <input type="text" class="form-control" id="searchBookTypeName" name="searchBookTypeName" value="${condition.name}">
+            <input type="text" id="searchBookTypeName" name="searchBookTypeName" value="${condition.name}">
         </div>
     </form>
     <div class="form-group">
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>
 </div>
-
-<br><br>
+<div class="modal-body">
+    <a class="btn btn-default" href="#" role="button"  id="addBookType" name="addBookType">添加图书分类</a>
+</div>
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>

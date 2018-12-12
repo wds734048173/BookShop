@@ -82,11 +82,9 @@ public class ManagerServlet extends HttpServlet {
         int totalRecords = iManagerService.getManagerCount(condition);
         //不同操作，不同的当前页设置
         PageModel pm = new PageModel(pageNum,totalRecords,pageSize);
-        if("delete".equals(mark)){
-            pageNum = Integer.valueOf(req.getParameter("currentPage"));
-            if(pageNum > pm.getTotalPageNum()){
-                pageNum = pm.getTotalPageNum();
-            }
+
+        if(pageNum > pm.getTotalPageNum()){
+            pageNum = pm.getTotalPageNum();
         }
         PageModel pageModel = new PageModel(pageNum,totalRecords,pageSize);
         //分页条件封装

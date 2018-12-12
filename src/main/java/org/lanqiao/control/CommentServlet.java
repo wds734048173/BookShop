@@ -39,9 +39,6 @@ public class CommentServlet extends HttpServlet {
         resp.setContentType("text/json");
         String method = req.getParameter("method");
         switch (method){
-//            case "getCommentlist":
-//                getCommentlist(req,resp);
-//                break;
             case "getCommentlist":
                 getCommentlistCur(req,resp,null);
                 break;
@@ -148,7 +145,7 @@ public class CommentServlet extends HttpServlet {
             pageNum = pm.getEndPage();
         }else if("update".equals(mark)){
             pageNum = Integer.valueOf(req.getParameter("currentPage"));
-        }else if("delete".equals(mark)){
+        }else{
             pageNum = Integer.valueOf(req.getParameter("currentPage"));
             if(pageNum > pm.getTotalPageNum()){
                 pageNum = pm.getTotalPageNum();

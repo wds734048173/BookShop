@@ -146,6 +146,10 @@ IOrderService orderService = new OrderServiceImpl();
         int totalRecords = orderService.getOrderCount(condition);
         //不同操作，不同的当前页设置
         PageModel pm = new PageModel(pageNum,totalRecords,pageSize);
+        if(pageNum > pm.getTotalPageNum()){
+            pageNum = pm.getTotalPageNum();
+        }
+
         PageModel pageModel = new PageModel(pageNum,totalRecords,pageSize);
         //分页条件封装
         condition.setCurrentPage(pageModel.getStartIndex());
