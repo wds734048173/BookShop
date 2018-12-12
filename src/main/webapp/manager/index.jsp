@@ -13,6 +13,17 @@
         <link rel="stylesheet" href="css/page.css" />
         <script type="text/javascript" src="/manager/js/jquery.min.js" ></script>
         <script type="text/javascript" src="/manager/js/index.js" ></script>
+        <style type="text/css">
+            .myinput{
+                border: #808080 1px solid;/* 设置输入边框的颜色粗细 */
+                font-size: 12px;/* 设置输入框中字体的大小 */
+                height: 30px;/* 设置输入框的高度 */
+                border-radius: 5px; /* 设置输入框圆角的大小 */
+                color: #000000;/* 输入框中文字的颜色 */
+                display: inline;/* 使input框在同一行信息，不会换行显示，不使用float: left;样式，应为该样式会让input框周围的其它标签样式乱掉 */
+                width: 130px;
+            }
+        </style>
     </head>
     <body>
         <div class="left">

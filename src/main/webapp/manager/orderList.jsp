@@ -68,18 +68,18 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-    <form name="searchForm" id="searchForm">
-        <div class="form-group">
-            <label for="searchOrderNo" class="control-label">订单编号:</label>
-            <input type="text" class="form-control" id="searchOrderNo" name="searchOrderNo" value="${condition.name}">
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label for="searchOrderNo" >订单编号:</label>
+            <input type="text" class="myinput"  placeholder="" id="searchOrderNo" name="searchOrderNo" value="${condition.name}">
         </div>
-          <div class="form-group">
-            <label for="searchOrderCtime" class="control-label">下单日期:</label>
-            <input type="text" class="form-control" id="searchOrderCtime" name="searchOrderCtime" size="16" value="${condition.date}">
+        <div class="col-xs-3">
+            <label for="searchOrderCtime" >下单日期:</label>
+            <input type="text" class="myinput"  placeholder="" id="searchOrderCtime" name="searchOrderCtime" value="${condition.name}">
         </div>
-        <div class="form-group">
-            <label for="searchOrderState" class="control-label">订单状态:</label>
-            <select id="searchOrderState" name="searchOrderState" class="form-control">
+        <div class="col-xs-2">
+            <label for="searchOrderState">订单状态</label>
+            <select class=" myinput" name="searchOrderState" id="searchOrderState">
                 <option value="" <c:if test="${empty condition.state}" > selected </c:if> >全部</option>
                 <option value="" <c:if test="${condition.state} == 1" > selected </c:if> >未付款</option>
                 <option value="" <c:if test="${condition.state} == 2" > selected </c:if> >已付款</option>
@@ -89,7 +89,7 @@
                 <option value="" <c:if test="${condition.state} == 6" > selected </c:if> >已作废</option>
             </select>
         </div>
-    </form>
+    </div>
     <div class="form-group">
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>

@@ -70,22 +70,22 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-    <form name="searchForm" id="searchForm">
-        <div class="form-group">
-            <label for="searchBookTypeId" class="control-label">图书分类:</label>
-            <select type="select" class="form-control" id="searchBookTypeId" name="searchBookTypeId">
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label for="searchBookName" >图书名称:</label>
+            <input type="text" class="myinput"  placeholder="" id="searchBookName" name="searchBookName" value="${condition.name}">
+        </div>
+        <div class="col-xs-3">
+            <label for="searchBookAuthor" >图书作者:</label>
+            <input type="text" class="myinput"  placeholder="" id="searchBookAuthor" name="searchBookAuthor" value="${condition.name}">
+        </div>
+        <div class="col-xs-2">
+            <label for="searchBookTypeId">图书分类</label>
+            <select class=" myinput" name="searchBookTypeId" id="searchBookTypeId">
 
             </select>
         </div>
-        <div class="form-group">
-            <label for="searchBookName" class="control-label">图书名称:</label>
-            <input type="text" class="form-control" id="searchBookName" name="searchBookName" value="${condition.name}">
-        </div>
-        <div class="form-group">
-            <label for="searchBookAuthor" class="control-label">图书作者:</label>
-            <input type="text" class="form-control" id="searchBookAuthor" name="searchBookAuthor" value="${condition.state}">
-        </div>
-    </form>
+    </div>
     <div class="form-group">
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>

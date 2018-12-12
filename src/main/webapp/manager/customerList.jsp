@@ -32,12 +32,12 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-    <form name="searchForm" id="searchForm">
-        <div class="form-7">
-            <label for="searchCustomerName" class="control-label">客户姓名:</label>
-            <input type="text" class="form-control" id="searchCustomerName" name="searchCustomerName" value="${condition.name}">
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label for="searchCustomerName" >客户姓名:</label>
+            <input type="text" class="myinput"  placeholder="" id="searchCustomerName" name="searchCustomerName" value="${condition.name}">
         </div>
-    </form>
+    </div>
     <div class="form-group">
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>

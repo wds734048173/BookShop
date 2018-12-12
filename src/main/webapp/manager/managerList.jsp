@@ -56,12 +56,12 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-    <form name="searchForm" id="searchForm">
-        <div class="form-group">
-            <label for="searchAdminName" class="control-label">管理员姓名:</label>
-            <input type="text" class="form-control" id="searchAdminName" name="searchAdminName" value="${condition.name}">
+        <div class="form-group row">
+            <div class="col-xs-3">
+                <label for="searchAdminName" >管理员姓名:</label>
+                <input type="text" class="myinput"  placeholder="" id="searchAdminName" name="searchAdminName" value="${condition.name}">
+            </div>
         </div>
-    </form>
     <div class="form-group">
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="managersearch(null)"/>
     </div>
