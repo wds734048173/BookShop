@@ -9,13 +9,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @WebServlet("/upload.do")
 public class FileUploadServlet extends HttpServlet {
@@ -60,7 +56,15 @@ public class FileUploadServlet extends HttpServlet {
 
                     //给上传的文件，按照日期进行分类存储
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    File filePath = new File("C://Users//WDS//IdeaProjects//JavaWebDemo//BookShop//src//main//webapp//upload" + sdf.format(new Date()));
+                    Properties properties = new Properties();
+                    // 使用ClassLoader加载properties配置文件生成对应的输入流
+                    InputStream in = FileUploadServlet.class.getClassLoader().getResourceAsStream("pic.properties");
+                    // 使用properties对象加载输入流
+                    properties.load(in);
+                    //获取key对应的value值
+                    String url = properties.getProperty("picPath");
+                    System.out.println(url);
+                    File filePath = new File(url + sdf.format(new Date()));
                     File savePath = new File("/upload" + sdf.format(new Date()));
                     //如果文件名不存在，就创建，存在就不用创建
                     if(!filePath.exists()){
