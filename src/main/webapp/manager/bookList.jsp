@@ -68,10 +68,6 @@
     </script>
 </head>
 <body>
-<br><br>
-<div class="modal-body">
-    <a class="btn btn-default" href="#" role="button"  id="addBook" name="addBook">添加图书信息</a>
-</div>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
@@ -94,7 +90,9 @@
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>
 </div>
-<br><br>
+<div class="modal-body">
+    <a class="btn btn-default" href="#" role="button"  id="addBook" name="addBook">添加图书信息</a>
+</div>
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>

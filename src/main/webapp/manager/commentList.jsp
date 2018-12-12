@@ -96,9 +96,7 @@
     </script>
 
 </head>
-
 <body>
-
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
@@ -112,7 +110,6 @@
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>
 </div>
-<br>
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
@@ -141,7 +138,6 @@
         </tbody>
     </table>
 </div>
-<br><br>
 
 <%--新增模态框插件--%>
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addcommentModel">

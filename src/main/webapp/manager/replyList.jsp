@@ -59,8 +59,6 @@
     </script>
 </head>
 <body>
-<br>
-<%Condition condition = (Condition) request.getAttribute("condition");%>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
@@ -70,10 +68,10 @@
 
             <label for="searchReplyType" class="control-label">留言类型:</label>
             <select id="searchReplyType" name="searchReplyType"  class="form-control">
-                <option value="-1" <%if(("全部").equals(condition.getState())){out.print("selected");}%>>全部</option>
-                <option value="0" <%if(("赞美").equals(condition.getState())){out.print("selected");}%>>赞美</option>
-                <option value="1" <%if(("批评").equals(condition.getState())){out.print("selected");}%>>批评</option>
-                <option value="2" <%if(("鼓励").equals(condition.getState())){out.print("selected");}%>>鼓励</option>
+                <option value="" <c:if test="${empty condition.state}" > selected </c:if> >全部</option>
+                <option value="0" <c:if test="${condition.state} == 0" > selected </c:if> >赞美</option>
+                <option value="1" <c:if test="${condition.state} == 1" > selected </c:if> >批评</option>
+                <option value="2" <c:if test="${condition.state} == 2" > selected </c:if> >鼓励</option>
             </select>
             <label for="searchReplycontent" class="control-label">留言内容:</label>
             <input type="text" class="form-control" id="searchReplycontent" name="searchReplycontent" value="${condition.name}">

@@ -42,8 +42,6 @@
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="search(null)"/>
     </div>
 </div>
-
-<br><br>
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>

@@ -54,7 +54,6 @@
     </script>
 </head>
 <body>
-<br>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
     <form name="searchForm" id="searchForm">
@@ -67,7 +66,6 @@
         <input type="button" class="btn btn-primary" id="search" value="查询" onclick="managersearch(null)"/>
     </div>
 </div>
-
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
