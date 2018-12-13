@@ -26,6 +26,10 @@
             $("#save").click(function () {
                 var bookTypeId = $("#bookTypeId").val();
                 var bookTypeName = $("#bookTypeName").val();
+                if(bookTypeName.length > 50){
+                    alert("图书分类名称多于50字，请重新输入");
+                    return;
+                }
                 //查询条件
                 var searchBookTypeName = $("#searchBookTypeName").val();
                 var currentPage = $("#currentPage").val();
@@ -138,7 +142,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bookTypeName" class="control-label">分类名称:</label>
-                        <input type="text" class="form-control" id="bookTypeName" name="bookTypeName">
+                        <input type="text" class="form-control" id="bookTypeName" name="bookTypeName" required>
                     </div>
                 </form>
             </div>
