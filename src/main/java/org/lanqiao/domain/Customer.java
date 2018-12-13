@@ -9,6 +9,7 @@ public class Customer {
     private String CustomerPwd;
     private String Customertruename;
     private String CustomerSex;
+    private String CustomerSexStr;
     private String CustomerTel;
     private String CustomerEmail;
     private String CustomerAddr;
@@ -22,12 +23,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, String customerPwd, String customertruename, String customerSex, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
+    public Customer(int customerId, String customerName, String customerPwd, String customertruename, String customerSex, String customerSexStr, String customerTel, String customerEmail, String customerAddr, Date CTime, Date RTime, String customerQues, String customerAnswer, int customerLogTime, Date customerLastLogT) {
         CustomerId = customerId;
         CustomerName = customerName;
         CustomerPwd = customerPwd;
         Customertruename = customertruename;
         CustomerSex = customerSex;
+        CustomerSexStr = customerSexStr;//0男1女
         CustomerTel = customerTel;
         CustomerEmail = customerEmail;
         CustomerAddr = customerAddr;
@@ -77,6 +79,14 @@ public class Customer {
 
     public void setCustomerSex(String customerSex) {
         CustomerSex = customerSex;
+    }
+
+    public String getCustomerSexStr() {
+        return CustomerSexStr;
+    }
+
+    public void setCustomerSexStr(String customerSexStr) {
+        CustomerSexStr = customerSexStr;
     }
 
     public String getCustomerTel() {
@@ -159,6 +169,7 @@ public class Customer {
                 ", CustomerPwd='" + CustomerPwd + '\'' +
                 ", Customertruename='" + Customertruename + '\'' +
                 ", CustomerSex='" + CustomerSex + '\'' +
+                ", CustomerSexStr='" + CustomerSexStr + '\'' +
                 ", CustomerTel='" + CustomerTel + '\'' +
                 ", CustomerEmail='" + CustomerEmail + '\'' +
                 ", CustomerAddr='" + CustomerAddr + '\'' +

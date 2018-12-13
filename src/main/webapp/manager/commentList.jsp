@@ -131,7 +131,7 @@
                 <td>${commentList.userName}</td>
                 <td><fmt:formatDate value="${commentList.commentdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                 <td>${commentList.commentcontent}</td>
-                <td>${commentList.commentgrade}</td>
+                <td>${commentList.commentgradeStr}</td>
             </tr>
         </c:forEach>
         </tbody>

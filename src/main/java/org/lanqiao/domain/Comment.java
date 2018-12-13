@@ -10,22 +10,13 @@ public class Comment {
     private String UserName;
     private Date Commentdate;
     private String Commentcontent;
-    private String Commentgrade;
+    private String Commentgrade;//0"好评",1"一般",2"差评"
+    private String CommentgradeStr;
 
     public Comment() {
     }
 
-    public Comment(int bookId, String bookName, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade) {
-        BookId = bookId;
-        BookName = bookName;
-        CustomerId = customerId;
-        UserName = userName;
-        Commentdate = commentdate;
-        Commentcontent = commentcontent;
-        Commentgrade = commentgrade;
-    }
-
-    public Comment(int commentId, int bookId, String bookName, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade) {
+    public Comment(int commentId, int bookId, String bookName, int customerId, String userName, Date commentdate, String commentcontent, String commentgrade, String commentgradeStr) {
         CommentId = commentId;
         BookId = bookId;
         BookName = bookName;
@@ -34,6 +25,7 @@ public class Comment {
         Commentdate = commentdate;
         Commentcontent = commentcontent;
         Commentgrade = commentgrade;
+        CommentgradeStr = commentgradeStr;
     }
 
     public int getCommentId() {
@@ -100,6 +92,14 @@ public class Comment {
         Commentgrade = commentgrade;
     }
 
+    public String getCommentgradeStr() {
+        return CommentgradeStr;
+    }
+
+    public void setCommentgradeStr(String commentgradeStr) {
+        CommentgradeStr = commentgradeStr;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -111,6 +111,7 @@ public class Comment {
                 ", Commentdate=" + Commentdate +
                 ", Commentcontent='" + Commentcontent + '\'' +
                 ", Commentgrade='" + Commentgrade + '\'' +
+                ", CommentgradeStr='" + CommentgradeStr + '\'' +
                 '}';
     }
 }

@@ -65,7 +65,7 @@
                     <td>${customer.customerId}</td>
                     <td>${customer.customerName}</td>
                     <td>${customer.customertruename}</td>
-                    <td>${customer.customerSex}</td>
+                    <td>${customer.customerSexStr}</td>
                     <td>${customer.customerTel}</td>
                     <td>${customer.customerEmail}</td>
                     <td>${customer.customerAddr}</td>
@@ -74,7 +74,8 @@
                     <%--<td>${customer.customerQues}</td>--%>
                     <%--<td>${customer.customerAnswer}</td>--%>
                     <td>${customer.customerLogTime}</td>
-                    <td>${customer.customerLastLogT}</td>
+                    <%--<td>${customer.customerLastLogT}</td>--%>
+                    <td><fmt:formatDate value="${customer.customerLastLogT}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
                 </tr>
             </c:forEach>
         </tbody>

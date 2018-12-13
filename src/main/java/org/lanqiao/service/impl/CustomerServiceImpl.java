@@ -13,7 +13,16 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<Customer> getCustomerList(Condition condition) {
-        return customerDao.getCustomerList(condition);
+        List<Customer> customerList = customerDao.getCustomerList(condition);
+        for (int i = 0; i < customerList.size(); i++) {
+            int sexId = Integer.valueOf(customerList.get(i).getCustomerSex());
+            if(sexId == 0){
+                customerList.get(i).setCustomerSexStr("男");
+            }else{
+                customerList.get(i).setCustomerSexStr("女");
+            }
+        }
+        return customerList;
     }
 
     @Override

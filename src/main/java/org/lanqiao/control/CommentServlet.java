@@ -42,7 +42,7 @@ public class CommentServlet extends HttpServlet {
             case "getCommentlist":
                 getCommentlistCur(req,resp,null);
                 break;
-            case "addComment":
+            /*case "addComment":
                 try {
                     addComment(req,resp);
                 } catch (ParseException e) {
@@ -50,7 +50,7 @@ public class CommentServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                break;
+                break;*/
             case "deleteComment":
                 try {
                     delComment(req, resp);
@@ -96,7 +96,7 @@ public class CommentServlet extends HttpServlet {
         commentService.delComment(commentId);
         getCommentlistCur(req,resp,"delete");
     }
-    private void addComment(HttpServletRequest req, HttpServletResponse resp) throws ParseException, SQLException, ServletException, IOException {
+    /*private void addComment(HttpServletRequest req, HttpServletResponse resp) throws ParseException, SQLException, ServletException, IOException {
         String mark = null;
         String commentId = req.getParameter("commentId");
         String BookId = req.getParameter("BookId");
@@ -119,7 +119,7 @@ public class CommentServlet extends HttpServlet {
             commentService.updateComment(comment);
         }
         getCommentlistCur(req,resp,mark);
-    }
+    }*/
     private void getCommentlistCur(HttpServletRequest req, HttpServletResponse resp, String mark) {
         int pageNum = 1;
         if(req.getParameter("currentPage") != null){

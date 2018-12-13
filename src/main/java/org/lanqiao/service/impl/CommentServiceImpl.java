@@ -45,6 +45,17 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public List<Comment> getCommentListCur(Condition condition) {
-        return commentDao.getommentListCur(condition);
+        List<Comment> commentList = commentDao.getommentListCur(condition);
+        for (int i = 0; i < commentList.size(); i++) {
+            int Commentgrade = Integer.valueOf(commentList.get(i).getCommentgrade());
+            if(Commentgrade == 0){
+                commentList.get(i).setCommentgradeStr("好评");
+            }else if(Commentgrade == 1){
+                commentList.get(i).setCommentgradeStr("一般");
+            }else{
+                commentList.get(i).setCommentgradeStr("差评");
+            }
+        }
+        return commentList;
     }
 }
