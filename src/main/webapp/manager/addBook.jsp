@@ -21,30 +21,30 @@
         //要想绑定页面必须使用js提交。
         function addBook() {
             //对传入的参数进行验证
-            var bookName = $("#bookName").val();
+            var bookName = $("#bookName").val().replace(/\s+/g,"");
             if (bookName == null || bookName == "") {
                 alert("图书名称不能为空，请重新输入");
                 return;
             }
-            var bookTypeId = $("#bookTypeId").val();
-            var bookPress = $("#bookPress").val();
+            var bookTypeId = $("#bookTypeId").val().replace(/\s+/g,"");
+            var bookPress = $("#bookPress").val().replace(/\s+/g,"");
             var bookPubDate = $("#bookPubDate").val();
-            var bookSize = $("#bookSize").val();
-            var bookVersion = $("#bookVersion").val();
-            var bookAuthor = $("#bookAuthor").val();
-            var bookTanslor = $("#bookTanslor").val();
-            var bookisbn = $("#bookisbn").val();
-            var bookPrice = $("#bookPrice").val();
-            var bookMprice = $("#bookMprice").val();
-            var bookPages = $("#bookPages").val();
-            var bookOutline = $("#bookOutline").val();
-            var bookCatalog = $("#bookCatalog").val();
-            var bookStoremount = $("#bookStoremount").val();
-            var bookPackstyle = $("#bookPackstyle").val();
+            var bookSize = $("#bookSize").val().replace(/\s+/g,"");
+            var bookVersion = $("#bookVersion").val().replace(/\s+/g,"");
+            var bookAuthor = $("#bookAuthor").val().replace(/\s+/g,"");
+            var bookTanslor = $("#bookTanslor").val().replace(/\s+/g,"");
+            var bookisbn = $("#bookisbn").val().replace(/\s+/g,"");
+            var bookPrice = $("#bookPrice").val().replace(/\s+/g,"");
+            var bookMprice = $("#bookMprice").val().replace(/\s+/g,"");
+            var bookPages = $("#bookPages").val().replace(/\s+/g,"");
+            var bookOutline = $("#bookOutline").val().replace(/\s+/g,"");
+            var bookCatalog = $("#bookCatalog").val().replace(/\s+/g,"");
+            var bookStoremount = $("#bookStoremount").val().replace(/\s+/g,"");
+            var bookPackstyle = $("#bookPackstyle").val().replace(/\s+/g,"");
             var url = "/book.do?method=addBook&bookName=" + bookName + "&bookTypeId=" + bookTypeId + "&bookPress=" + bookPress + "&bookPubDate=" + bookPubDate
-                + "&bookSize=" + bookSize + "&bookVersion=" + bookVersion + "&bookAuthor=" + bookAuthor + "&bookTanslor=" + bookTanslor + "&bookisbn=" + bookisbn
-                + "&bookPrice=" + bookPrice + "&bookMprice=" + bookMprice + "&bookPages=" + bookPages + "&bookOutline=" + bookOutline + "&bookCatalog=" + bookCatalog
-                + "&bookStoremount=" + bookStoremount + "&bookPackstyle=" + bookPackstyle;
+                + "&bookStoremount=" + bookStoremount + "&bookPackstyle=" + bookPackstyle + "&bookSize=" + bookSize + "&bookVersion=" + bookVersion
+                + "&bookAuthor=" + bookAuthor + "&bookTanslor=" + bookTanslor + "&bookisbn=" + bookisbn + "&bookPrice=" + bookPrice
+                + "&bookMprice=" + bookMprice + "&bookPages=" + bookPages + "&bookOutline=" + bookOutline + "&bookCatalog=" + bookCatalog;
             $(".content").load(url)
         }
 
