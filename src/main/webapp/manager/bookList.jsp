@@ -110,7 +110,7 @@
             <tr>
                 <td><img src="${book.bookPic}" style="width: 100px;height: 100px;"></td>
                 <td>${book.bookId}</td>
-                <td>${book.bookTypeid}</td>
+                <td>${book.bookTypeName}</td>
                 <td>${book.bookName}</td>
                 <td>${book.bookAuthor}</td>
                 <td>${book.bookPrice}</td>

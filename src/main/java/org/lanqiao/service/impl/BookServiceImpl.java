@@ -5,14 +5,24 @@ import org.lanqiao.dao.impl.BookDaoImpl;
 import org.lanqiao.domain.Book;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.service.IBookService;
+import org.lanqiao.utils.DataMap;
 
 import java.util.List;
+import java.util.Map;
 
 public class BookServiceImpl implements IBookService {
     IBookDao bookDao = new BookDaoImpl();
     @Override
     public List<Book> getBookList(Condition condition) {
-        return bookDao.getBookList(condition);
+        List<Book> bookList = bookDao.getBookList(condition);
+        Map<Integer,String> map = DataMap.getBookTypeIdNameMap();
+        for (int i = 0; i < bookList.size(); i++) {
+            int bookTypeId = bookList.get(i).getBookTypeid();
+            if(map.containsKey(bookTypeId)){
+                bookList.get(i).setBookTypeName(map.get(bookTypeId));
+            }
+        }
+        return bookList;
     }
 
     @Override
