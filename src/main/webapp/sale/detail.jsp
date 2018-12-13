@@ -168,12 +168,12 @@ footer跟随主要内容进行显示；*/
     <script>
         $(function () {
            $("#add").click(function () {
-               var num = $(this).next().val();
+               var num = $(this).prev().val();
                num++;
                $("#num").val(num);
            });
             $("#reduce").click(function () {
-                var num = $(this).prev().val();
+                var num = $(this).next().val();
                 if (num >1)num--;
                 $("#num").val(num);
             });
@@ -257,9 +257,9 @@ footer跟随主要内容进行显示；*/
                         <input hidden name="bookId" value="<%=book.getBookId()%>">
                         <input hidden name="customerId" value="<%=session.getAttribute("CustomerId")%>">
                         选购数量:
-                        <input type="button" value="+" class="bw" id="add">
+                        <input type="button" value="-" class="bw" id="reduce">
                         <input type="text" name="num" value="1" style="width: 30px" readonly id="num">
-                        <input type="button" value=" - " class="bw" id="reduce"><br/>
+                        <input type="button" value="+" class="bw" id="add"><br/>
                         <input class="jrgwc" type="submit" name="jrgwc" value="加入购物车" />
                 </div>
             </div>
