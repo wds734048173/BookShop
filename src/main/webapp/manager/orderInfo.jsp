@@ -78,10 +78,10 @@
         <tbody>
             <c:forEach begin="0" end="${orderItemList.size()}" var="orderItem" items="${orderItemList}" step="1">
                 <tr>
-                    <td>${orderItem.bookPic}</td>
-                    <td>${bookType.bookName}</td>
+                    <td><img src="${orderItem.bookPic}" width="100px;" height="100px;"></td>
+                    <td>${orderItem.bookName}</td>
                     <td>${orderItem.mprice}</td>
-                    <td>${bookType.price}</td>
+                    <td>${orderItem.price}</td>
                     <td>${orderItem.num}</td>
                 </tr>
             </c:forEach>
