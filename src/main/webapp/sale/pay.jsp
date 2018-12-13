@@ -276,7 +276,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="../sale/bookshop.jsp"
+                                        <a href="/bookshop.do?method=getCartItemList&id=<%=session.getAttribute("CustomerId")%>"
                                            class="back J_MakePoint" target="_top"
                                            data-point-url="">返回购物车</a>
                                         <a id="J_Go"   title="点击此按钮，确认付款。" class="btn btn-primary btn-warning active"><input type="submit" value="确认付款"/></a>

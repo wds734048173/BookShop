@@ -232,14 +232,23 @@ footer跟随主要内容进行显示；*/
                     <div class="pop">
                         <div class="left fl">
                             <%
-                                for (Book book:bookList){
+                                int firstNum = 6;
+                                if(bookList.size() < 6){
+                                    firstNum = bookList.size();
+                                }
+                                for (int i = 0; i < firstNum; i++){
+                                    Book book = bookList.get(i);
                                     if (book.getBookTypeid() == bookType.getBookTypeId()){
+                                        String bookName = book.getBookName();
+                                        if(bookName.length() > 10){
+                                            bookName = book.getBookName().substring(0,10);
+                                        }
                             %>
                             <div>
                                 <div class="xuangou_left fl">
-                                    <a href="">
+                                    <a href="" title="<%=book.getBookName()%>">
                                         <%--<div class="img fl"><img src="<%=book.getBookPic()%>" alt=""></div>--%>
-                                        <span class="fl"><%=book.getBookName()%></span>
+                                        <span class="fl"><%=bookName%></span>
                                         <div class="clear"></div>
                                     </a>
                                 </div>

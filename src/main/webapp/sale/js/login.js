@@ -23,10 +23,7 @@ $(function () {
             if($(this).val() == "") {
                 $(this).addClass("errorInput");
                 $(this).next().css("display", "block").html("密码不能为空！");
-            } else if(!reg.test($(".password").val())) {
-                $(this).addClass("errorInput");
-                $(this).next().css("display", "block").html("请输入6位包含数字或字母的密码！");
-            } else {
+            }  else {
                 $(this).addClass("correctInput");
                 $(this).removeClass("errorInput");
                 $(this).next().empty();

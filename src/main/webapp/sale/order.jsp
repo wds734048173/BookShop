@@ -101,7 +101,7 @@
                                             break;
                                     }
                             %>
-                            <div class="ddbh fl">订单号：<%=order.getNo()%></div>
+                            <div class="ddbh fl" style="margin-right: 90px;">订单号：<%=order.getNo()%></div>
                             <div class="ztxx fl"><%=state%></div>
                             <div class="ztxx fl">￥<%=order.getPrice()%></div>
                             <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
@@ -119,7 +119,7 @@
                                 for (Order order:orderList){
                                     if (order.getState()==1){
                             %>
-                            <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                            <div class="ddbh fl" style="margin-right: 90px;">订单号：<%=order.getNo()%>    </div>
                             <div class="ztxx fl">未付款</div>
                             <div class="ztxx fl">￥<%=order.getPrice()%></div>
                             <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
@@ -138,7 +138,7 @@
                             for (Order order:orderList){
                                 if (order.getState()==2){
                         %>
-                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl" style="margin-right: 90px;">订单号：<%=order.getNo()%>    </div>
                         <div class="ztxx fl">已付款</div>
                         <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
@@ -157,7 +157,7 @@
                             for (Order order:orderList){
                                 if (order.getState()==3){
                         %>
-                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl" style="margin-right: 90px;">订单号：<%=order.getNo()%>    </div>
                         <div class="ztxx fl">已发货</div>
                         <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
@@ -176,7 +176,7 @@
                             for (Order order:orderList){
                                 if (order.getState()==4){
                         %>
-                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl" style="margin-right: 90px;">订单号：<%=order.getNo()%>    </div>
                         <div class="ztxx fl">已收货</div>
                         <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
@@ -195,7 +195,7 @@
                             for (Order order:orderList){
                                 if (order.getState()==5){
                         %>
-                        <div class="ddbh fl">订单号：<%=order.getNo()%>    </div>
+                        <div class="ddbh fl"  style="margin-right: 90px;">订单号：<%=order.getNo()%>    </div>
                         <div class="ztxx fl">已评价</div>
                         <div class="ztxx fl">￥<%=order.getPrice()%></div>
                         <div class="ztxx fl"><%=order.getCtime().toString().substring(5,16)%></div>
