@@ -87,10 +87,6 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-        <%--<div class="form-group">
-            <label for="searchBookTypeName" class="control-label">图书分类名称:</label>
-            <input type="text" id="searchBookTypeName" name="searchBookTypeName" value="${condition.name}">
-        </div>--%>
     <div class="form-group row">
         <div class="col-xs-3">
             <label for="searchBookTypeName" >图书类型名称:</label>

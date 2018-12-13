@@ -17,33 +17,6 @@
 </head>
 <body>
 <div class="modal-body">
-    <%--<form method="post" action="/book.do?method=addBook" id="addForm">
-        <div class="form-group hidden">
-            <label for="bookId" class="control-label">图书id:</label>
-            <input type="text" class="form-control" id="bookId" name="bookId" disabled value="${book.bookId}">
-        </div>
-        <div class="form-group">
-            <label for="bookName" class="control-label">图书名称:</label>
-            <input type="text" class="form-control" id="bookName" name="bookName" disabled value="${book.bookName}">
-        </div>
-        <div class="form-group">
-            <label for="bookTypeId" class="control-label">图书分类:</label>
-            <input type="text" class="form-control" id="bookTypeId" name="bookTypeId"  disabled value="${book.bookTypeName}">
-        </div>
-        <div class="form-group">
-            <label for="bookPress" class="control-label">出版社:</label>
-            <input type="text" class="form-control" id="bookPress" name="bookPress" disabled value="">
-        </div>
-        <div class="form-group">
-            <label for="bookPubDate" class="control-label">出版日期:</label>
-            <input type="text" class="form-control" id="bookPubDate" name="bookPubDate" disabled  value=""/>
-        </div>
-        <div class="form-group">
-            <label for="bookSize" class="control-label">开本:</label>
-            <input type="text" class="form-control" id="bookSize" name="bookSize" disabled value="">
-        </div>
-
-    </form>--%>
     <form method="post" action="/book.do?method=addBook" id="addForm">
         <div class="form-group hidden">
             <label for="bookId" class="control-label">图书id:</label>
