@@ -1,5 +1,6 @@
 package org.lanqiao.dao;
 
+import org.lanqiao.domain.CartItem;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
 import org.lanqiao.domain.OrderItem;
@@ -13,5 +14,5 @@ public interface IOrderDao {
     public Order getOrderById(int orderId);
     public List<OrderItem> getOrderItemList(int orderId);
     public List<Order> getOrderByCusId(int CustomerId);
-    public void createOrder(Order order);
+    public void createOrder(Order order,List<CartItem> cartItemList);
 }

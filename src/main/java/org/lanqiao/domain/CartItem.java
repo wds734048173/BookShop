@@ -1,7 +1,5 @@
 package org.lanqiao.domain;
 
-import javax.servlet.jsp.PageContext;
-
 public class CartItem {
     private int CustomerId;
     private int BookId;
@@ -10,55 +8,6 @@ public class CartItem {
     private int BookPrice;
     private String BookName;
     private String BookPic;
-
-
-
-//    public CartItem() {
-//    }
-//
-//    public CartItem(int bookId, int ordermount) {
-//        BookId = bookId;
-//        this.ordermount = ordermount;
-//    }
-//
-//    public CartItem(int customerId, int bookId, int ordermount) {
-//        CustomerId = customerId;
-//        BookId = bookId;
-//        this.ordermount = ordermount;
-//    }
-//
-//    public int getCustomerId() {
-//        return CustomerId;
-//    }
-//
-//    public void setCustomerId(int customerId) {
-//        CustomerId = customerId;
-//    }
-//
-//    public int getBookId() {
-//        return BookId;
-//    }
-//
-//    public void setBookId(int bookId) {
-//        BookId = bookId;
-//    }
-//
-//    public int getOrdermount() {
-//        return ordermount;
-//    }
-//
-//    public void setOrdermount(int ordermount) {
-//        this.ordermount = ordermount;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "CartItem{" +
-//                "CustomerId=" + CustomerId +
-//                ", BookId=" + BookId +
-//                ", ordermount=" + ordermount +
-//                '}';
-//    }
 
     public CartItem() {
     }

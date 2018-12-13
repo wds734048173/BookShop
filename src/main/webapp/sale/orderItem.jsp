@@ -129,15 +129,15 @@
                         <tr class="item" data-lineid="19614514619:31175333266:35612993875" data-pointRate="0">
                             <td class="s-title">
                                 <a href="#" target="_blank"  data-point-url="http://log.mmstat.com/buy.1.5">
-                                    <img src="#" class="itempic"><span class="title J_MakePoint" data-point-url="http://log.mmstat.com/buy.1.5"><%=item.getBookName()%></span></a>
+                                    <img src="<%=item.getBookPic()%>" class="itempic"><span class="title J_MakePoint" data-point-url="http://log.mmstat.com/buy.1.5"><%=item.getBookName()%></span></a>
 
                                 <div class="props">
                                     <span><%=item.getBookId()%></span>
                                     <span><%=item.getNum()%>本</span>
                                 </div>
-                                <a  href="#" target="_blank">
-                                    <img src="#"/>
-                                </a>
+                                <%--<a  href="#" target="_blank">--%>
+                                    <%--<img src="<%=item.%>"/>--%>
+                                <%--</a>--%>
                                 <div>
                                     <span style="color:gray;">卖家承诺72小时内发货</span>
                                 </div>
@@ -195,8 +195,8 @@
                                         <div class="kd-popup pop-back" style="margin-bottom: 40px;">
                                             <a href="/order.do?method=getOrderAll"
                                                class="back J_MakePoint" target="_top"
-                                               data-point-url="">返回订单中心</a>
-                                            <a id="J_Go"   title="点击此按钮，确认付款。" class="btn btn-primary btn-warning active"><input type="submit" value="确认付款"/></a>
+                                               data-point-url="" style="width: 100px;">返回订单中心</a>
+                                            <%--<a id="J_Go"   title="点击此按钮，确认付款。" class="btn btn-primary btn-warning active"><input type="submit" value="确认付款"/></a>--%>
                                         </div>
                                     </div>
 

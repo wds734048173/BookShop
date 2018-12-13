@@ -14,4 +14,8 @@ public interface ICartItemDao {
     public void addToCarList(int CustomerId,int BookId,int num);
     //删除用户的购物车
     public void delBookShop(int CustomerId);
+    //通过客户id和商品id查询购物车信息
+    public CartItem getCarList(int CustomerId, int BookId);
+    //修改购物车数量
+    public void updateCarList(int CustomerId, int BookId, int num);
 }

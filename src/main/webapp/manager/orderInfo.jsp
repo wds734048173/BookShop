@@ -69,7 +69,7 @@
 <div class="modal-body" style="margin-top: 150px;">
     <table class="table table-hover table-bordered">
         <thead>
-        <th>订单子表id</th>
+        <th>商品图片</th>
         <th>商品名称</th>
         <th>原价</th>
         <th>售价</th>
@@ -78,7 +78,7 @@
         <tbody>
             <c:forEach begin="0" end="${orderItemList.size()}" var="orderItem" items="${orderItemList}" step="1">
                 <tr>
-                    <td>${orderItem.id}</td>
+                    <td>${orderItem.bookPic}</td>
                     <td>${bookType.bookName}</td>
                     <td>${orderItem.mprice}</td>
                     <td>${bookType.price}</td>

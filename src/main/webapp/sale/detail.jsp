@@ -229,18 +229,19 @@ footer跟随主要内容进行显示；*/
             <div class="clear"></div>
         </div>
     </header>
-    <form action="bookshop.do?method=addToList" method="post">
-        <div class="xiangqing">
-            <div class="neirong w">
-                <div class="xiaomi6 fl"><%=book.getBookName()%></div>
-                <nav class="fr">
-                    <%--点击进入用户评价--%>
-                    <li><a href="/privateComment.do?method=selectByBookId&bookid=<%=book.getBookId()%>">用户评价</a></li>
-                    <div class="clear"></div>
-                </nav>
+
+    <div class="xiangqing">
+        <div class="neirong w">
+            <div class="xiaomi6 fl"><%=book.getBookName()%></div>
+            <nav class="fr">
+                <%--点击进入用户评价--%>
+                <li><a href="/privateComment.do?method=selectByBookId&bookid=<%=book.getBookId()%>">用户评价</a></li>
                 <div class="clear"></div>
-            </div>
+            </nav>
+            <div class="clear"></div>
         </div>
+    </div>
+    <form action="bookshop.do?method=addToList" method="post">
 
         <div class="jieshao mt20 w">
             <div class="left fl"><img src="<%=book.getBookPic()%>" style="background-size:cover;width: 500px;height: 500px;margin: 30px 0 0 30px"></div>

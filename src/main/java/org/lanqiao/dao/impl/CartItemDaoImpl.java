@@ -2,6 +2,7 @@ package org.lanqiao.dao.impl;
 
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.lanqiao.dao.ICartItemDao;
 import org.lanqiao.domain.CartItem;
@@ -48,13 +49,28 @@ public class CartItemDaoImpl implements ICartItemDao {
         }
     }
 
+    @Override
+    public CartItem getCarList(int CustomerId, int BookId) {
+        String sql = "select *  from tb_shopbook where CustomerId=? and BookId=?";
+        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+        CartItem cartItem = null;
+        try {
+            cartItem = qr.query(sql,new BeanHandler<>(CartItem.class),CustomerId,BookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cartItem;
+    }
 
-//    @Override
-//    public List<CartItem> finfByBookId(int BookId) throws SQLException {
-//
-//        String sql = "select BookName from tb_bookinfo where BookId=?";
-//        List<CartItem> bookList = qr.query(sql,new BeanListHandler<>(CartItem.class),BookId);
-//        return bookList;
-//    }
+    @Override
+    public void updateCarList(int CustomerId, int BookId, int num) {
+        String sql = "update tb_shopbook set ordermount = ? where CustomerId=? and BookId=?";
+        QueryRunner qr = new QueryRunner(jdbcUtils.getDataSource());
+        try {
+            qr.update(sql,num,CustomerId,BookId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

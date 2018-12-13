@@ -79,9 +79,9 @@
             <div class="lfnav fl">
                 <div class="ddzx">个人中心</div>
                 <div class="ddzx"><a href="/order.do?method=getOrderAll">订单中心</a></div>
-                <div class="ddzx">
-                    <a href="/privateComment.do?method=selectByCustomerId&customerid=<%=session.getAttribute("CustomerId")%>">我的评价</a>
-                </div>
+                <%--<div class="ddzx">--%>
+                    <%--<a href="/privateComment.do?method=selectByCustomerId&customerid=<%=session.getAttribute("CustomerId")%>">我的评价</a>--%>
+                <%--</div>--%>
                 <div class="ddzx">
                     <a href="/reply.do?method=myReply" class="success">我的反馈</a>
                 </div>
@@ -101,32 +101,32 @@
                     <div class="login-main center mt20" style="margin-top: 30px">
                         <input hidden name="CustomerId" value="<%=session.getAttribute("CustomerId")%>"/>
                     <div class="username check-height">
-                        <label for="user">用户名</label>
+                        <label for="user" style="color: black">用户名</label>
                         <input class="shurukuang" type="text" name="username" placeholder="请输入用户名（字母、数字）" id="user" readonly value="<%=customer.getCustomerName()%>"/>
                         <span class="error"></span>
                     </div>
                     <div class="username check-height">
-                        <label for="name">真实姓名</label>
+                        <label for="name" style="color: black">真实姓名</label>
                         <input class="shurukuang" type="text" name="name" placeholder="请填写正确的真实姓名" id="name" readonly value="<%=customer.getCustomertruename()%>"/>
                         <span class="error"></span>
                     </div>
 
                     <div class="username check-height">
-                        <label for="phonenum">电话</label>
+                        <label for="phonenum" style="color: black">电话</label>
                         <input class="shurukuang" type="text" name="tel" placeholder="请填写正确的手机号" id="phonenum" readonly value="<%=customer.getCustomerTel()%>"/>
                         <input class="jrgwc" type="button" value="立即修改" id="chphone">
                         <span class="error"></span>
                     </div>
 
                     <div class="username check-height">
-                        <label for="email">邮箱</label>
+                        <label for="email" style="color: black">邮箱</label>
                         <input class="shurukuang" type="text" name="email" placeholder="请填写正确的邮箱地址" id="email" readonly value="<%=customer.getCustomerEmail()%>"/>
                         <input class="jrgwc" type="button" value="立即修改" id="chem">
                         <span class="error"></span>
                     </div>
 
                     <div class="username check-height">
-                        <label for="addr">地址</label>
+                        <label for="addr" style="color: black">地址</label>
                         <input class="shurukuang" type="text" name="addr" placeholder="请填写正确的邮寄地址" id="addr" readonly value="<%=customer.getCustomerAddr()%>"/>
                         <input class="jrgwc" type="button" value="立即修改" id="chaddr">
                         <span class="error"></span>
@@ -137,7 +137,6 @@
                     </div>
                 </form>
                 <div class="clear"></div>
-
             </div>
             <div class="clear"></div>
         </div>

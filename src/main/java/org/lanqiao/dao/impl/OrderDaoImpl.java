@@ -5,12 +5,14 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.lanqiao.dao.IOrderDao;
+import org.lanqiao.domain.CartItem;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
 import org.lanqiao.domain.OrderItem;
 import org.lanqiao.utils.jdbcUtils;
 
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,11 +115,25 @@ public class OrderDaoImpl implements IOrderDao {
     }
 
     @Override
-    public void createOrder(Order order) {
-        String sql = "insert into tb_order(no,price,money,state,name,phone,address,ctime,rtime,freight,customerId) values(?,?,?,?,?,?,?,?,?,?,?)";
+    public void createOrder(Order order,List<CartItem> cartItemList) {
+        Connection conn = null;
+        try {
+            conn = jdbcUtils.getConnection();
+            conn.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String sql1 = "insert into tb_order(no,price,money,state,name,phone,address,ctime,rtime,freight,customerId) values(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql2 = "select max(id) from tb_order";
+        String sql3 = "insert into tb_orderitem (oId,bookId,mprice,price,num,bookName,bookPic) values (?,?,?,?,?,?,?)";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
-            qr.execute(sql,order.getNo(),order.getPrice(),order.getMoney(),order.getState(),order.getName(),order.getPhone(),order.getAddress(),format.format(new Date()),format.format(new Date()),order.getFreight(),order.getCustomerId());
+            qr.execute(sql1,order.getNo(),order.getPrice(),order.getMoney(),order.getState(),order.getName(),order.getPhone(),order.getAddress(),format.format(new Date()),format.format(new Date()),order.getFreight(),order.getCustomerId());
+            int oId = qr.query(sql2,new ScalarHandler<>(1));
+            for (int i = 0; i < cartItemList.size(); i++) {
+                qr.execute(sql3,oId,cartItemList.get(i).getBookId(),cartItemList.get(i).getBookMprice(),cartItemList.get(i).getBookPrice(),cartItemList.get(i).getOrdermount(),cartItemList.get(i).getBookName(),cartItemList.get(i).getBookPic());
+            }
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -36,7 +36,19 @@ public class CartItemServiceImpl implements ICartItemService {
 
     @Override
     public void addToCarList(int CustomerId, int BookId, int num) {
-        dao.addToCarList(CustomerId,BookId,num);
+        /*
+        * 通过用户id和书籍id查看是否添加过购物车
+        * 1、如果没有数据，证明是新数据，直接新增
+        * 2、如果有数据，就说明购物车有该商品，修改数量即可
+        * */
+        CartItem cartItem = dao.getCarList(CustomerId,BookId);
+        if(cartItem == null){
+            dao.addToCarList(CustomerId,BookId,num);
+        }else{
+            int oldNum = cartItem.getOrdermount();
+            dao.updateCarList(CustomerId,BookId,num+oldNum);
+        }
+
     }
 
     //通过用户名查找购物车

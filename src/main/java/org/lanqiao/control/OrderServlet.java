@@ -1,5 +1,9 @@
 package org.lanqiao.control;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.lanqiao.dao.IBookInfoDao;
+import org.lanqiao.dao.impl.BookInfoDaoImpl;
+import org.lanqiao.domain.CartItem;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
 import org.lanqiao.domain.OrderItem;
@@ -8,6 +12,7 @@ import org.lanqiao.service.IOrderService;
 import org.lanqiao.service.impl.CartItemServiceImpl;
 import org.lanqiao.service.impl.OrderServiceImpl;
 import org.lanqiao.utils.PageModel;
+import org.lanqiao.utils.jdbcUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -82,8 +88,14 @@ IOrderService orderService = new OrderServiceImpl();
         order.setPhone(phone);
         order.setAddress(addr);
         order.setCustomerId(id);
-        orderService.createOrder(order);
         ICartItemService service = new CartItemServiceImpl();
+        List<CartItem> cartItemList = null;
+        try {
+            cartItemList=service.findByCustomerId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        orderService.createOrder(order,cartItemList);
         service.delBookShop(id);
         try {
             req.getRequestDispatcher("/order.do?method=getOrderAll").forward(req,resp);
@@ -93,7 +105,6 @@ IOrderService orderService = new OrderServiceImpl();
             e.printStackTrace();
         }
     }
-
 
     private void updateOrderState(HttpServletRequest req, HttpServletResponse resp) {
         int orderId = Integer.valueOf(req.getParameter("orderId"));

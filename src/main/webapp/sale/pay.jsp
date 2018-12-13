@@ -130,15 +130,15 @@
                     <tr class="item" data-lineid="19614514619:31175333266:35612993875" data-pointRate="0">
                         <td class="s-title">
                             <a href="#" target="_blank"  data-point-url="http://log.mmstat.com/buy.1.5">
-                                <img src="#" class="itempic"><span class="title J_MakePoint" data-point-url="http://log.mmstat.com/buy.1.5"><%=item.getBookName()%></span></a>
+                                <img src="<%=item.getBookPic()%>" class="itempic"><span class="title J_MakePoint" data-point-url="http://log.mmstat.com/buy.1.5"><%=item.getBookName()%></span></a>
 
                             <div class="props">
                                 <span><%=item.getBookId()%></span>
                                 <span><%=item.getOrdermount()%>本</span>
                             </div>
-                            <a  href="#" target="_blank">
-                                <img src="#"/>
-                            </a>
+                            <%--<a  href="#" target="_blank">--%>
+                                <%--<img src="#"/>--%>
+                            <%--</a>--%>
                             <div>
                                 <span style="color:gray;">卖家承诺72小时内发货</span>
                             </div>

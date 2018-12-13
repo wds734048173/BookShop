@@ -3,6 +3,7 @@ package org.lanqiao.service.impl;
 
 import org.lanqiao.dao.IOrderDao;
 import org.lanqiao.dao.impl.OrderDaoImpl;
+import org.lanqiao.domain.CartItem;
 import org.lanqiao.domain.Condition;
 import org.lanqiao.domain.Order;
 import org.lanqiao.domain.OrderItem;
@@ -71,7 +72,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void createOrder(Order order) {
-        orderDao.createOrder(order);
+    public void createOrder(Order order,List<CartItem> cartItemList) {
+        orderDao.createOrder(order,cartItemList);
     }
 }

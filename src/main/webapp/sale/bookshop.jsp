@@ -24,7 +24,6 @@
             var  isDelete = confirm("确定删除吗?");
             if (isDelete) {
                 var id = $(this).parent().parent().children("td:eq(0)").text();
-
             }
         })
     })
@@ -97,31 +96,27 @@
             for(CartItem cu:cartItemList){%>
         <tr>
             <td class="goods"><%= cu.getBookName()%></td>
-            <td class="pic"><%=cu.getBookPic()%></td>
+            <td class="pic"><img src="<%=cu.getBookPic()%>" width="100px" height="100px;"></td>
             <td class="price"><%=cu.getBookPrice()%></td>
             <td><%=cu.getBookMprice()%></td>
             <td><%=cu.getBookId()%></td>
             <td class="count"><%=cu.getOrdermount()%></td>
             <td class="subtotal"><%=cu.getBookPrice()*cu.getOrdermount()%></td>
             <td class="operation"><span class="delete"><a class="btn btn-default delete" href="/bookshop.do?method=delByCustomerId&CustomerId=<%=cu.getCustomerId()%>&BookId=<%=cu.getBookId()%>" role="button" name="delete">删除</a></span></td>
-
-
         </tr>
         <%}%>
         </thead>
     </table>
     <div class="foot" id="foot">
-        <div class="fr closing"><a href="/bookshop.do?method=findByCustomerId&total=<%=request.getAttribute("total")%>">结 算</a></div>
-        <div class="fr total">合计：￥<span id="priceTotal"><%=request.getAttribute("total")%></span></div>
-        <%--<div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件<span class="arrow up"></span><span class="arrow down"></span></div>--%>
-        <%--<div class="selected-view">--%>
-            <%--<div id="selectedViewList" class="clearfix">--%>
-                <%--<div><img src=""></div>--%>
-            <%--</div>--%>
-            <%--<span class="arrow"><span></span></span>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-
-<%--</div>--%>
+        <%if(cartItemList.size() != 0){
+            %>
+            <div class="fr closing"><a href="/bookshop.do?method=findByCustomerId&total=<%=request.getAttribute("total")%>">结 算</a></div>
+            <div class="fr total">合计：￥<span id="priceTotal"><%=request.getAttribute("total")%></span></div>
+                <%
+        }else{
+            %>
+        <center><div><a href="/sale/index.jsp">请您去首页选购商品</a></div></center>
+                <%
+        }%>
 </body>
 </html>

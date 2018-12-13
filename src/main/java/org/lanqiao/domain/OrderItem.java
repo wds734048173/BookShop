@@ -9,11 +9,12 @@ public class OrderItem {
     private int price;
     private int num;
     private String bookName;
+    private String bookPic;
 
     public OrderItem() {
     }
 
-    public OrderItem(int id, int oId, int bookId, int mprice, int price, int num, String bookName) {
+    public OrderItem(int id, int oId, int bookId, int mprice, int price, int num, String bookName, String bookPic) {
         this.id = id;
         this.oId = oId;
         this.bookId = bookId;
@@ -21,6 +22,7 @@ public class OrderItem {
         this.price = price;
         this.num = num;
         this.bookName = bookName;
+        this.bookPic = bookPic;
     }
 
     public int getId() {
@@ -79,6 +81,14 @@ public class OrderItem {
         this.bookName = bookName;
     }
 
+    public String getBookPic() {
+        return bookPic;
+    }
+
+    public void setBookPic(String bookPic) {
+        this.bookPic = bookPic;
+    }
+
     @Override
     public String toString() {
         return "OrderItem{" +
@@ -89,6 +99,7 @@ public class OrderItem {
                 ", price=" + price +
                 ", num=" + num +
                 ", bookName='" + bookName + '\'' +
+                ", bookPic='" + bookPic + '\'' +
                 '}';
     }
 }
