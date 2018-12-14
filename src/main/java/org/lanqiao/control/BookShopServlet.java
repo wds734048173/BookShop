@@ -52,8 +52,6 @@ public class BookShopServlet extends HttpServlet {
                 findByOrderId(request,response);
                 break;
         }
-
-//        request.getRequestDispatcher("/sale/bookshop.jsp").forward(request,response);
     }
 
     private void findByOrderId(HttpServletRequest request, HttpServletResponse response) {
@@ -97,15 +95,26 @@ public class BookShopServlet extends HttpServlet {
 
     private void addToCarList(HttpServletRequest request, HttpServletResponse response) {
         String bookId = request.getParameter("bookId");
-        String CustomerId = request.getParameter("customerId");
-        String num = request.getParameter("num");
-        service.addToCarList(Integer.parseInt(CustomerId),Integer.parseInt(bookId),Integer.parseInt(num));
-        try {
-            request.getRequestDispatcher("/bookinfo.do?method=detail&bookId="+ bookId +"").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        HttpSession session = request.getSession();
+        Object CustomerId = session.getAttribute("CustomerId");
+        if(CustomerId == null){//这个判断就相当于过滤器
+            try {
+                request.getRequestDispatcher("/sale/login.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            String num = request.getParameter("num");
+            service.addToCarList(Integer.parseInt(CustomerId.toString()),Integer.parseInt(bookId),Integer.parseInt(num));
+            try {
+                request.getRequestDispatcher("/bookinfo.do?method=detail&bookId="+ bookId +"").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -114,6 +123,7 @@ public class BookShopServlet extends HttpServlet {
         HttpSession session = request.getSession();
         int cutomcatid= (int) session.getAttribute("CustomerId");
 
+        //都是从session中拿数据，这样再传过来有什么意义？
         if (request.getAttribute("CustomerId")!= null){
             cutomcatid= (int) request.getAttribute("CustomerId");
         }
@@ -137,16 +147,6 @@ public class BookShopServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-
-//    private void delByCustomerId(HttpServletRequest req, HttpServletResponse resp) {
-//        int CustomerId = Integer.valueOf(req.getParameter("CustomerId"));
-//        service.removeCartItem(CustomerId);
-//        service(req,resp,"delete");
-//
-//    }
-
-
 
     public void delByCustomerId(HttpServletRequest request, HttpServletResponse response) {
         String CustomerId = request.getParameter("CustomerId");

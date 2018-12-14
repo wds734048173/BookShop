@@ -177,6 +177,17 @@ footer跟随主要内容进行显示；*/
                 if (num >1)num--;
                 $("#num").val(num);
             });
+
+
+            // $("#addCart").click(function () {
+            //     var bookId = $("#bookId").val();
+            //     var num = $("#num").val();
+            //     $.ajax({
+            //         url:"/bookshop.do?method=addToList&bookId="+bookId+"&num="+num,
+            //         success:function (data) {
+            //
+            //         }
+            // });
         })
     </script>
 </head>
@@ -235,13 +246,13 @@ footer跟随主要内容进行显示；*/
             <div class="xiaomi6 fl"><%=book.getBookName()%></div>
             <nav class="fr">
                 <%--点击进入用户评价--%>
-                <li><a href="/privateComment.do?method=selectByBookId&bookid=<%=book.getBookId()%>">用户评价</a></li>
+                <li><a href="/privateComment.do?method=selectByBookId">用户评价</a></li>
                 <div class="clear"></div>
             </nav>
             <div class="clear"></div>
         </div>
     </div>
-    <form action="bookshop.do?method=addToList" method="post">
+    <form action="/bookshop.do?method=addToList" method="post">
 
         <div class="jieshao mt20 w">
             <div class="left fl"><img src="<%=book.getBookPic()%>" style="background-size:cover;width: 500px;height: 500px;margin: 30px 0 0 30px"></div>
@@ -254,18 +265,19 @@ footer跟随主要内容进行显示；*/
                 <div class="jiage ml20 mt10">售价：<%=book.getBookPrice()%></div>
                 <div class="jianjie mr40 ml20">原价:<%=book.getBookMprice()%></div>
                 <div class="xiadan ml20 mt20">
-                        <input hidden name="bookId" value="<%=book.getBookId()%>">
-                        <input hidden name="customerId" value="<%=session.getAttribute("CustomerId")%>">
-                        选购数量:
-                        <input type="button" value="-" class="bw" id="reduce">
-                        <input type="text" name="num" value="1" style="width: 30px" readonly id="num">
-                        <input type="button" value="+" class="bw" id="add"><br/>
-                        <input class="jrgwc" type="submit" name="jrgwc" value="加入购物车" />
+                    <input hidden id="bookId" name="bookId" value="<%=book.getBookId()%>">
+                    选购数量:
+                    <input type="button" value="-" class="bw" id="reduce">
+                    <input type="text" name="num" value="1" style="width: 30px" readonly id="num">
+                    <input type="button" value="+" class="bw" id="add"><br/>
+                    <%--点击购物车，先判断是否登录，没有登录去登录页面,过滤器没生效是因为请求方式不对，不能使用submit提交，要使用a标签，url请求访问--%>
+                    <input class="jrgwc" type="submit" name="jrgwc" value="加入购物车" id="addCart"/>
                 </div>
             </div>
             <div class="clear"></div>
         </div>
     </form>
+    <div class="xiadan ml20 mt20"></div>
     <div style="height: 200px">
         <div class="xiangqing">
             <div class="neirong w">

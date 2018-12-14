@@ -38,7 +38,7 @@
         </div>
         <div class="col-xs-6">
             <label for="bookPubDate" class="control-label">出版日期:</label>
-            <input type="text" class="form-control" id="bookPubDate" name="bookPubDate"  value="<fmt:formatDate value="${book.bookPubDate}" pattern="yyyy-MM-dd"></fmt:formatDate>">
+            <input type="text" class="form-control" id="bookPubDate" name="bookPubDate" disabled value="<fmt:formatDate value="${book.bookPubDate}" pattern="yyyy-MM-dd"></fmt:formatDate>">
         </div>
         <br>
         <br>

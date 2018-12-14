@@ -77,7 +77,7 @@
         </div>
         <div class="col-xs-3">
             <label for="searchBookAuthor" >图书作者:</label>
-            <input type="text" class="myinput"  placeholder="" id="searchBookAuthor" name="searchBookAuthor" value="${condition.name}">
+            <input type="text" class="myinput"  placeholder="" id="searchBookAuthor" name="searchBookAuthor" value="${condition.state}">
         </div>
         <div class="col-xs-2">
             <label for="searchBookTypeId">图书分类</label>

@@ -61,22 +61,6 @@
 <body>
 <input type="hidden" name="currentPage" id="currentPage" value="${currentPage}">
 <div class="modal-body">
-    <%--<form name="searchForm" id="searchForm">
-        <div class="form-group">
-            <label for="searchCustomerId" class="control-label">留言客户:</label>
-            <input type="text" class="form-control" id="searchCustomerId" name="searchCustomerId" value="${condition.bookTypeId}">
-
-            <label for="searchReplyType" class="control-label">留言类型:</label>
-            <select id="searchReplyType" name="searchReplyType"  class="form-control">
-                <option value="" <c:if test="${empty condition.state}" > selected </c:if> >全部</option>
-                <option value="0" <c:if test="${condition.state} == 0" > selected </c:if> >赞美</option>
-                <option value="1" <c:if test="${condition.state} == 1" > selected </c:if> >批评</option>
-                <option value="2" <c:if test="${condition.state} == 2" > selected </c:if> >鼓励</option>
-            </select>
-            <label for="searchReplycontent" class="control-label">留言内容:</label>
-            <input type="text" class="form-control" id="searchReplycontent" name="searchReplycontent" value="${condition.bookTypeId}">
-        </div>
-    </form>--%>
     <div class="form-group row">
         <div class="col-xs-3">
             <label for="searchCustomerId" >留言客户:</label>
@@ -104,7 +88,7 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-            <th>信息反馈id</th>
+            <th hidden>信息反馈id</th>
             <th>留言类型</th>
             <th>留言主题</th>
             <th>留言内容</th>
@@ -114,7 +98,7 @@
         <tbody>
         <c:forEach begin="0" end="${replyList.size()}" var="reply" items="${replyList}" step="1">
             <tr>
-                <td>${reply.replyId}</td>
+                <td hidden>${reply.replyId}</td>
                 <td>${reply.replyType}</td>
                 <td>${reply.replytitle}</td>
                 <td>${reply.replycontent}</td>
