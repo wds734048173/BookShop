@@ -69,7 +69,7 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-        <th>管理员编号</th>
+        <th hidden>管理员编号</th>
         <th>管理员名称</th>
         <%--<th>权限标志</th>--%>
         <th>注册时间</th>
@@ -79,7 +79,7 @@
         <tbody>
         <c:forEach begin="0" end="${managerList.size()}" var="manager" items="${managerList}" step="1">
             <tr>
-                <td>${manager.adminId}</td>
+                <td hidden>${manager.adminId}</td>
                 <td>${manager.adminName}</td>
                 <%--<td>${manager.adminFlag}</td>--%>
                 <td><fmt:formatDate value="${manager.ctime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>

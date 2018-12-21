@@ -45,7 +45,7 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-            <th>客户编号</th>
+            <th hidden>客户编号</th>
             <th>客户姓名</th>
             <th>真实姓名</th>
             <th>性别</th>
@@ -62,7 +62,7 @@
         <tbody>
             <c:forEach begin="0" end="${customerList.size()}" var="customer" items="${customerList}" step="1">
                 <tr>
-                    <td>${customer.customerId}</td>
+                    <td hidden>${customer.customerId}</td>
                     <td>${customer.customerName}</td>
                     <td>${customer.customertruename}</td>
                     <td>${customer.customerSexStr}</td>

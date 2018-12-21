@@ -104,14 +104,14 @@
 <div class="modal-body">
     <table class="table table-hover table-bordered">
         <thead>
-            <th>图书分类id</th>
+            <th hidden>图书分类id</th>
             <th>图书分类名称</th>
             <th>操作</th>
         </thead>
         <tbody>
             <c:forEach begin="0" end="${bookTypeList.size()}" var="bookType" items="${bookTypeList}" step="1">
             <tr>
-                <td>${bookType.bookTypeId}</td>
+                <td hidden>${bookType.bookTypeId}</td>
                 <td>${bookType.bookTypeName}</td>
                 <td>
                     <a class="btn btn-default updateBookType" href="#" role="button"  name="updateBookType">修改</a>
